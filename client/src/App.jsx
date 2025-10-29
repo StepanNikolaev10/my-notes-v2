@@ -1,10 +1,12 @@
-import { useState } from 'react'
-import '../src/styles/App.css'
+import '../src/styles/App.scss'
+import TaskListPage from './pages/TaskListPage/TaskListPage.jsx'
+import Header from './components/Features/Header/Header.jsx'
 
 function App() {
   return (
     <div className='App'>
-      sdfsadf
+      <Header/>
+      <TaskListPage/>
     </div>
   )
 }
