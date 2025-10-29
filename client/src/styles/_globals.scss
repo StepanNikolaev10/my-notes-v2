@@ -1,0 +1,8 @@
+$light-theme-text-color: black;
+$dark-theme-text-color: white;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
