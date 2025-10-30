@@ -1,18 +1,19 @@
-import Task from "/src/components/UI/Task/Task";
+import { useState } from "react";
+import TaskItem from "/src/components/Containers/TaskItem/TaskItem";
 
-const TaskListDisplay = ({tasks}) => {
+const TaskListDisplay = ({ tasks, onTextChange }) => {
   return (
     <div>
-      {tasks.map((task) => {
-        return ( 
-          <Task
-            key={task.id} 
-            text={task.text}
-            id={task.id}
-          />
-        );
-      })}
+      {tasks.map(task => (
+        <TaskItem
+          key={task.id}
+          id={task.id}
+          text={task.text}
+          onTextChange={onTextChange}
+        />
+      ))}
     </div>
-  )
-}
+  );
+};
+
 export default TaskListDisplay;
