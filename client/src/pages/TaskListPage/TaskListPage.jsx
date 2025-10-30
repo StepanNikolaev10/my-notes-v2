@@ -1,6 +1,7 @@
 import styles from './TaskListPage.module.scss';
 import { useState } from 'react';
 import TaskListDisplay from '/src/components/Containers/TaskListDisplay/TaskListDisplay';
+import TaskAddBtn from '../../components/UI/TaskAddBtn/TaskAddBtn';
 
 const TaskListPage = () => {
   const [tasks, setTasks] = useState([
@@ -8,9 +9,10 @@ const TaskListPage = () => {
     {id: 2, text: 'Погулять'}
   ])
 
-  const addTask = (newText) => {
-    const newTask = { id: tasks.length+1, text: newText};
+  const addTask = () => {
+    const newTask = { id: tasks.length+1, text: ''};
     setTasks(prevTasks => [...prevTasks, newTask]); 
+    console.log('works')
   };
 
   const updateTaskText = (id, newText) => {
@@ -24,6 +26,9 @@ const TaskListPage = () => {
       <TaskListDisplay
         tasks={tasks}
         onTextChange={updateTaskText}
+      />
+      <TaskAddBtn
+        onAddTask={addTask}
       />
     </div>
   )

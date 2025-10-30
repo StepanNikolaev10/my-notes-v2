@@ -1,11 +1,11 @@
-import styles from './TaskAddBtn.module.scss'
+import styles from './TaskAddBtn.module.scss';
 
-const TaskAddBtn = () => {
+const TaskAddBtn = ({onAddTask}) => {
   return (
-    <div className={styles.addBtn}>
+    <div className={styles.addBtn} onClick={onAddTask}>
       <span></span>
       <span></span>
     </div>
   )
 }
-export default TaskAddBtn
+export default TaskAddBtn;
