@@ -1,7 +1,6 @@
-import styles from './TaskListPage.module.scss'
-import TaskListForm from '/src/components/Containers/TaskListForm/TaskListForm'
-import { useState } from 'react'
-import TaskListDisplay from '/src/components/Containers/TaskListDisplay/TaskListDisplay'
+import styles from './TaskListPage.module.scss';
+import { useState } from 'react';
+import TaskListDisplay from '/src/components/Containers/TaskListDisplay/TaskListDisplay';
 
 const TaskListPage = () => {
   const [tasks, setTasks] = useState([
@@ -14,13 +13,17 @@ const TaskListPage = () => {
     setTasks(prevTasks => [...prevTasks, newTask]); 
   };
 
+  const updateTaskText = (id, newText) => {
+    setTasks(prev =>
+      prev.map(t => (t.id === id ? { ...t, text: newText } : t))
+    );
+  };
+
   return (
     <div className={styles.TaskListPage}>
-      <TaskListForm 
-        addTask={addTask}
-      />
       <TaskListDisplay
         tasks={tasks}
+        onTextChange={updateTaskText}
       />
     </div>
   )
