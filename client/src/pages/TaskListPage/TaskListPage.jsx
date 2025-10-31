@@ -1,7 +1,7 @@
 import styles from './TaskListPage.module.scss';
 import { useState } from 'react';
 import TaskListDisplay from '/src/components/Containers/TaskListDisplay/TaskListDisplay';
-import TaskAddBtn from '../../components/UI/TaskAddBtn/TaskAddBtn';
+import ActionsPanel from '../../components/Containers/ActionsPanel/ActionsPanel';
 
 const TaskListPage = () => {
   const [tasks, setTasks] = useState([
@@ -27,8 +27,8 @@ const TaskListPage = () => {
         tasks={tasks}
         onTextChange={updateTaskText}
       />
-      <TaskAddBtn
-        onAddTask={addTask}
+      <ActionsPanel
+        onAddBtn={addTask}
       />
     </div>
   )
