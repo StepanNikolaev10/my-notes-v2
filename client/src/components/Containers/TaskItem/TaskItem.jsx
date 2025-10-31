@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import TaskInput from '../../UI/TaskInput/TaskInput.jsx'
-import styles from './TaskItem.module.scss'
+import EditTaskBtn from '../../UI/EditTaskBtn/EditTaskBtn.jsx';
+import TaskInput from '../../UI/TaskInput/TaskInput.jsx';
+import styles from './TaskItem.module.scss';
 
 const TaskItem = ({ id, text, onTextChange }) => {
   return (
@@ -11,6 +11,7 @@ const TaskItem = ({ id, text, onTextChange }) => {
           value={text}
           onChange={(e) => onTextChange(id, e.target.value)}
         />
+        <EditTaskBtn/>
       </div>
     </div>
   );
