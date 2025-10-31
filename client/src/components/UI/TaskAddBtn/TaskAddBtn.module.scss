@@ -1,35 +1,10 @@
   .addBtn {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #111;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 150px;
+    height: 50px;
+    font-size: 24px;
+    border-radius: 15px;
+    background: green;
+    border: 0;
+    color: white;
     cursor: pointer;
-    transition: transform .15s ease, background .15s ease;
-  }
-
-  .addBtn:hover {
-    background: #333;
-    transform: scale(1.05);
-  }
-
-  .addBtn span {
-    position: absolute;
-    background: #fff;
-    transition: transform .2s ease;
-  }
-
-  /* горизонтальная линия */
-  .addBtn span:first-child {
-    width: 20px;
-    height: 3px;
-  }
-
-  /* вертикальная линия */
-  .addBtn span:last-child {
-    width: 3px;
-    height: 20px;
   }
