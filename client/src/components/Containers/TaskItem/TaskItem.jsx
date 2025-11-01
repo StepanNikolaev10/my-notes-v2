@@ -6,7 +6,7 @@ const TaskItem = ({ id, text, onTextChange }) => {
   return (
     <div className={styles.taskItem}>
       <div className={styles.taskContent}>
-        <div className={styles.taskId}>{id}</div>
+        <div className={styles.taskId}>{id}.</div>
         <TaskInput
           value={text}
           onChange={(e) => onTextChange(id, e.target.value)}
