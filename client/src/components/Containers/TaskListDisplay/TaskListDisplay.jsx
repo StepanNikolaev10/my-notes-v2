@@ -8,7 +8,7 @@ const TaskListDisplay = ({ tasks, onTextChange }) => {
       {tasks.map(task => (
         <TaskItem
           key={task.id}
-          id={task.id}
+          index={task.index}
           text={task.text}
           onTextChange={onTextChange}
         />
