@@ -1,5 +1,9 @@
 .taskItem {
-  margin-bottom: 10px;
+  width: 800px;
+  margin-top: 12px;
+  &:last-child {
+    margin-bottom: 10px;
+  }
 }
 
 .taskContent {
@@ -8,5 +12,11 @@
 }
 
 .taskId {
-  margin-right: 8px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-right: 12px;
 }
