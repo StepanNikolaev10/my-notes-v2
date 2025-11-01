@@ -6,8 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 const TaskListPage = () => {
   const [tasks, setTasks] = useState([
-    {id: uuidv4(), index: 1, text: 'Покушать'},
-    {id: uuidv4(), index: 2, text: 'Погулять'}
+    {id: uuidv4(), index: 1, text: 'Покушать', isCompleted: true},
+    {id: uuidv4(), index: 2, text: 'Погулять', isCompleted: false}
   ])
 
   const addTask = () => {
@@ -21,11 +21,19 @@ const TaskListPage = () => {
     );
   };
 
+  const toggleTaskCheckbox = (id) => {
+    console.log(tasks)
+    setTasks(prev => 
+      prev.map(task => (task.id === id ? {...task,  isCompleted: !task.isCompleted }: task) )
+    )
+  }
+
   return (
     <div className={styles.TaskListPage}>
       <TaskListDisplay
         tasks={tasks}
         onTextChange={updateTaskText}
+        onToggleTaskCheckbox={toggleTaskCheckbox}
       />
       <ActionsPanel
         onAddBtn={addTask}

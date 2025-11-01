@@ -1,9 +1,11 @@
 import styles from './TaskCheckbox.module.scss';
 
-const TaskCheckbox = (props) => {
+const TaskCheckbox = ({isCompleted, ...props}) => {
   return (
-    <div className={styles.taskCheckbox}>
-      <img src="check-mark.svg" alt=""/>
+    <div className={styles.taskCheckbox} {...props}>
+      {isCompleted && (
+        <img src="check-mark.svg" alt="check-mark" />
+      )}
     </div>
   )
 }
