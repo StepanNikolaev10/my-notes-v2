@@ -1,0 +1,18 @@
+.taskCheckbox {
+  min-width: 40px;
+  min-height: 40px;
+  background: white;
+  border: 2px solid #363636;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 10px;
+}

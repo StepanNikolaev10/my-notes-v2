@@ -1,4 +1,5 @@
 import EditTaskBtn from '../../UI/EditTaskBtn/EditTaskBtn.jsx';
+import TaskCheckbox from '../../UI/TaskCheckbox/TaskCheckbox.jsx';
 import TaskInput from '../../UI/TaskInput/TaskInput.jsx';
 import styles from './TaskItem.module.scss';
 
@@ -11,6 +12,7 @@ const TaskItem = ({ id, text, onTextChange }) => {
           value={text}
           onChange={(e) => onTextChange(id, e.target.value)}
         />
+        <TaskCheckbox/>
         <EditTaskBtn/>
       </div>
     </div>
