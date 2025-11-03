@@ -5,39 +5,16 @@ import ActionsPanel from '../../components/Containers/ActionsPanel/ActionsPanel'
 import { v4 as uuidv4 } from 'uuid';
 
 const TaskListPage = () => {
-    const [tasks, setTasks] = useState(() => {
-      // ленивая загрузка
-        const storedTasks = localStorage.getItem('taskListData');
-        if (storedTasks) {
-            try {
-                return JSON.parse(storedTasks); 
-            } catch (error) {
-                console.error("Ошибка парсинга данных при инициализации:", error);
-            }
-        }
-        return []; 
-    });
+  const [tasks, setTasks] = useState(() => {
+    // ленивая подрузка, что бы данные получались единожды при первом рендере компонента
+    // ЕСЛИ ПЕРЕДАВАТЬ В USESTATE ФУНКЦИЮ - ОНА БУДЕТ ВЫПОЛНЕНА 1 РАЗ ПРИ ПЕРВОМ РЕНДЕРЕ, ЧТО БЫ ПОЛУЧИТЬ ЗНАЧЕНИЕ СОСТОЯНИЯ
+    const saved = localStorage.getItem('taskListData');
+    return saved ? JSON.parse(saved) : [];
+  });
 
+  // хук обновляет localStorage если состояние tasks изменилось.
   useEffect(() => {
-      const storedTasks = localStorage.getItem('taskListData');
-      if (storedTasks) {
-          try {
-              const parsedTasks = JSON.parse(storedTasks);
-              setTasks(parsedTasks);
-          } catch (error) {
-              console.error("Ошибка парсинга данных:", error);
-              setTasks([]); 
-          }
-      }
-  }, []); 
-
-  useEffect(() => {
-      try {
-          const serializedTasks = JSON.stringify(tasks);
-          localStorage.setItem('taskListData', serializedTasks);
-      } catch (error) {
-          console.error("Ошибка сохранения данных:", error);
-      }
+    localStorage.setItem('taskListData', JSON.stringify(tasks)); 
   }, [tasks]);
 
   const addTask = () => {
