@@ -1,14 +1,44 @@
 import styles from './TaskListPage.module.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TaskListDisplay from '/src/components/Containers/TaskListDisplay/TaskListDisplay';
 import ActionsPanel from '../../components/Containers/ActionsPanel/ActionsPanel';
 import { v4 as uuidv4 } from 'uuid';
 
 const TaskListPage = () => {
-  const [tasks, setTasks] = useState([
-    {id: uuidv4(), index: 1, text: 'Покушать', isCompleted: true},
-    {id: uuidv4(), index: 2, text: 'Погулять', isCompleted: false}
-  ])
+    const [tasks, setTasks] = useState(() => {
+      // ленивая загрузка
+        const storedTasks = localStorage.getItem('taskListData');
+        if (storedTasks) {
+            try {
+                return JSON.parse(storedTasks); 
+            } catch (error) {
+                console.error("Ошибка парсинга данных при инициализации:", error);
+            }
+        }
+        return []; 
+    });
+
+  useEffect(() => {
+      const storedTasks = localStorage.getItem('taskListData');
+      if (storedTasks) {
+          try {
+              const parsedTasks = JSON.parse(storedTasks);
+              setTasks(parsedTasks);
+          } catch (error) {
+              console.error("Ошибка парсинга данных:", error);
+              setTasks([]); 
+          }
+      }
+  }, []); 
+
+  useEffect(() => {
+      try {
+          const serializedTasks = JSON.stringify(tasks);
+          localStorage.setItem('taskListData', serializedTasks);
+      } catch (error) {
+          console.error("Ошибка сохранения данных:", error);
+      }
+  }, [tasks]);
 
   const addTask = () => {
     const newTask = {id: uuidv4(), index: tasks.length+1, text: ''};
