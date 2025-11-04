@@ -1,6 +1,6 @@
 import '../src/styles/App.scss'
 import TaskListPage from './pages/TaskListPage/TaskListPage.jsx'
-import Header from './components/Containers/Header/Header.jsx'
+import Header from './components/Shared/Containers/Header/Header.jsx'
 
 function App() {
   return (

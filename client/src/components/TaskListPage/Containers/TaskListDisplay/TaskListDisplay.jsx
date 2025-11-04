@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TaskItem from "/src/components/Containers/TaskItem/TaskItem";
+import TaskItem from "/src/components/TaskListPage/Containers/TaskItem/TaskItem";
 import styles from "./TaskListDisplay.module.scss";
 
 const TaskListDisplay = ({ tasks, onTextChange, onToggleTaskCheckbox }) => {

@@ -1,10 +1,10 @@
 import styles from './TaskListPage.module.scss';
 import { useState, useEffect } from 'react';
-import TaskListDisplay from '/src/components/Containers/TaskListDisplay/TaskListDisplay';
-import ActionsPanel from '../../components/Containers/ActionsPanel/ActionsPanel';
+import TaskListDisplay from '/src/components/TaskListPage/Containers/TaskListDisplay/TaskListDisplay';
+import ActionsPanel from '../../components/TaskListPage/Containers/ActionsPanel/ActionsPanel';
 import { v4 as uuidv4 } from 'uuid';
-import ModalContainer from '../../components/Containers/ModalContainer/ModalContainer';
-import TaskAddModal from '../../components/Containers/TaskAddModal/TaskAddModal';
+import ModalContainer from '../../components/TaskListPage/Containers/ModalContainer/ModalContainer';
+import TaskAddModal from '../../components/TaskListPage/Containers/TaskAddModal/TaskAddModal';
 
 const TaskListPage = () => {
   const [tasks, setTasks] = useState(() => {
