@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import TaskListDisplay from '/src/components/Containers/TaskListDisplay/TaskListDisplay';
 import ActionsPanel from '../../components/Containers/ActionsPanel/ActionsPanel';
 import { v4 as uuidv4 } from 'uuid';
+import ModalContainer from '../../components/Containers/ModalContainer/ModalContainer';
+import TaskAddModal from '../../components/Containers/TaskAddModal/TaskAddModal';
 
 const TaskListPage = () => {
   const [tasks, setTasks] = useState(() => {
@@ -42,6 +44,9 @@ const TaskListPage = () => {
         onTextChange={updateTaskText}
         onToggleTaskCheckbox={toggleTaskCheckbox}
       />
+      <ModalContainer>
+        <TaskAddModal/>
+      </ModalContainer>
       <ActionsPanel
         onAddBtn={addTask}
       />

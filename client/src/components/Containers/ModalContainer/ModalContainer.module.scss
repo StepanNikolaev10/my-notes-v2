@@ -1,0 +1,11 @@
+.modalContainer {
+  width: 600px;
+  height: 400px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 1px solid silver;
+  border-radius: 10px;
+}
