@@ -7,7 +7,7 @@ import styles from './TaskAddModal.module.scss';
 const TaskAddModal = ({ onClose }) => {
   return (
     <div className={styles.taskAddModal}>
-      <ModalHeader title={'Add task'}/>
+      <ModalHeader title={'Add task'} onClose={onClose}/>
       <div className={styles.content}>
       </div>
       <ModalFooter>

@@ -1,10 +1,10 @@
 import styles from './ModalHeader.module.scss';
 
-const ModalHeader = ({ title }) => {
+const ModalHeader = ({ title, onClose}) => {
   return (
     <div className={styles.modalHeader}>
       <div className={styles.title}>{title}</div>
-      <button className={styles.closeModalBtn}>
+      <button className={styles.closeModalBtn} onClick={onClose}>
         <img src="cross.svg" alt="cross-btn"/>
       </button>
     </div>

@@ -1,11 +1,11 @@
 import TaskAddBtn from '../../UI/TaskAddBtn/TaskAddBtn';
 import styles from './ActionsPanel.module.scss';
 
-const ActionsPanel = ({onAddBtn}) => {
+const ActionsPanel = ({ onOpenModal }) => {
   return (
     <div className={styles.actionsPanel}>
       <TaskAddBtn
-        onClick={onAddBtn}
+        onClick={() => onOpenModal('TaskAddModal')}
       />
     </div>
   )

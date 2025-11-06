@@ -1,9 +1,17 @@
+import TaskAddModal from '../TaskAddModal/TaskAddModal';
 import styles from './ModalContainer.module.scss';
 
-const ModalContainer = ({ children }) => {
+const ModalContainer = ({ isOpen, onClose }) => {
+
+  const rootStyles = [styles.modalContainer]
+
+  if(isOpen !== null) {
+    rootStyles.push(styles.active);
+  }
+  
   return (
-    <div className={styles.modalContainer}>
-      {children}
+    <div className={rootStyles.join(' ')}>
+      {isOpen === 'TaskAddModal' && <TaskAddModal onClose={onClose}/>}
     </div>
   )
 }

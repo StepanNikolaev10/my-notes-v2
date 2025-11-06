@@ -4,7 +4,6 @@ import TaskListDisplay from '/src/components/TaskListPage/Containers/TaskListDis
 import ActionsPanel from '../../components/TaskListPage/Containers/ActionsPanel/ActionsPanel';
 import { v4 as uuidv4 } from 'uuid';
 import ModalContainer from '../../components/TaskListPage/Containers/ModalContainer/ModalContainer';
-import TaskAddModal from '../../components/TaskListPage/Containers/TaskAddModal/TaskAddModal';
 
 const TaskListPage = () => {
   const [tasks, setTasks] = useState(() => {
@@ -37,6 +36,12 @@ const TaskListPage = () => {
     )
   }
 
+  const [activeModal, setActiveModal] = useState(null);
+
+  const openModal = (type) => {
+    setActiveModal(type); 
+  };
+
   return (
     <div className={styles.TaskListPage}>
       <TaskListDisplay
@@ -44,11 +49,12 @@ const TaskListPage = () => {
         onTextChange={updateTaskText}
         onToggleTaskCheckbox={toggleTaskCheckbox}
       />
-      <ModalContainer>
-        <TaskAddModal/>
-      </ModalContainer>
+      <ModalContainer
+        isOpen={activeModal}
+        onClose={() => setActiveModal(null)}
+      />
       <ActionsPanel
-        onAddBtn={addTask}
+        onOpenModal={openModal}
       />
     </div>
   );
