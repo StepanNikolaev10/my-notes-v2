@@ -1,20 +1,35 @@
+import { useState } from 'react';
 import CloseModalBtn from '../../UI/CloseModalBtn/CloseModalBtn';
 import ConfirmModalBtn from '../../UI/ConfirmModalBtn/ConfirmModalBtn';
 import ModalFooter from '../../UI/ModalFooter/ModalFooter';
 import ModalHeader from '../../UI/ModalHeader/ModalHeader';
 import styles from './TaskAddModal.module.scss';
 
-const TaskAddModal = ({ onClose }) => {
+const TaskAddModal = ({ onClose, onAddTask }) => {
+  const [text, setText] = useState('');
+
+  const addNewTask = (e) => {
+    e.preventDefault();
+    onAddTask(text)
+    setText('')
+  }
+
   return (
-    <div className={styles.taskAddModal}>
+    <form className={styles.taskAddModal}>
       <ModalHeader title={'Add task'} onClose={onClose}/>
       <div className={styles.content}>
+        <input
+            value={text}
+            onChange={e => setText(e.target.value)}
+            type="text" 
+            placeholder="Write something..."
+        />
       </div>
       <ModalFooter>
-        <CloseModalBtn onClick={onClose}>Cancel</CloseModalBtn>
-        <ConfirmModalBtn>Add</ConfirmModalBtn>
+        <CloseModalBtn onClick={onClose} type='button'>Cancel</CloseModalBtn>
+        <ConfirmModalBtn onClick={addNewTask} type='submit'>Add</ConfirmModalBtn>
       </ModalFooter>
-    </div>
+    </form>
   )
 }
 export default TaskAddModal;

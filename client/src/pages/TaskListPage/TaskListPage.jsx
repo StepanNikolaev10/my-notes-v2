@@ -12,15 +12,17 @@ const TaskListPage = () => {
     const saved = localStorage.getItem('taskListData');
     return saved ? JSON.parse(saved) : [];
   });
+  const [activeModal, setActiveModal] = useState(null);
 
   // хук обновляет localStorage если состояние tasks изменилось.
   useEffect(() => {
     localStorage.setItem('taskListData', JSON.stringify(tasks)); 
   }, [tasks]);
 
-  const addTask = () => {
-    const newTask = {id: uuidv4(), index: tasks.length+1, text: ''};
+  const addTask = (text) => {
+    const newTask = {id: uuidv4(), index: tasks.length+1, text: text};
     setTasks(prevTasks => [...prevTasks, newTask]); 
+    setActiveModal(null);
   };
 
   const updateTaskText = (index, newText) => {
@@ -36,8 +38,6 @@ const TaskListPage = () => {
     )
   }
 
-  const [activeModal, setActiveModal] = useState(null);
-
   const openModal = (type) => {
     setActiveModal(type); 
   };
@@ -52,6 +52,7 @@ const TaskListPage = () => {
       <ModalContainer
         isOpen={activeModal}
         onClose={() => setActiveModal(null)}
+        onAddTask={addTask}
       />
       <ActionsPanel
         onOpenModal={openModal}
@@ -60,4 +61,5 @@ const TaskListPage = () => {
   );
   
 }
+
 export default TaskListPage
