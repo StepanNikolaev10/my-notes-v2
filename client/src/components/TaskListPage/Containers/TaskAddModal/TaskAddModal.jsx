@@ -23,6 +23,7 @@ const TaskAddModal = ({ onClose, onAddTask }) => {
             onChange={e => setText(e.target.value)}
             type="text" 
             placeholder="Write something..."
+            autoFocus
         />
       </div>
       <ModalFooter>
