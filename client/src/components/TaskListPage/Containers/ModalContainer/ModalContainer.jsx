@@ -10,8 +10,8 @@ const ModalContainer = ({ isOpen, onClose, onAddTask }) => {
   }
   
   return (
-    <div className={rootStyles.join(' ')}>
-      {isOpen === 'TaskAddModal' && <TaskAddModal onClose={onClose} onAddTask={onAddTask}/>}
+    <div className={rootStyles.join(' ')} onClick={() => onClose(null)}>
+      {isOpen === 'TaskAddModal' && <TaskAddModal onClose={onClose} onAddTask={onAddTask} onClick={(e) => e.stopPropagation()}/>}
     </div>
   )
 }

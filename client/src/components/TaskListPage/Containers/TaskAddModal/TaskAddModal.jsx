@@ -5,7 +5,7 @@ import ModalFooter from '../../UI/ModalFooter/ModalFooter';
 import ModalHeader from '../../UI/ModalHeader/ModalHeader';
 import styles from './TaskAddModal.module.scss';
 
-const TaskAddModal = ({ onClose, onAddTask }) => {
+const TaskAddModal = ({ onClose, onAddTask, ...props }) => {
   const [text, setText] = useState('');
 
   const addNewTask = (e) => {
@@ -15,7 +15,7 @@ const TaskAddModal = ({ onClose, onAddTask }) => {
   }
 
   return (
-    <form className={styles.taskAddModal}>
+    <form className={styles.taskAddModal} {...props}>
       <ModalHeader title={'Add task'} onClose={onClose}/>
       <div className={styles.content}>
         <input
