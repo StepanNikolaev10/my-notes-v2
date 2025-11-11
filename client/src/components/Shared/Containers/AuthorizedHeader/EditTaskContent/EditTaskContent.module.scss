@@ -1,8 +1,6 @@
 .editTaskContent {
   width: 100%;
   height: 50px;
-  background: white;
-  border-bottom: 1px solid silver;
   display: flex;
 }
 
@@ -13,8 +11,8 @@
 }
 
 .stopEditingBtn {
-  background: none;
-  border: none;
+  height: 50px;
+  @include button-reset;
   cursor: pointer;
   svg {
     fill: gray;
@@ -25,20 +23,45 @@
 }
 
 .selectedTasksCount {
+  font-family: $main-font;
+  font-size: 20px;
 }
 
 .colRight {
   flex: 1;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.editTools {
+  display: flex;
+  align-items: center;
 }
 
 .boldBtn {
-
+  @include button-reset;
+  cursor: pointer;
+  font-size: 30px;
+  font-family: $main-font;
+  font-weight: 600;
 }
 
 .cursiveBtn {
-
+  @include button-reset;
+  cursor: pointer;
+  font-size: 30px;
+  font-family: $main-font;
+  font-style: italic;
 }
 
 .openColorModalBtn {
-  
+  @include button-reset;
+  cursor: pointer;
+}
+
+.deleteTaskBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
