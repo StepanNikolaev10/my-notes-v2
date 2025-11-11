@@ -3,7 +3,7 @@ import TaskCheckbox from '../../UI/TaskCheckbox/TaskCheckbox.jsx';
 import TaskInput from '../../UI/TaskInput/TaskInput.jsx';
 import styles from './TaskItem.module.scss';
 
-const TaskItem = ({ id, index, text, isCompleted, onTextChange, onToggleTaskCheckbox }) => {
+const TaskItem = ({ id, index, text, isCompleted, onTextChange, onToggleTaskCheckbox, onEditTask }) => {
   return (
     <div className={styles.taskItem}>
       <div className={styles.taskContent}>
@@ -16,7 +16,9 @@ const TaskItem = ({ id, index, text, isCompleted, onTextChange, onToggleTaskChec
           isCompleted={isCompleted}
           onClick={() => onToggleTaskCheckbox(id)}
         />
-        <EditTaskBtn/>
+        <EditTaskBtn
+          onClick={() => onEditTask(id)}
+        />
       </div>
     </div>
   );

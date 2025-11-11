@@ -4,6 +4,7 @@ import TaskListDisplay from '/src/components/TaskListPage/Containers/TaskListDis
 import ActionsPanel from '../../components/TaskListPage/Containers/ActionsPanel/ActionsPanel';
 import { v4 as uuidv4 } from 'uuid';
 import ModalContainer from '../../components/TaskListPage/Containers/ModalContainer/ModalContainer';
+import AuthorizedHeader from '../../components/Shared/Containers/AuthorizedHeader/AuthorizedHeader';
 
 const TaskListPage = () => {
   const [tasks, setTasks] = useState(() => {
@@ -13,6 +14,7 @@ const TaskListPage = () => {
     return saved ? JSON.parse(saved) : [];
   });
   const [activeModal, setActiveModal] = useState(null);
+  const [editableTasks, setEditableTasks] = useState([]);
 
   // хук обновляет localStorage если состояние tasks изменилось.
   useEffect(() => {
@@ -40,14 +42,45 @@ const TaskListPage = () => {
 
   const openModal = (type) => {
     setActiveModal(type); 
-  };
+  }
+
+  const editTask = (id) => {
+    const taskToEdit = tasks.find(task => task.id === id);
+
+    if (taskToEdit) {
+      setEditableTasks(prevEditableTasks => {
+        const isAlreadyAdded = prevEditableTasks.some(task => task.id === id);
+        if (isAlreadyAdded) {
+          return prevEditableTasks.filter(task => task.id !== id);
+        }
+        return [...prevEditableTasks, taskToEdit];
+      });
+    }
+  }
+
+  const deleteTasks = () => {
+    const idsToDelete = editableTasks.map(task => task.id);
+    setTasks(prevTasks => {
+      const remainingTasks = prevTasks.filter(task => !idsToDelete.includes(task.id));
+      return remainingTasks.map((task, index) => ({
+        ...task,
+        index: index + 1, 
+      }));
+    });
+    setEditableTasks([]);
+  }
 
   return (
     <div className={styles.TaskListPage}>
+      <AuthorizedHeader
+        editableTasks={editableTasks}
+        onDeleteTask={deleteTasks}
+      />
       <TaskListDisplay
         tasks={tasks}
         onTextChange={updateTaskText}
         onToggleTaskCheckbox={toggleTaskCheckbox}
+        onEditTask={editTask}
       />
       <ModalContainer
         isOpen={activeModal}

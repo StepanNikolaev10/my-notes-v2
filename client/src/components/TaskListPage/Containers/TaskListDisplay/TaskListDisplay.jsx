@@ -1,8 +1,7 @@
-import { useState } from "react";
 import TaskItem from "/src/components/TaskListPage/Containers/TaskItem/TaskItem";
 import styles from "./TaskListDisplay.module.scss";
 
-const TaskListDisplay = ({ tasks, onTextChange, onToggleTaskCheckbox }) => {
+const TaskListDisplay = ({ tasks, onTextChange, onToggleTaskCheckbox, onEditTask }) => {
   return (
     <div className={styles.taskListDisplay}>
       {tasks.map(task => (
@@ -14,6 +13,7 @@ const TaskListDisplay = ({ tasks, onTextChange, onToggleTaskCheckbox }) => {
           isCompleted={task.isCompleted}
           onTextChange={onTextChange}
           onToggleTaskCheckbox={onToggleTaskCheckbox}
+          onEditTask={onEditTask}
         />
       ))}
     </div>
