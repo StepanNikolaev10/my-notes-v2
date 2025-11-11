@@ -13,7 +13,15 @@
 }
 
 .stopEditingBtn {
-  
+  background: none;
+  border: none;
+  cursor: pointer;
+  svg {
+    fill: gray;
+    &:hover {
+      fill: black;
+    }
+  }
 }
 
 .selectedTasksCount {
