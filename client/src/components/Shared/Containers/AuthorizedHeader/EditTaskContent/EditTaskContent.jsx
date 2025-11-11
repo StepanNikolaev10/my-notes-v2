@@ -16,10 +16,10 @@ const EditTaskContent = ({ editableTasks, onDeleteTask }) => {
           <button className={styles.boldBtn}>B</button>
           <button className={styles.cursiveBtn}>I</button>
           <button className={styles.openColorModalBtn}>
-            <img src="palette.svg" alt="open-color-modal-btn"/>
+            <img src="src/assets/icons/palette.svg" alt="open-color-modal-btn"/>
           </button>
           <button className={styles.deleteTaskBtn} onClick={() => onDeleteTask()}>
-            <img src="trash-can.svg" alt="delete-task-btn"/>
+            <img src="src/assets/icons/trash-can.svg" alt="delete-task-btn"/>
           </button>
         </div>
       </div>

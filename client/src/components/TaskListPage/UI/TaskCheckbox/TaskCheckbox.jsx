@@ -4,7 +4,7 @@ const TaskCheckbox = ({isCompleted, ...props}) => {
   return (
     <div className={styles.taskCheckbox} {...props}>
       {isCompleted && (
-        <img src="check-mark.svg" alt="check-mark" />
+        <img src="src/assets/icons/check-mark.svg" alt="check-mark" />
       )}
     </div>
   )
