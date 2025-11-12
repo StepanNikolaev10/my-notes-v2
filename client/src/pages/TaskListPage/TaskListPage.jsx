@@ -70,6 +70,10 @@ const TaskListPage = () => {
     setEditableTasks([]);
   }
 
+  const clearTaskList = () => {
+    setTasks([]);
+  }
+
   return (
     <div className={styles.TaskListPage}>
       <AuthorizedHeader
@@ -90,6 +94,8 @@ const TaskListPage = () => {
       />
       <ActionsPanel
         onOpenModal={openModal}
+        onClearTaskList={clearTaskList}
+        tasksCount={tasks.length}
       />
     </div>
   );
