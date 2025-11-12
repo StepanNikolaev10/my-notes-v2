@@ -3,9 +3,16 @@ import TaskCheckbox from '../../UI/TaskCheckbox/TaskCheckbox.jsx';
 import TaskInput from '../../UI/TaskInput/TaskInput.jsx';
 import styles from './TaskItem.module.scss';
 
-const TaskItem = ({ id, index, text, isCompleted, onTextChange, onToggleTaskCheckbox, onEditTask }) => {
+const TaskItem = ({ id, index, text, isCompleted, onTextChange, onToggleTaskCheckbox, onEditTask, isEdit }) => {
+
+  const rootStyles = [styles.taskItem]
+
+    if(isEdit) {
+      rootStyles.push(styles.editable);
+    }
+
   return (
-    <div className={styles.taskItem}>
+    <div className={rootStyles.join(' ')}>
       <div className={styles.taskContent}>
         <div className={styles.taskId}>{index}.</div>
         <TaskInput

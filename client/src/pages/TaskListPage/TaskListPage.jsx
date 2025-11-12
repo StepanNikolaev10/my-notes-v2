@@ -81,6 +81,7 @@ const TaskListPage = () => {
         onTextChange={updateTaskText}
         onToggleTaskCheckbox={toggleTaskCheckbox}
         onEditTask={editTask}
+        editableTasks={editableTasks}
       />
       <ModalContainer
         isOpen={activeModal}
