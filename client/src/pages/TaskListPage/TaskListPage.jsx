@@ -80,6 +80,7 @@ const TaskListPage = () => {
       <AuthorizedHeader
         editableTasks={editableTasks}
         onDeleteTask={deleteTasks}
+        onStopEditing={() => setEditableTasks([])}
       />
       <TaskListDisplay
         tasks={tasks}
