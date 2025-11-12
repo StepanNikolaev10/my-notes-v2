@@ -72,6 +72,7 @@ const TaskListPage = () => {
 
   const clearTaskList = () => {
     setTasks([]);
+    setEditableTasks([]);
   }
 
   return (
