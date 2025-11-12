@@ -11,15 +11,19 @@
 }
 
 .stopEditingBtn {
-  height: 50px;
+  height: 30px;
+  width: 30px;
   @include button-reset;
   cursor: pointer;
-  svg {
-    fill: gray;
-    &:hover {
-      fill: black;
+  margin-right: 10px;
+  &:hover {
+    svg {
+      path {
+        stroke: black;
+      }
     }
   }
+
 }
 
 .selectedTasksCount {
@@ -40,28 +44,66 @@
 }
 
 .boldBtn {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   @include button-reset;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 32px;
   font-family: $main-font;
   font-weight: 600;
+  &:hover {
+    background: rgba(192, 192, 192, 0.433);
+    border-radius: 50%;
+  }
 }
 
 .cursiveBtn {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   @include button-reset;
   cursor: pointer;
-  font-size: 30px;
-  font-family: $main-font;
+  font-size: 32px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;     
   font-style: italic;
+  padding-bottom: 3px;
+  &:hover {
+    background: rgba(192, 192, 192, 0.433);
+    border-radius: 50%;
+  }
 }
 
 .openColorModalBtn {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   @include button-reset;
   cursor: pointer;
+  margin-right: 2px;
+  &:hover {
+    background: rgba(192, 192, 192, 0.433);
+    border-radius: 50%;
+  }
 }
 
 .deleteTaskBtn {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: none;
   border: none;
   cursor: pointer;
+  &:hover {
+    background: rgba(192, 192, 192, 0.433);
+    border-radius: 50%;
+  }
 }
