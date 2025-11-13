@@ -3,7 +3,7 @@ import TaskCheckbox from '../../UI/TaskCheckbox/TaskCheckbox.jsx';
 import TaskInput from '../../UI/TaskInput/TaskInput.jsx';
 import styles from './TaskItem.module.scss';
 
-const TaskItem = ({ id, index, text, isCompleted, onTextChange, onToggleTaskCheckbox, onEditTask, isEdit }) => {
+const TaskItem = ({ id, index, text, isCompleted, onTextChange, onToggleTaskCheckbox, onEditTask, isEdit, taskStyles }) => {
 
   const rootStyles = [styles.taskItem]
 
@@ -18,6 +18,7 @@ const TaskItem = ({ id, index, text, isCompleted, onTextChange, onToggleTaskChec
         <TaskInput
           value={text}
           onChange={(e) => onTextChange(index, e.target.value)}
+          isBold={taskStyles.isBold}
         />
         <TaskCheckbox
           isCompleted={isCompleted}

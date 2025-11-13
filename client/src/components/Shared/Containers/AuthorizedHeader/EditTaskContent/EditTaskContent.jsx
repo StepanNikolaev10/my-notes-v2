@@ -1,19 +1,19 @@
 import styles from './EditTaskContent.module.scss';
 
-const EditTaskContent = ({ editableTasks, onDeleteTask, onStopEditing }) => {
+const EditTaskContent = ({ editableTasks, onDeleteTask, onStopEditing, onToggleTextBold }) => {
   return (
     <div className={styles.editTaskContent}>
       <div className={styles.colLeft}>
         <button className={styles.stopEditingBtn} onClick={onStopEditing}>
           <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 20L4 4.00003M20 4L4.00002 20" stroke="gray" stroke-width="2" stroke-linecap="round"/>
+            <path d="M20 20L4 4.00003M20 4L4.00002 20" stroke="gray" strokeWidth="2" strokeLinecap="round"/>
           </svg>
         </button>
         <div className={styles.selectedTasksCount}>Выбрано: {editableTasks.length}</div>
       </div>
       <div className={styles.colRight}>
         <div className={styles.editTools}>
-          <button className={styles.boldBtn}>B</button>
+          <button className={styles.boldBtn} onClick={onToggleTextBold}>B</button>
           <button className={styles.cursiveBtn}>I</button>
           <button className={styles.openColorModalBtn}>
             <img src="src/assets/icons/palette.svg" alt="open-color-modal-btn"/>

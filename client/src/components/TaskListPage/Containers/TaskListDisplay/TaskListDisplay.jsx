@@ -18,6 +18,7 @@ const TaskListDisplay = ({ tasks, onTextChange, onToggleTaskCheckbox, onEditTask
               onToggleTaskCheckbox={onToggleTaskCheckbox}
               onEditTask={onEditTask}
               isEdit={isEdit}
+              taskStyles={task.taskStyles}
             />
           );
         })

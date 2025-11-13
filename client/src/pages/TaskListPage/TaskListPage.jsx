@@ -15,14 +15,23 @@ const TaskListPage = () => {
   });
   const [activeModal, setActiveModal] = useState(null);
   const [editableTasks, setEditableTasks] = useState([]);
-
+  
   // хук обновляет localStorage если состояние tasks изменилось.
   useEffect(() => {
     localStorage.setItem('taskListData', JSON.stringify(tasks)); 
   }, [tasks]);
 
   const addTask = (text) => {
-    const newTask = {id: uuidv4(), index: tasks.length+1, text: text};
+    const newTask = {
+      id: uuidv4(),
+      index: tasks.length+1,
+      text: text,
+      taskStyles: {
+        isBold: false,
+        isCursive: false,
+        markColor: null
+      }
+    }
     setTasks(prevTasks => [...prevTasks, newTask]); 
     setActiveModal(null);
   };
@@ -75,12 +84,29 @@ const TaskListPage = () => {
     setEditableTasks([]);
   }
 
+  const toggleTextBold = () => {
+    const idsToToggle = editableTasks.map(task => task.id);
+    setTasks(prev => {
+      return prev.map(task => {
+        if(idsToToggle.includes(task.id)) {
+          return { 
+            ...task, 
+            taskStyles: { ...task.taskStyles, isBold: !task.taskStyles.isBold } 
+          };
+        }
+        return task;
+      });
+    });
+
+  }
+
   return (
     <div className={styles.TaskListPage}>
       <AuthorizedHeader
         editableTasks={editableTasks}
         onDeleteTask={deleteTasks}
         onStopEditing={() => setEditableTasks([])}
+        onToggleTextBold={toggleTextBold}
       />
       <TaskListDisplay
         tasks={tasks}

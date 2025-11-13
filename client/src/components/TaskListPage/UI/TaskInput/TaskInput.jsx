@@ -1,8 +1,15 @@
 import styles from './TaskInput.module.scss';
 
-const TaskInput = (props) => {
+const TaskInput = ({isBold, ...props}) => {
+
+  const rootStyles = [styles.TaskInput];
+
+  if(isBold) {
+    rootStyles.push(styles.isBold)
+  }
+
   return (
-    <input className={styles.TaskInput} {...props}/>
+    <input className={rootStyles.join(' ')} {...props}/>
   )
 }
 export default TaskInput;
