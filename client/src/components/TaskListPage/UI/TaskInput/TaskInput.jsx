@@ -1,11 +1,14 @@
 import styles from './TaskInput.module.scss';
 
-const TaskInput = ({isBold, ...props}) => {
-
+const TaskInput = ({isBold, isCursive, ...props}) => {
   const rootStyles = [styles.TaskInput];
 
   if(isBold) {
     rootStyles.push(styles.isBold)
+  }
+
+  if (isCursive) {
+    rootStyles.push(styles.isCursive)
   }
 
   return (

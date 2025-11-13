@@ -8,9 +8,13 @@
   border: none;
   border-bottom: 2px solid #363636;
   outline: none;
+  font-family: $main-font;
 }
 
 .isBold {
-  font-family: $main-font;
   font-weight: 600;
+}
+
+.isCursive {
+  font-style: italic;
 }

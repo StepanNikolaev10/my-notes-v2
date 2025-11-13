@@ -97,7 +97,21 @@ const TaskListPage = () => {
         return task;
       });
     });
+  }
 
+  const toggleTextCursive = () => {
+    const idsToToggle = editableTasks.map(task => task.id);
+    setTasks(prev => {
+      return prev.map(task => {
+        if(idsToToggle.includes(task.id)) {
+          return { 
+            ...task, 
+            taskStyles: { ...task.taskStyles, isCursive: !task.taskStyles.isCursive } 
+          };
+        }
+        return task;
+      });
+    });
   }
 
   return (
@@ -107,6 +121,7 @@ const TaskListPage = () => {
         onDeleteTask={deleteTasks}
         onStopEditing={() => setEditableTasks([])}
         onToggleTextBold={toggleTextBold}
+        onToggleTextCursive={toggleTextCursive}
       />
       <TaskListDisplay
         tasks={tasks}

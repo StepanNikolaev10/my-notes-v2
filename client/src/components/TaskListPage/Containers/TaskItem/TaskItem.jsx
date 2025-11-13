@@ -19,6 +19,7 @@ const TaskItem = ({ id, index, text, isCompleted, onTextChange, onToggleTaskChec
           value={text}
           onChange={(e) => onTextChange(index, e.target.value)}
           isBold={taskStyles.isBold}
+          isCursive={taskStyles.isCursive}
         />
         <TaskCheckbox
           isCompleted={isCompleted}

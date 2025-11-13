@@ -1,6 +1,6 @@
 import styles from './EditTaskContent.module.scss';
 
-const EditTaskContent = ({ editableTasks, onDeleteTask, onStopEditing, onToggleTextBold }) => {
+const EditTaskContent = ({ editableTasks, onDeleteTask, onStopEditing, onToggleTextBold, onToggleTextCursive }) => {
   return (
     <div className={styles.editTaskContent}>
       <div className={styles.colLeft}>
@@ -14,7 +14,7 @@ const EditTaskContent = ({ editableTasks, onDeleteTask, onStopEditing, onToggleT
       <div className={styles.colRight}>
         <div className={styles.editTools}>
           <button className={styles.boldBtn} onClick={onToggleTextBold}>B</button>
-          <button className={styles.cursiveBtn}>I</button>
+          <button className={styles.cursiveBtn} onClick={onToggleTextCursive}>I</button>
           <button className={styles.openColorModalBtn}>
             <img src="src/assets/icons/palette.svg" alt="open-color-modal-btn"/>
           </button>
