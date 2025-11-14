@@ -1,5 +1,6 @@
 import TaskAddBtn from '../../UI/TaskAddBtn/TaskAddBtn';
 import styles from './ActionsPanel.module.scss';
+import { MODAL_VARIANTS } from '../../../../constants/modalVariants';
 
 const ActionsPanel = ({ onOpenModal, onClearTaskList, tasksCount }) => {
 
@@ -15,12 +16,12 @@ const ActionsPanel = ({ onOpenModal, onClearTaskList, tasksCount }) => {
         <>
           <button className={styles.clearAllTasksBtn} onClick={onClearTaskList}>Clear all</button>
           <TaskAddBtn
-            onClick={() => onOpenModal('TaskAddModal')}
+            onClick={() => onOpenModal(MODAL_VARIANTS.TASK_ADD)}
           />
         </>
       ) : (
         <TaskAddBtn
-          onClick={() => onOpenModal('TaskAddModal')}
+          onClick={() => onOpenModal(MODAL_VARIANTS.TASK_ADD)}
         />
       )}
     </div>

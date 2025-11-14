@@ -1,0 +1,4 @@
+export const MODAL_VARIANTS = {
+  TASK_ADD: 'TASK_ADD',
+  TASK_EDIT_COLOR: 'TASK_EDIT_COLOR'
+}
