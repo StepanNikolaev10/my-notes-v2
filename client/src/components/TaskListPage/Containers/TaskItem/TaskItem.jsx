@@ -7,12 +7,12 @@ const TaskItem = ({ id, index, text, isCompleted, onTextChange, onToggleTaskChec
 
   const rootStyles = [styles.taskItem]
 
-    if(isEdit) {
-      rootStyles.push(styles.editable);
-    }
+  if(isEdit) {
+    rootStyles.push(styles.editable);
+  }
 
   return (
-    <div className={rootStyles.join(' ')}>
+    <div className={rootStyles.join(' ')} style={{backgroundColor: taskStyles.color}}>
       <div className={styles.taskContent}>
         <div className={styles.taskId}>{index}.</div>
         <TaskInput

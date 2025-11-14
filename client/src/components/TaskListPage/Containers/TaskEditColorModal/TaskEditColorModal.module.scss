@@ -1,0 +1,27 @@
+.taskEditColorModal {
+  width: 600px;
+  background: white;
+  border: 1px solid silver;
+  border-radius: 10px;
+}
+
+.content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: max-content  max-content max-content  max-content;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px 0;
+}
+
+.colorBtn {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  border: 1px solid gray;
+  cursor: pointer;
+}
+
+.selectedColorBtn {
+  border: 3px solid rgb(36, 93, 143);
+}

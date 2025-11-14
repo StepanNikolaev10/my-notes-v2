@@ -1,6 +1,7 @@
+import { MODAL_VARIANTS } from '../../../../../constants/modalVariants';
 import styles from './EditTaskContent.module.scss';
 
-const EditTaskContent = ({ editableTasks, onDeleteTask, onStopEditing, onToggleTextBold, onToggleTextCursive }) => {
+const EditTaskContent = ({ editableTasks, onDeleteTask, onStopEditing, onToggleTextBold, onToggleTextCursive, onOpenModal }) => {
   return (
     <div className={styles.editTaskContent}>
       <div className={styles.colLeft}>
@@ -15,7 +16,7 @@ const EditTaskContent = ({ editableTasks, onDeleteTask, onStopEditing, onToggleT
         <div className={styles.editTools}>
           <button className={styles.boldBtn} onClick={onToggleTextBold}>B</button>
           <button className={styles.cursiveBtn} onClick={onToggleTextCursive}>I</button>
-          <button className={styles.openColorModalBtn}>
+          <button className={styles.openColorModalBtn} onClick={() => onOpenModal(MODAL_VARIANTS.TASK_EDIT_COLOR)}>
             <img src="src/assets/icons/palette.svg" alt="open-color-modal-btn"/>
           </button>
           <button className={styles.deleteTaskBtn} onClick={() => onDeleteTask()}>

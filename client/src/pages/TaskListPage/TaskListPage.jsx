@@ -29,7 +29,7 @@ const TaskListPage = () => {
       taskStyles: {
         isBold: false,
         isCursive: false,
-        markColor: null
+        color: null
       }
     }
     setTasks(prevTasks => [...prevTasks, newTask]); 
@@ -114,6 +114,21 @@ const TaskListPage = () => {
     });
   }
 
+  const updateTaskColor = (color) => {
+    const idsToUpdate = editableTasks.map(task => task.id);
+    setTasks(prev => {
+      return prev.map(task => {
+        if(idsToUpdate.includes(task.id)) {
+          return { 
+            ...task, 
+            taskStyles: { ...task.taskStyles, color: color } 
+          };
+        }
+        return task;
+      });
+    });
+  }
+
   return (
     <div className={styles.TaskListPage}>
       <AuthorizedHeader
@@ -122,6 +137,7 @@ const TaskListPage = () => {
         onStopEditing={() => setEditableTasks([])}
         onToggleTextBold={toggleTextBold}
         onToggleTextCursive={toggleTextCursive}
+        onOpenModal={openModal}
       />
       <TaskListDisplay
         tasks={tasks}
@@ -134,6 +150,7 @@ const TaskListPage = () => {
         isOpen={activeModal}
         onClose={() => setActiveModal(null)}
         onAddTask={addTask}
+        onUpdateTaskColor={updateTaskColor}
       />
       <ActionsPanel
         onOpenModal={openModal}
