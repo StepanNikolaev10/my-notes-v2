@@ -1,0 +1,4 @@
+export const ACTIVE_PAGES_FOR_BTNS = {
+  SIGN_IN: 'SIGN_IN',
+  SIGN_UP: 'SIGN_UP'
+}

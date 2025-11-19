@@ -1,0 +1,110 @@
+$primary-blue: #5596f6;
+$text-color: #1c1c1c;
+$bg-color: hsl(0, 0%, 97%);
+$card-bg: whitesmoke;
+$border-color: #e0e0e0;
+
+.signInPageDisplay {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.formCard {
+  background-color: $card-bg;
+  border-radius: 25px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  padding: 50px 40px;
+  width: 100%;
+  max-width: 400px;
+
+  h2 {
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}
+
+.subText {
+  color: #6a6a6a;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.inputField {
+  padding: 15px 20px;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: $primary-blue;
+    box-shadow: 0 0 0 2px rgba($primary-blue, 0.2);
+  }
+}
+
+.button {
+  padding: 15px;
+  background-color: $primary-blue;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 5px;
+
+  &:hover {
+  }
+}
+
+.forgotPassword,
+.bottomLink {
+  color: $primary-blue;
+  text-decoration: none;
+  font-size: 14px;
+  text-align: center;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.forgotPassword {
+    margin-top: 10px;
+}
+
+.linkText {
+  text-align: center;
+  font-size: 14px;
+  color: #6a6a6a;
+  margin-top: 20px;
+}
+
+@media (max-width: 500px) {
+  .formCard {
+    padding: 30px 20px;
+    margin-top: 30px;
+  }
+
+  .header {
+    padding: 15px 5%;
+  }
+}

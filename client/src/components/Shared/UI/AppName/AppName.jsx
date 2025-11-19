@@ -1,8 +1,9 @@
 import styles from './AppName.module.scss'
+import { Link } from 'react-router-dom';
 
 const AppName = () => {
   return (
-    <div className={styles.AppName}>My notes</div>
+    <Link className={styles.AppName} to={'/'}>My notes</Link>
   )
 }
 export default AppName
