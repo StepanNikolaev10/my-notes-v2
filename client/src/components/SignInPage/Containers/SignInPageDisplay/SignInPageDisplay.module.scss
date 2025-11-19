@@ -1,4 +1,4 @@
-$primary-blue: #5596f6;
+$primary-color: #5596f6;
 $text-color: #1c1c1c;
 $bg-color: hsl(0, 0%, 97%);
 $card-bg: whitesmoke;
@@ -8,10 +8,10 @@ $border-color: #e0e0e0;
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   flex: 1;
   overflow-y: auto;
+  @include flex-center;
 }
 
 .formCard {
@@ -53,30 +53,32 @@ $border-color: #e0e0e0;
 
   &:focus {
     outline: none;
-    border-color: $primary-blue;
-    box-shadow: 0 0 0 2px rgba($primary-blue, 0.2);
+    border-color: $primary-color;
+    box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
   }
 }
 
 .button {
   padding: 15px;
-  background-color: $primary-blue;
+  background-color: $primary-color;
   color: white;
   border: none;
   border-radius: 8px;
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, box-shadow 0.3s ease-out;
   margin-top: 5px;
 
   &:hover {
+    background-color: darken($primary-color, 6);
+    box-shadow: 0 4px 15px rgba($primary-color, 0.4);
   }
 }
 
 .forgotPassword,
 .bottomLink {
-  color: $primary-blue;
+  color: $primary-color;
   text-decoration: none;
   font-size: 14px;
   text-align: center;
@@ -96,15 +98,4 @@ $border-color: #e0e0e0;
   font-size: 14px;
   color: #6a6a6a;
   margin-top: 20px;
-}
-
-@media (max-width: 500px) {
-  .formCard {
-    padding: 30px 20px;
-    margin-top: 30px;
-  }
-
-  .header {
-    padding: 15px 5%;
-  }
 }

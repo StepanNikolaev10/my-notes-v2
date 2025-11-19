@@ -4,12 +4,13 @@ $subtitle-color: #6a6a6a;
 $card-line-color: #f0f0f0;
 
 .landingPageDisplay {
+  width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 0 10%;
-  box-sizing: border-box;
-  flex-grow: 1;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  @include flex-center;
 }
 
 .content {
@@ -40,10 +41,9 @@ $card-line-color: #f0f0f0;
   font-weight: 600;
   border-radius: 8px;
   font-size: 18px;
-  transition: background-color 0.2s;
-  box-shadow: 0 4px 15px rgba($primary-color, 0.4);
-
+  transition: background-color 0.2s, box-shadow 0.3s ease-out;
   &:hover {
-    background-color: $primary-color;
+    background-color: darken($primary-color, 6);
+    box-shadow: 0 4px 15px rgba($primary-color, 0.4);
   }
 }
