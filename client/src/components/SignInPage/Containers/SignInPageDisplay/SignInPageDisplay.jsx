@@ -1,6 +1,6 @@
 import styles from './SignInPageDisplay.module.scss';
 
-const SignInPageDisplay = () => {
+const SignInPageDisplay = ({ onSignIn }) => {
   return (
     <div className={styles.signInPageDisplay}>
       <div className={styles.formCard}>
@@ -11,7 +11,11 @@ const SignInPageDisplay = () => {
           <input type="email" placeholder="Email address" className={styles.inputField} />
           <input type="password" placeholder="Password" className={styles.inputField} />
           
-          <button type="submit" className={styles.button}>
+          <button 
+            type="submit" 
+            className={styles.button}
+            onClick={(e) => onSignIn(e)}
+          >
             Sign In
           </button>
           

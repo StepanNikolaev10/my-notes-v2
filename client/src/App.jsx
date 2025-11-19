@@ -15,7 +15,7 @@ function App() {
     }
     // убираем лодер
     setLoading(false)
-  })
+  }, [])
 
   return (
     <div className='App'>
