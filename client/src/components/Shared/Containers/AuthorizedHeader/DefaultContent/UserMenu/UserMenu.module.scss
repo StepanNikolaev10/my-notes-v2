@@ -1,0 +1,40 @@
+.userMenu {
+  position: relative;
+}
+
+.userNameBtn {
+  @include button-reset;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  min-width: 220px;
+  border-radius: 8px;
+  box-shadow: 0px 5px 11px -1px rgba(0, 0, 0, 0.2);
+}
+
+.dropdownItem {
+  padding: 10px 20px;
+  font-family: $main-font;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  cursor: pointer;
+  
+  &:first-child {
+    border-radius: 8px 8px 0 0;
+  }
+
+  &:last-child {
+    border-radius: 0 0 8px 8px;
+  }
+
+  &:hover {
+    background-color: silver;
+  }
+}
