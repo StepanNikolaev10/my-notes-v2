@@ -6,7 +6,7 @@ const DefaultContent = () => {
   return (
     <div className={styles.defaultContent}>
       <AppName/>
-      <input className={styles.searchTaskInput} type="text"/>
+      <input className={styles.searchNoteInput} type="text"/>
       <UserMenu/>
     </div>
   )

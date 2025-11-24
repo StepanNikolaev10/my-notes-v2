@@ -2,8 +2,6 @@ import { Route, Routes, Navigate } from 'react-router'
 import { useContext } from 'react'
 import { AuthContext } from '../context/index.js'
 import { publicRoutes, privateRoutes } from '../router/routes'
-import LandingPage from '../pages/LandingPage/LandingPage.jsx'
-import TaskListPage from '../pages/TaskListPage/TaskListPage.jsx'
 import Loader from '/src/components/Shared/UI/Loader/Loader'
 
 const AppRouter = () => {

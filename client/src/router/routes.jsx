@@ -2,10 +2,10 @@ import LandingPage from "../pages/LandingPage/LandingPage";
 import NotePage from "../pages/NotePage/NotePage";
 import SignInPage from "../pages/SignInPage/SignInPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
-import TaskListPage from "../pages/TaskListPage/TaskListPage";
+import NotesPage from "../pages/NotesPage/NotesPage";
 
 export const privateRoutes = [
-    {path: '/', element: <TaskListPage/>, exact: true},
+    {path: '/', element: <NotesPage/>, exact: true},
     {path: '/notes/:id', element: <NotePage/>, exact: true}
 ]
 
