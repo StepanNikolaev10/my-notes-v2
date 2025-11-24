@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router'
+import { Route, Routes, Navigate } from 'react-router'
 import { useContext } from 'react'
 import { AuthContext } from '../context/index.js'
 import { publicRoutes, privateRoutes } from '../router/routes'
@@ -25,7 +25,7 @@ const AppRouter = () => {
                   exact={route.exact}
                 />
             )}
-            <Route path='*' element={<TaskListPage/>}></Route>
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         :
           <Routes>
@@ -37,7 +37,7 @@ const AppRouter = () => {
                   exact={route.exact}
                 />
             )}
-            <Route path='*' element={<LandingPage/>}></Route>
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
     )
 }
