@@ -2,8 +2,10 @@ import EditTaskBtn from '../../UI/EditTaskBtn/EditTaskBtn.jsx';
 import TaskCheckbox from '../../UI/TaskCheckbox/TaskCheckbox.jsx';
 import TaskInput from '../../UI/TaskInput/TaskInput.jsx';
 import styles from './TaskItem.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 const TaskItem = ({ id, content, onEditTask, isEdit, taskStyles }) => {
+  const router = useNavigate();
 
   const rootStyles = [styles.taskItem]
 
@@ -18,6 +20,7 @@ const TaskItem = ({ id, content, onEditTask, isEdit, taskStyles }) => {
         backgroundColor: taskStyles.color,
         border: taskStyles.color && !isEdit && 'none'
       }}
+      onClick={() => router(`/notes/${id}`)}
     >
       <div className={styles.taskContent}>
         <div 
