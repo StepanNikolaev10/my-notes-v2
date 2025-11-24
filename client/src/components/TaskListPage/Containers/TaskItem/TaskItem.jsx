@@ -3,7 +3,7 @@ import TaskCheckbox from '../../UI/TaskCheckbox/TaskCheckbox.jsx';
 import TaskInput from '../../UI/TaskInput/TaskInput.jsx';
 import styles from './TaskItem.module.scss';
 
-const TaskItem = ({ id, index, text, isCompleted, onTextChange, onToggleTaskCheckbox, onEditTask, isEdit, taskStyles }) => {
+const TaskItem = ({ id, content, onEditTask, isEdit, taskStyles }) => {
 
   const rootStyles = [styles.taskItem]
 
@@ -12,23 +12,27 @@ const TaskItem = ({ id, index, text, isCompleted, onTextChange, onToggleTaskChec
   }
 
   return (
-    <div className={rootStyles.join(' ')} style={{backgroundColor: taskStyles.color}}>
+    <div 
+      className={rootStyles.join(' ')} 
+      style={{
+        backgroundColor: taskStyles.color,
+        border: taskStyles.color && !isEdit && 'none'
+      }}
+    >
       <div className={styles.taskContent}>
-        <div className={styles.taskId}>{index}.</div>
-        <TaskInput
-          value={text}
-          onChange={(e) => onTextChange(index, e.target.value)}
-          isBold={taskStyles.isBold}
-          isCursive={taskStyles.isCursive}
-        />
-        <TaskCheckbox
-          isCompleted={isCompleted}
-          onClick={() => onToggleTaskCheckbox(id)}
-        />
-        <EditTaskBtn
-          onClick={() => onEditTask(id)}
-        />
+        <div 
+          className={styles.title}
+          style={{
+            marginBottom: content.title && content.mainText && '10px'
+          }}
+        >
+          {content.title}
+        </div>
+        <div className={styles.mainText}>{content.mainText}</div>
       </div>
+      <EditTaskBtn
+        onClick={() => onEditTask(id)}
+      />
     </div>
   );
 };

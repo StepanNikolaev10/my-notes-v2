@@ -21,11 +21,14 @@ const TaskListPage = () => {
     localStorage.setItem('taskListData', JSON.stringify(tasks)); 
   }, [tasks]);
 
-  const addTask = (text) => {
+  const addTask = (title, mainText) => {
     const newTask = {
       id: uuidv4(),
       index: tasks.length+1,
-      text: text,
+      content: {
+        title: title,
+        mainText: mainText
+      },
       taskStyles: {
         isBold: false,
         isCursive: false,
@@ -36,12 +39,12 @@ const TaskListPage = () => {
     setActiveModal(null);
   };
 
-  const updateTaskText = (index, newText) => {
+  const updateTaskText = (index, newContent) => {
     setTasks(prev =>
-      prev.map(t => (t.index === index ? { ...t, text: newText } : t))
+      prev.map(t => (t.index === index ? { ...t, content: newContent } : t))
     );
   };
-
+// title, mainText update реализовать!
   const toggleTaskCheckbox = (id) => {
     console.log(tasks)
     setTasks(prev => 

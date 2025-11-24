@@ -6,12 +6,14 @@ import ModalHeader from '../../UI/ModalHeader/ModalHeader';
 import styles from './TaskAddModal.module.scss';
 
 const TaskAddModal = ({ onClose, onAddTask, ...props }) => {
-  const [text, setText] = useState('');
+  const [title, setTitle] = useState('');
+  const [mainText, setMainText] = useState('');
 
   const addNewTask = (e) => {
     e.preventDefault();
-    onAddTask(text)
-    setText('')
+    onAddTask(title, mainText)
+    setTitle('')
+    setMainText('')
   }
 
   return (
@@ -19,11 +21,17 @@ const TaskAddModal = ({ onClose, onAddTask, ...props }) => {
       <ModalHeader title={'Add task'} onClose={onClose}/>
       <div className={styles.content}>
         <input
-            value={text}
-            onChange={e => setText(e.target.value)}
+            value={title}
+            onChange={e => setTitle(e.target.value)}
             type="text" 
-            placeholder="Write something..."
+            placeholder="Title..."
             autoFocus
+        />
+        <input
+            value={mainText}
+            onChange={e => setMainText(e.target.value)}
+            type="text" 
+            placeholder="Task text..."
         />
       </div>
       <ModalFooter>
