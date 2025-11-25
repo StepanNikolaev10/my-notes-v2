@@ -1,0 +1,55 @@
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.inputField {
+  padding: 15px 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: #5596f6;
+    box-shadow: 0 0 0 2px rgba(#5596f6, 0.2);
+  }
+}
+
+.button {
+  padding: 15px;
+  background-color: #5596f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.3s ease-out;
+  margin-top: 5px;
+
+  &:hover {
+    background-color: #5596f6;
+    box-shadow: 0 4px 15px rgba(#5596f6, 0.4);
+  }
+}
+
+.forgotPassword,
+.bottomLink {
+  color: #5596f6;
+  text-decoration: none;
+  font-size: 14px;
+  text-align: center;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.forgotPassword {
+    margin-top: 10px;
+}

@@ -1,0 +1,59 @@
+import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../../context';
+import styles from './AuthForm.module.scss';
+import { AUTH_PAGE_VARIANTS } from '../../../constants/authPageVariants';
+
+const AuthForm = ({ pageVariant }) => {
+  const router = useNavigate();
+  const { setIsAuth } = useContext(AuthContext);
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    localStorage.setItem('auth', 'true');
+    setIsAuth(true);
+    router(`/`);
+  }
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    localStorage.setItem('auth', 'true');
+    setIsAuth(true);
+    router(`/`);
+  }
+
+  return (
+    <form className={styles.authForm}>
+      {pageVariant === AUTH_PAGE_VARIANTS.SIGN_IN && (
+        <>
+          <input type="email" placeholder="Email address" className={styles.inputField} />
+          <input type="password" placeholder="Password" className={styles.inputField} />
+          <button 
+            type="submit" 
+            className={styles.button}
+            onClick={(e) => handleSignIn(e)}
+          >
+            Sign In
+          </button>
+          <a href="#" className={styles.forgotPassword}>
+            Forgot password
+          </a>
+        </>
+      )}
+      {pageVariant === AUTH_PAGE_VARIANTS.SIGN_UP && (
+        <>
+          <input type="email" placeholder="Email address" className={styles.inputField} />
+          <input type="password" placeholder="Password" className={styles.inputField} />
+          <button 
+            type="submit" 
+            className={styles.button}
+            onClick={(e) => handleSignUp(e)}
+          >
+            Sign up
+          </button>
+        </>
+      )}
+    </form>
+  )
+}
+export default AuthForm;

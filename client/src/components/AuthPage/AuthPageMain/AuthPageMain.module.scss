@@ -1,0 +1,9 @@
+.authPageMain {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  @include flex-center;
+}

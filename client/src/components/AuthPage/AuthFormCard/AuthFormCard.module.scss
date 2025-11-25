@@ -1,0 +1,30 @@
+.authFormCard {
+  background-color: whitesmoke;
+  border-radius: 25px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  padding: 50px 40px;
+  width: 100%;
+  max-width: 400px;
+
+  h2 {
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}
+
+.subText {
+  color: #6a6a6a;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+
+.linkText {
+  text-align: center;
+  font-size: 14px;
+  color: #6a6a6a;
+  margin-top: 20px;
+}
