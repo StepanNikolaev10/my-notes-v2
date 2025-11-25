@@ -1,6 +1,6 @@
 import styles from './NotesPage.module.scss';
 import { useState, useEffect } from 'react';
-import NotesPageDisplay from '/src/components/NotesPage/Containers/NotesPageDisplay/NotesPageDisplay';
+import NotesPageMain from '/src/components/NotesPage/Containers/NotesPageMain/NotesPageMain';
 import ActionsPanel from '../../components/NotesPage/Containers/ActionsPanel/ActionsPanel';
 import { v4 as uuidv4 } from 'uuid';
 import ModalContainer from '../../components/NotesPage/Containers/ModalContainer/ModalContainer';
@@ -135,7 +135,7 @@ const NotesPage = () => {
         onToggleTextCursive={toggleTextCursive}
         onOpenModal={openModal}
       />
-      <NotesPageDisplay
+      <NotesPageMain
         notes={notes}
         onTextChange={updateNoteText}
         onEditNotes={editNotes}
@@ -157,4 +157,4 @@ const NotesPage = () => {
   
 }
 
-export default NotesPage
+export default NotesPage;

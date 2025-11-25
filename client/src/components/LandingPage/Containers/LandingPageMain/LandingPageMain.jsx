@@ -1,8 +1,8 @@
-import styles from './LandingPageDisplay.module.scss';
+import styles from './LandingPageMain.module.scss';
 import { Link } from 'react-router-dom';
-const LandingPageDisplay = () => {
+const LandingPageMain = () => {
   return (
-    <div className={styles.landingPageDisplay}>
+    <div className={styles.landingPageMain}>
       <div className={styles.content}>
         <h1>Stay organized with My Notes</h1>
         <p className={styles.subtitle}>
@@ -15,4 +15,4 @@ const LandingPageDisplay = () => {
     </div>
   )
 }
-export default LandingPageDisplay;
+export default LandingPageMain;

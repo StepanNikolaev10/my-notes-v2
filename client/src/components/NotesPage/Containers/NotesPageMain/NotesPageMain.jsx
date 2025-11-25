@@ -1,9 +1,9 @@
 import NoteItem from "../NoteItem/NoteItem";
-import styles from "./NotesPageDisplay.module.scss";
+import styles from "./NotesPageMain.module.scss";
 
-const NotesPageDisplay = ({ notes, onTextChange, onEditNotes, editableNotes }) => {
+const NotesPageMain = ({ notes, onTextChange, onEditNotes, editableNotes }) => {
   return (
-    <div className={styles.notesPageDisplay}>
+    <div className={styles.notesPageMain}>
       {notes.length > 0 ? (
         notes.map(note => {
           const isEdit = editableNotes.some(editable => editable.id === note.id);
@@ -26,4 +26,4 @@ const NotesPageDisplay = ({ notes, onTextChange, onEditNotes, editableNotes }) =
   );
 };
 
-export default NotesPageDisplay;
+export default NotesPageMain;
