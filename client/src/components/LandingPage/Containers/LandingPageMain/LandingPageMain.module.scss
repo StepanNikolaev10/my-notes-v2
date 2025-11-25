@@ -1,8 +1,3 @@
-$primary-color: #5596f6;
-$text-color: #1c1c1c;
-$subtitle-color: #6a6a6a;
-$card-line-color: #f0f0f0;
-
 .landingPageMain {
   width: 100%;
   display: flex;
@@ -35,7 +30,7 @@ $card-line-color: #f0f0f0;
 .button {
   display: inline-block;
   padding: 15px 30px;
-  background-color: $primary-color;
+  background-color: #5596f6;
   color: white;
   text-decoration: none;
   font-weight: 600;
@@ -43,7 +38,7 @@ $card-line-color: #f0f0f0;
   font-size: 18px;
   transition: background-color 0.2s, box-shadow 0.3s ease-out;
   &:hover {
-    background-color: darken($primary-color, 6);
-    box-shadow: 0 4px 15px rgba($primary-color, 0.4);
+    background-color: #5596f6;
+    box-shadow: 0 4px 15px rgba(#5596f6, 0.4);
   }
 }
