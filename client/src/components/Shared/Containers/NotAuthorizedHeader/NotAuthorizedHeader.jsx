@@ -8,10 +8,10 @@ const NotAuthorizedHeader = ({ currentPage }) => {
     <header className={styles.notAuthorizedHeader}>
       <AppName/>
       <nav className={styles.authLinks}>
-        <Link to="/sign-in" className={`${styles.link} ${currentPage === AUTH_PAGE_VARIANTS .SIGN_IN ? styles.opened : ''}`}>
+        <Link to="/sign-in" className={`${styles.link} ${currentPage === AUTH_PAGE_VARIANTS.SIGN_IN ? styles.opened : ''}`}>
           Login
         </Link>
-        <Link to="/sign-up" className={`${styles.link} ${currentPage === AUTH_PAGE_VARIANTS .SIGN_UP ? styles.opened : ''}`}>
+        <Link to="/sign-up" className={`${styles.link} ${currentPage === AUTH_PAGE_VARIANTS.SIGN_UP ? styles.opened : ''}`}>
           Sign up
         </Link>
       </nav>
