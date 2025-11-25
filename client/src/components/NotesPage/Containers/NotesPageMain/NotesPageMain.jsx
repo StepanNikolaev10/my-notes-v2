@@ -1,7 +1,9 @@
 import NoteItem from "../NoteItem/NoteItem";
 import styles from "./NotesPageMain.module.scss";
+import NoteAddBtn from "../../UI/NoteAddBtn/NoteAddBtn";
+import { MODAL_VARIANTS } from "../../../../constants/modalVariants";
 
-const NotesPageMain = ({ notes, onTextChange, onEditNotes, editableNotes }) => {
+const NotesPageMain = ({ notes, onTextChange, onEditNotes, editableNotes, onOpenModal }) => {
   return (
     <div className={styles.notesPageMain}>
       {notes.length > 0 ? (
@@ -22,6 +24,7 @@ const NotesPageMain = ({ notes, onTextChange, onEditNotes, editableNotes }) => {
       ) : (
         <div className={styles.emptyNotesText}>Your notes is empty</div>
       )}
+      <NoteAddBtn onClick={() => onOpenModal(MODAL_VARIANTS.NOTE_ADD)}/>
     </div>
   );
 };

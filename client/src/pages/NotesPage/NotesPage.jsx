@@ -1,10 +1,10 @@
 import styles from './NotesPage.module.scss';
 import { useState, useEffect } from 'react';
 import NotesPageMain from '/src/components/NotesPage/Containers/NotesPageMain/NotesPageMain';
-import ActionsPanel from '../../components/NotesPage/Containers/ActionsPanel/ActionsPanel';
 import { v4 as uuidv4 } from 'uuid';
 import ModalContainer from '../../components/NotesPage/Containers/ModalContainer/ModalContainer';
 import AuthorizedHeader from '../../components/Shared/Containers/AuthorizedHeader/AuthorizedHeader';
+import NoteAddBtn from '../../components/NotesPage/UI/NoteAddBtn/NoteAddBtn';
 
 const NotesPage = () => {
   const [notes, setNotes] = useState(() => {
@@ -140,17 +140,13 @@ const NotesPage = () => {
         onTextChange={updateNoteText}
         onEditNotes={editNotes}
         editableNotes={editableNotes}
+        onOpenModal={openModal}
       />
       <ModalContainer
         isOpen={activeModal}
         onClose={() => setActiveModal(null)}
         onAddNote={addNote}
         onUpdateNotesColor={updateNotesColor}
-      />
-      <ActionsPanel
-        onOpenModal={openModal}
-        onClearNotes={clearNotes}
-        notesCount={notes.length}
       />
     </div>
   );
