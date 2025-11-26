@@ -4,7 +4,6 @@ import NotesPageMain from '/src/components/NotesPage/Containers/NotesPageMain/No
 import { v4 as uuidv4 } from 'uuid';
 import ModalContainer from '../../components/NotesPage/Containers/ModalContainer/ModalContainer';
 import AuthorizedHeader from '../../components/Shared/Containers/AuthorizedHeader/AuthorizedHeader';
-import NoteAddBtn from '../../components/NotesPage/UI/NoteAddBtn/NoteAddBtn';
 
 const NotesPage = () => {
   const [notes, setNotes] = useState(() => {
@@ -72,11 +71,6 @@ const NotesPage = () => {
         index: index + 1, 
       }));
     });
-    setEditableNotes([]);
-  }
-
-  const clearNotes = () => {
-    setNotes([]);
     setEditableNotes([]);
   }
 
