@@ -1,4 +1,3 @@
-import EditNoteBtn from '../../UI/EditNoteBtn/EditNoteBtn.jsx';
 import styles from './NoteItem.module.scss';
 import { useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
@@ -13,6 +12,11 @@ const NoteItem = ({ id, content, onEditNotes, isEdit, noteStyles }) => {
     rootStyles.push(styles.editable);
   }
 
+  const editNote = (e) => {
+    e.stopPropagation();
+    onEditNotes(id)
+  }
+
   return (
     <div 
       className={rootStyles.join(' ')} 
@@ -22,6 +26,7 @@ const NoteItem = ({ id, content, onEditNotes, isEdit, noteStyles }) => {
       }}
       onClick={() => router(`/notes/${id}`)}
     >
+
       <div className={styles.noteContent}>
         <div 
           className={styles.title}
@@ -35,12 +40,11 @@ const NoteItem = ({ id, content, onEditNotes, isEdit, noteStyles }) => {
           {parse(DOMPurify.sanitize(content.mainText))}
         </div>
       </div>
-      <EditNoteBtn
-        onClick={(e) => {
-          e.stopPropagation();
-          onEditNotes(id)
-        }}
-      />
+
+      <div className={styles.editBtn} onClick={editNote}>
+        <img src="src/assets/icons/edit-btn.svg" alt="edit-btn"/>
+      </div>
+
     </div>
   );
 };
