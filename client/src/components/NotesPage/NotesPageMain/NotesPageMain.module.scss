@@ -1,10 +1,13 @@
 .notesPageMain {
-  width: 100%;
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  justify-content: center;
   flex: 1;
   overflow-y: auto;
+}
+
+.notes {
+  display: flex;
+  flex-direction: column;
 }
 
 .emptyNotesText {
