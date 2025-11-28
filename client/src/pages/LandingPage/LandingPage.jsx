@@ -1,6 +1,6 @@
-import NotAuthorizedHeader from '../../components/Shared/Containers/NotAuthorizedHeader/NotAuthorizedHeader';
+import NotAuthorizedHeader from '../../components/Shared/NotAuthorizedHeader/NotAuthorizedHeader';
 import styles from './LandingPage.module.scss'; 
-import LandingPageMain from '../../components/LandingPage/Containers/LandingPageMain/LandingPageMain';
+import LandingPageMain from '../../components/LandingPage/LandingPageMain/LandingPageMain';
 
 const LandingPage = () => {
   return (

@@ -1,4 +1,4 @@
-import { MODAL_VARIANTS } from '../../../../../constants/modalVariants';
+import { MODAL_VARIANTS } from '../../../../constants/modalVariants';
 import styles from './EditNoteContent.module.scss';
 
 const EditNoteContent = ({ editableNotes, onDeleteNotes, onStopEditing, onToggleTextBold, onToggleTextCursive, onOpenModal }) => {

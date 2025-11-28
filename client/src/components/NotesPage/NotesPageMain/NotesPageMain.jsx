@@ -1,7 +1,7 @@
 import NoteItem from "../NoteItem/NoteItem";
 import styles from "./NotesPageMain.module.scss";
-import NoteAddBtn from "../../UI/NoteAddBtn/NoteAddBtn";
-import { MODAL_VARIANTS } from "../../../../constants/modalVariants";
+import NoteAddBtn from "../UI/NoteAddBtn/NoteAddBtn";
+import { MODAL_VARIANTS } from "../../../constants/modalVariants";
 
 const NotesPageMain = ({ notes, onTextChange, onEditNotes, editableNotes, onOpenModal }) => {
   return (

@@ -1,7 +1,7 @@
-import { MODAL_VARIANTS } from '../../../../constants/modalVariants';
 import NoteAddModal from './NoteAddModal/NoteAddModal';
 import NoteEditColorModal from './NoteEditColorModal/NoteEditColorModal';
 import styles from './ModalContainer.module.scss';
+import { MODAL_VARIANTS } from '../../../constants/modalVariants';
 
 const ModalContainer = ({ isOpen, onClose, onAddNote, onUpdateNotesColor }) => {
 

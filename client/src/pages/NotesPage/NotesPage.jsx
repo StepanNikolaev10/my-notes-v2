@@ -1,9 +1,9 @@
 import styles from './NotesPage.module.scss';
 import { useState, useEffect } from 'react';
-import NotesPageMain from '/src/components/NotesPage/Containers/NotesPageMain/NotesPageMain';
+import NotesPageMain from '/src/components/NotesPage/NotesPageMain/NotesPageMain';
 import { v4 as uuidv4 } from 'uuid';
-import ModalContainer from '../../components/NotesPage/Containers/ModalContainer/ModalContainer';
-import AuthorizedHeader from '../../components/Shared/Containers/AuthorizedHeader/AuthorizedHeader';
+import ModalContainer from '../../components/NotesPage/ModalContainer/ModalContainer';
+import AuthorizedHeader from '../../components/Shared/AuthorizedHeader/AuthorizedHeader';
 
 const NotesPage = () => {
   const [notes, setNotes] = useState(() => {

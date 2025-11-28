@@ -1,5 +1,5 @@
-import { AUTH_PAGE_VARIANTS } from '../../../../constants/authPageVariants';
-import AppName from '../../UI/AppName/AppName';
+import { AUTH_PAGE_VARIANTS } from '../../../constants/authPageVariants';
+import AppName from '../UI/AppName/AppName';
 import styles from './NotAuthorizedHeader.module.scss';
 import { Link } from 'react-router';
 

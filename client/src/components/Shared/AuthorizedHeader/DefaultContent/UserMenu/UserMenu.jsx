@@ -1,7 +1,7 @@
 import { useState, useRef, useContext } from 'react';
 import styles from './UserMenu.module.scss';
-import { useClickOutside } from '../../../../../../hooks/useClickOutside';
-import { AuthContext } from '../../../../../../context';
+import { useClickOutside } from '../../../../../hooks/useClickOutside';
+import { AuthContext } from '../../../../../context';
 import { useNavigate } from 'react-router-dom';
 const UserMenu = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);

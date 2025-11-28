@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import CloseModalBtn from '../../../UI/CloseModalBtn/CloseModalBtn';
-import ConfirmModalBtn from '../../../UI/ConfirmModalBtn/ConfirmModalBtn';
-import ModalFooter from '../../../UI/ModalFooter/ModalFooter';
-import ModalHeader from '../../../UI/ModalHeader/ModalHeader';
+import CloseModalBtn from '../../UI/CloseModalBtn/CloseModalBtn';
+import ConfirmModalBtn from '../../UI/ConfirmModalBtn/ConfirmModalBtn';
+import ModalFooter from '../../UI/ModalFooter/ModalFooter';
+import ModalHeader from '../../UI/ModalHeader/ModalHeader';
 import styles from './NoteAddModal.module.scss';
 
 const NoteAddModal = ({ onClose, onAddNote, ...props }) => {
