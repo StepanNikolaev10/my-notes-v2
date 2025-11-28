@@ -1,6 +1,8 @@
 import EditNoteBtn from '../../UI/EditNoteBtn/EditNoteBtn.jsx';
 import styles from './NoteItem.module.scss';
 import { useNavigate } from 'react-router-dom';
+import DOMPurify from 'dompurify';
+import parse from 'html-react-parser';
 
 const NoteItem = ({ id, content, onEditNotes, isEdit, noteStyles }) => {
   const router = useNavigate();
@@ -29,7 +31,9 @@ const NoteItem = ({ id, content, onEditNotes, isEdit, noteStyles }) => {
         >
           {content.title}
         </div>
-        <div className={styles.mainText}>{content.mainText}</div>
+        <div className={styles.mainText}>
+          {parse(DOMPurify.sanitize(content.mainText))}
+        </div>
       </div>
       <EditNoteBtn
         onClick={(e) => {
