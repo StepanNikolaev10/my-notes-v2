@@ -1,0 +1,30 @@
+.notePageMain {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.quill {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  
+  :global(.ql-toolbar) {
+    order: 2;
+    flex-shrink: 0; 
+    border-top: 1px solid #ccc;
+    border-bottom: none;
+  }
+
+  :global(.ql-container) {
+    order: 1;
+    flex-grow: 1;
+    border-top: none;
+    overflow-y: auto; 
+    height: 0;
+  }
+  
+  :global(.ql-editor) {
+    min-height: 100%;
+  }
+}

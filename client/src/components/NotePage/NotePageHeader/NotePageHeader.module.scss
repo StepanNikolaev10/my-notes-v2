@@ -1,0 +1,22 @@
+.notePageHeader {
+  height: 50px;
+  border-bottom: 1px solid silver;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.backBtn {
+  padding: 5px 15px;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.saveBtn {
+  padding: 5px 15px;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
