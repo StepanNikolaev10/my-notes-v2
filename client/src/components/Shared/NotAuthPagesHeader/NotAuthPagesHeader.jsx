@@ -1,11 +1,11 @@
 import { AUTH_PAGE_VARIANTS } from '../../../constants/authPageVariants';
 import AppName from '../UI/AppName/AppName';
-import styles from './NotAuthorizedHeader.module.scss';
+import styles from './NotAuthPagesHeader.module.scss';
 import { Link } from 'react-router';
 
-const NotAuthorizedHeader = ({ currentPage }) => {
+const NotAuthPagesHeader = ({ currentPage }) => {
   return (
-    <header className={styles.notAuthorizedHeader}>
+    <header className={styles.notAuthPagesHeader}>
       <AppName/>
       <nav className={styles.authLinks}>
         <Link to="/sign-in" className={`${styles.link} ${currentPage === AUTH_PAGE_VARIANTS.SIGN_IN ? styles.opened : ''}`}>
@@ -18,4 +18,4 @@ const NotAuthorizedHeader = ({ currentPage }) => {
     </header>
   )
 }
-export default NotAuthorizedHeader
+export default NotAuthPagesHeader;
