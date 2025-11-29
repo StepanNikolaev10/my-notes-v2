@@ -3,10 +3,12 @@ import NotePage from "../pages/NotePage/NotePage";
 import NotesPage from "../pages/NotesPage/NotesPage";
 import AuthPage from "../pages/AuthPage/AuthPage";
 import { AUTH_PAGE_VARIANTS } from "../constants/authPageVariants";
+import SearchNotesPage from "../pages/SearchNotesPage/SearchNotesPage";
 
 export const privateRoutes = [
     {path: '/', element: <NotesPage/>, exact: true},
-    {path: '/notes/:id', element: <NotePage/>, exact: true}
+    {path: '/notes/:id', element: <NotePage/>, exact: true},
+    {path: '/search', element: <SearchNotesPage/>, exact: true}
 ]
 
 export const publicRoutes = [
