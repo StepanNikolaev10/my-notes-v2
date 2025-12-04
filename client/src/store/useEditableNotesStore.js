@@ -4,29 +4,29 @@ import useNotesStore from './useNotesStore';
 const useEditableNotesStore = create(
   (set, get) => ({
     // СОСТОЯНИЯ
-    editableNotes: [],
+    editableNotesIds: [],
     // ДЕЙСТВИЯ
-    addEditableNote: (id) => {
+    addEditableNoteId: (id) => {
       const notes = useNotesStore.getState().notes;
-      const currentEditableNotes = get().editableNotes;
+      const currentEditableNotesIds = get().editableNotesIds;
 
-      const noteToEdit = notes.find(note => note.id === id);
+      const noteToEdit = notes.find(item => item.id === id);
       if (!noteToEdit) return;
 
-      const isAlreadyAdded = currentEditableNotes.some(note => note.id === id);
+      const isAlreadyAdded =  currentEditableNotesIds.some(item => item === id);
       if (isAlreadyAdded) {
         return set((state) => ({
-          editableNotes: state.editableNotes.filter(note => note.id !== id)
+          editableNotesIds: state.editableNotesIds.filter(item => item !== id)
         }));
       }
 
       set((state) => ({
-        editableNotes: [...state.editableNotes, noteToEdit]
+        editableNotesIds: [...state.editableNotesIds, id]
       }));
     },
     stopEditing: () => {
       set({
-        editableNotes: []
+        editableNotesIds: []
       });
     }
   })
