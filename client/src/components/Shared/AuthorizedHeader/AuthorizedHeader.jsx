@@ -1,22 +1,22 @@
 import styles from './AuthorizedHeader.module.scss';
 import DefaultContent from './DefaultContent/DefaultContent';
 import EditNoteContent from './EditNoteContent/EditNoteContent';
+import useEditableNotesStore from '../../../store/useEditableNotesStore';
 
-const AuthorizedHeader = ({ editableNotes, onDeleteNotes, onStopEditing, onToggleTextBold, onToggleTextCursive, onOpenModal }) => {
+const AuthorizedHeader = ({ onOpenModal }) => {;
+  const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
   return (
     <div className={styles.authorizedHeader}>
-      {editableNotes.length > 0 ? (
-        <EditNoteContent
-          editableNotes={editableNotes}
-          onDeleteNotes={onDeleteNotes}
-          onStopEditing={onStopEditing}
-          onToggleTextBold={onToggleTextBold}
-          onToggleTextCursive={onToggleTextCursive}
-          onOpenModal={onOpenModal}
-        />
-      ) : (
-        <DefaultContent/>
-      )}
+      {editableNotesIds.length > 0 
+      ? 
+        (
+          <EditNoteContent onOpenModal={onOpenModal}/>
+        ) 
+      : 
+        (
+          <DefaultContent/>
+        )
+      }
     </div>
   )
 }

@@ -2,7 +2,7 @@ import styles from './NotePageMain.module.scss';
 import ReactQuill from 'react-quill-new'; 
 import 'react-quill-new/dist/quill.snow.css'; 
 
-const NotePageMain = ({ titleValue, textValue, onSetTitleValue, onSetTextValue }) => {
+const NotePageMain = ({ title, mainText, onSetTitle, onSetMainText }) => {
 
   const modules = {
     toolbar: [
@@ -33,14 +33,14 @@ const NotePageMain = ({ titleValue, textValue, onSetTitleValue, onSetTextValue }
       <input 
         type="text" 
         placeholder='Title...'
-        value={titleValue}
-        onChange={(e) => onSetTitleValue(e.target.value)}
+        value={title}
+        onChange={(e) => onSetTitle(e.target.value)}
       />
       <ReactQuill 
         className={styles.quill}
         theme="snow" 
-        value={textValue} 
-        onChange={onSetTextValue}
+        value={mainText} 
+        onChange={onSetMainText}
         modules={modules}
         formats={formats}
         placeholder="Note text..."
@@ -48,4 +48,4 @@ const NotePageMain = ({ titleValue, textValue, onSetTitleValue, onSetTextValue }
     </div>
   )
 }
-export default NotePageMain
+export default NotePageMain;

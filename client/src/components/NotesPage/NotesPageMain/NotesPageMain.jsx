@@ -2,22 +2,21 @@ import NoteItem from "../NoteItem/NoteItem";
 import styles from "./NotesPageMain.module.scss";
 import NoteAddBtn from "../UI/NoteAddBtn/NoteAddBtn";
 import { MODAL_VARIANTS } from "../../../constants/modalVariants";
+import useNotesStore from "../../../store/useNotesStore";
 
-const NotesPageMain = ({ notes, onTextChange, onEditNotes, editableNotes, onOpenModal }) => {
+const NotesPageMain = ({ onOpenModal }) => {
+  const notes = useNotesStore(state => state.notes);
+
   return (
     <div className={styles.notesPageMain}>
       <div className={styles.notes}>
         {notes.length > 0 ? (
           notes.map(note => {
-            const isEdit = editableNotes.some(editable => editable.id === note.id);
             return (
               <NoteItem
                 key={note.id}
                 id={note.id}
                 content={note.content}
-                onTextChange={onTextChange}
-                onEditNotes={onEditNotes}
-                isEdit={isEdit}
                 noteStyles={note.styles}
               />
             );

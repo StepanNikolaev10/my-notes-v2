@@ -2,19 +2,24 @@ import styles from './NoteItem.module.scss';
 import { useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import parse from 'html-react-parser';
+import useEditableNotesStore from '../../../store/useEditableNotesStore';
 
-const NoteItem = ({ id, content, onEditNotes, isEdit, noteStyles }) => {
+const NoteItem = ({ id, content, noteStyles }) => {
+  const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds)
+  const addEditableNoteId = useEditableNotesStore(state => state.addEditableNoteId);
+
   const router = useNavigate();
 
   const rootStyles = [styles.noteItem]
 
-  if(isEdit) {
+  const isEditable = editableNotesIds.some(editableNoteId => editableNoteId === id);
+  if(isEditable) {
     rootStyles.push(styles.editable);
   }
 
-  const editNote = (e) => {
+  const addEditableNoteHandler = (e) => {
     e.stopPropagation();
-    onEditNotes(id)
+    addEditableNoteId(id)
   }
 
   return (
@@ -22,7 +27,7 @@ const NoteItem = ({ id, content, onEditNotes, isEdit, noteStyles }) => {
       className={rootStyles.join(' ')} 
       style={{
         backgroundColor: noteStyles.color,
-        border: noteStyles.color && !isEdit && 'none'
+        border: noteStyles.color && !isEditable && 'none'
       }}
       onClick={() => router(`/notes/${id}`)}
     >
@@ -41,7 +46,7 @@ const NoteItem = ({ id, content, onEditNotes, isEdit, noteStyles }) => {
         </div>
       </div>
 
-      <div className={styles.editBtn} onClick={editNote}>
+      <div className={styles.editBtn} onClick={addEditableNoteHandler}>
         <img src="src/assets/icons/edit-btn.svg" alt="edit-btn"/>
       </div>
 

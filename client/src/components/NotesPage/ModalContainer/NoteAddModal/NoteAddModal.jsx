@@ -4,14 +4,18 @@ import ConfirmModalBtn from '../../UI/ConfirmModalBtn/ConfirmModalBtn';
 import ModalFooter from '../../UI/ModalFooter/ModalFooter';
 import ModalHeader from '../../UI/ModalHeader/ModalHeader';
 import styles from './NoteAddModal.module.scss';
+import useNotesStore from '../../../../store/useNotesStore';
 
-const NoteAddModal = ({ onClose, onAddNote, ...props }) => {
+const NoteAddModal = ({ onClose, ...props }) => {
+  const addNote = useNotesStore(state => state.addNote);
+
   const [title, setTitle] = useState('');
   const [mainText, setMainText] = useState('');
 
-  const addNewNote = (e) => {
+  const addNoteHandler = (e) => {
     e.preventDefault();
-    onAddNote(title, mainText)
+    addNote(title, mainText)
+    onClose();
     setTitle('')
     setMainText('')
   }
@@ -36,7 +40,7 @@ const NoteAddModal = ({ onClose, onAddNote, ...props }) => {
       </div>
       <ModalFooter>
         <CloseModalBtn onClick={onClose} type='button'>Cancel</CloseModalBtn>
-        <ConfirmModalBtn onClick={addNewNote} type='submit'>Add</ConfirmModalBtn>
+        <ConfirmModalBtn onClick={addNoteHandler} type='submit'>Add</ConfirmModalBtn>
       </ModalFooter>
     </form>
   )

@@ -4,6 +4,8 @@ import ConfirmModalBtn from '../../UI/ConfirmModalBtn/ConfirmModalBtn';
 import ModalFooter from '../../UI/ModalFooter/ModalFooter';
 import ModalHeader from '../../UI/ModalHeader/ModalHeader';
 import styles from './NoteEditColorModal.module.scss';
+import useNotesStore from '../../../../store/useNotesStore';
+import useEditableNotesStore from '../../../../store/useEditableNotesStore';
 
 const colorOptions = [
   'transparent',
@@ -20,16 +22,21 @@ const colorOptions = [
   'rgb(247, 244, 244)'
 ];
 
-const NoteEditColorModal = ({ onClose, onUpdateNotesColor, ...props }) => {
+const NoteEditColorModal = ({ onClose, ...props }) => {
+  const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
+  const stopEditing = useEditableNotesStore(state => state.stopEditing);
+  const changeNotesColor = useNotesStore(state => state.changeNotesColor);
+
   const [selectedColor, setSelectedColor] = useState(null);
 
   const handleColorBtnClick = (color) => {
     setSelectedColor(color);
   }
 
-  const handleConfirmBtn = () =>{
-    onUpdateNotesColor(selectedColor)
+  const handleChangeNotesColor = () =>{
+    changeNotesColor(editableNotesIds, selectedColor)
     onClose();
+    stopEditing();
   }
 
   return (
@@ -52,7 +59,7 @@ const NoteEditColorModal = ({ onClose, onUpdateNotesColor, ...props }) => {
       </div>
       <ModalFooter>
         <CloseModalBtn onClick={onClose} type='button'>Cancel</CloseModalBtn>
-        <ConfirmModalBtn onClick={handleConfirmBtn}>Confirm</ConfirmModalBtn>
+        <ConfirmModalBtn onClick={handleChangeNotesColor}>Confirm</ConfirmModalBtn>
       </ModalFooter>
     </div>
   )
