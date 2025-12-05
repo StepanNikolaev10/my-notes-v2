@@ -2,7 +2,7 @@ import styles from './NotesPage.module.scss';
 import { useState } from 'react';
 import NotesPageMain from '/src/components/NotesPage/NotesPageMain/NotesPageMain';
 import Modal from '../../components/Shared/Modal/Modal';
-import AuthorizedHeader from '../../components/Shared/AuthorizedHeader/AuthorizedHeader';
+import NotesPageHeader from '../../components/NotesPage/NotesPageHeader/NotesPageHeader';
 import useNotesStore from '../../store/useNotesStore';
 
 const NotesPage = () => {
@@ -16,7 +16,7 @@ const NotesPage = () => {
 
   return (
     <div className={styles.notesPage}>
-      <AuthorizedHeader
+      <NotesPageHeader
         onOpenModal={openModal} 
       />
       <NotesPageMain

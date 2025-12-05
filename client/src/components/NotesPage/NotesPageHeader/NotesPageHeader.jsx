@@ -1,12 +1,12 @@
-import styles from './AuthorizedHeader.module.scss';
+import styles from './NotesPageHeader.module.scss';
 import DefaultContent from './DefaultContent/DefaultContent';
 import EditNoteContent from './EditNoteContent/EditNoteContent';
 import useEditableNotesStore from '../../../store/useEditableNotesStore';
 
-const AuthorizedHeader = ({ onOpenModal }) => {;
+const NotesPageHeader = ({ onOpenModal }) => {;
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
   return (
-    <div className={styles.authorizedHeader}>
+    <div className={styles.notesPageHeader}>
       {editableNotesIds.length > 0 
       ? 
         (
@@ -20,4 +20,4 @@ const AuthorizedHeader = ({ onOpenModal }) => {;
     </div>
   )
 }
-export default AuthorizedHeader;
+export default NotesPageHeader;
