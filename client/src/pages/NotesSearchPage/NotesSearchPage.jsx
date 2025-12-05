@@ -3,11 +3,13 @@ import NotesSearchPageMain from '../../components/NotesSearchPage/NotesSearchPag
 import styles from './NotesSearchPage.module.scss';
 import { useState, useMemo } from 'react';
 import useNotesStore from '../../store/useNotesStore'
+import Modal from '../../components/Shared/Modal/Modal';
 
 const NotesSearchPage = () => {
   const notes = useNotesStore(state => state.notes);
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeModal, setActiveModal] = useState(null);
 
   const searchedNotes = useMemo(() => {
     const normalizedQuery = searchQuery.trim().toLowerCase();
@@ -19,15 +21,24 @@ const NotesSearchPage = () => {
     });
   }, [searchQuery, notes])
 
+  const openModal = (type) => {
+    setActiveModal(type); 
+  }
+
   return (
     <div className={styles.notesSearchPage}>
       <NotesSearchPageHeader
         onSetSearchQuery={setSearchQuery}
         searchQuery={searchQuery}
+        onOpenModal={openModal}
       />
       <NotesSearchPageMain
         searchedNotes={searchedNotes}
         searchQuery={searchQuery}
+      />
+      <Modal
+        isOpen={activeModal}
+        onClose={() => setActiveModal(null)}
       />
     </div>
   )

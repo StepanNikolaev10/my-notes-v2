@@ -1,8 +1,8 @@
 import NoteItem from "../NoteItem/NoteItem";
 import styles from "./NotesPageMain.module.scss";
 import NoteAddBtn from "../UI/NoteAddBtn/NoteAddBtn";
-import { MODAL_VARIANTS } from "../../../constants/modalVariants";
 import useNotesStore from "../../../store/useNotesStore";
+import { MODAL_CONTENT_VARIANTS } from "../../../constants/modalContentVariants";
 
 const NotesPageMain = ({ onOpenModal }) => {
   const notes = useNotesStore(state => state.notes);
@@ -26,7 +26,7 @@ const NotesPageMain = ({ onOpenModal }) => {
         )}
       </div>
 
-      <NoteAddBtn onClick={() => onOpenModal(MODAL_VARIANTS.NOTE_ADD)}/>
+      <NoteAddBtn onClick={() => onOpenModal(MODAL_CONTENT_VARIANTS.NOTE_ADDING)}/>
     </div>
   );
 };

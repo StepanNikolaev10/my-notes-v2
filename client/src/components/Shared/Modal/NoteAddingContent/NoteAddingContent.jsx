@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import CloseModalBtn from '../../UI/CloseModalBtn/CloseModalBtn';
-import ConfirmModalBtn from '../../UI/ConfirmModalBtn/ConfirmModalBtn';
-import ModalFooter from '../../UI/ModalFooter/ModalFooter';
-import ModalHeader from '../../UI/ModalHeader/ModalHeader';
-import styles from './NoteAddModal.module.scss';
+import CloseModalBtn from '../UI/CloseModalBtn/CloseModalBtn';
+import ConfirmModalBtn from '../UI/ConfirmModalBtn/ConfirmModalBtn';
+import ModalFooter from '../UI/ModalFooter/ModalFooter';
+import ModalHeader from '../UI/ModalHeader/ModalHeader';
+import styles from './NoteAddingContent.module.scss';
 import useNotesStore from '../../../../store/useNotesStore';
 
-const NoteAddModal = ({ onClose, ...props }) => {
+const NoteAddingContent = ({ onClose, ...props }) => {
   const addNote = useNotesStore(state => state.addNote);
 
   const [title, setTitle] = useState('');
@@ -21,7 +21,7 @@ const NoteAddModal = ({ onClose, ...props }) => {
   }
 
   return (
-    <form className={styles.noteAddModal} {...props}>
+    <form className={styles.noteAddingContent} {...props}>
       <ModalHeader title={'Add note'} onClose={onClose}/>
       <div className={styles.content}>
         <input
@@ -45,4 +45,4 @@ const NoteAddModal = ({ onClose, ...props }) => {
     </form>
   )
 }
-export default NoteAddModal;
+export default NoteAddingContent;

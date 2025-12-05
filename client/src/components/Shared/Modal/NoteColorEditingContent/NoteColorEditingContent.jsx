@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import CloseModalBtn from '../../UI/CloseModalBtn/CloseModalBtn';
-import ConfirmModalBtn from '../../UI/ConfirmModalBtn/ConfirmModalBtn';
-import ModalFooter from '../../UI/ModalFooter/ModalFooter';
-import ModalHeader from '../../UI/ModalHeader/ModalHeader';
-import styles from './NoteEditColorModal.module.scss';
+import CloseModalBtn from '../UI/CloseModalBtn/CloseModalBtn';
+import ConfirmModalBtn from '../UI/ConfirmModalBtn/ConfirmModalBtn';
+import ModalFooter from '../UI/ModalFooter/ModalFooter';
+import ModalHeader from '../UI/ModalHeader/ModalHeader';
+import styles from './NoteColorEditingContent.module.scss';
 import useNotesStore from '../../../../store/useNotesStore';
 import useEditableNotesStore from '../../../../store/useEditableNotesStore';
 
@@ -22,7 +22,7 @@ const colorOptions = [
   'rgb(247, 244, 244)'
 ];
 
-const NoteEditColorModal = ({ onClose, ...props }) => {
+const NoteColorEditingContent = ({ onClose, ...props }) => {
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
   const stopEditing = useEditableNotesStore(state => state.stopEditing);
   const changeNotesColor = useNotesStore(state => state.changeNotesColor);
@@ -40,7 +40,7 @@ const NoteEditColorModal = ({ onClose, ...props }) => {
   }
 
   return (
-    <div className={styles.noteEditColorModal} {...props}>
+    <div className={styles.noteColorEditingContent} {...props}>
       <ModalHeader title={'Change note color'} onClose={onClose}/>
       <div className={styles.content}>
         {colorOptions.map(color => {
@@ -64,4 +64,4 @@ const NoteEditColorModal = ({ onClose, ...props }) => {
     </div>
   )
 }
-export default NoteEditColorModal;
+export default NoteColorEditingContent;

@@ -3,7 +3,7 @@ import useEditableNotesStore from '../../../store/useEditableNotesStore';
 import SearchedNotesEditingContent from './SearchedNotesEditingContent/SearchedNotesEditingContent';
 import DefaultContent from './DefaultContent/DefaultContent';
 
-const NotesSearchPageHeader = ({ searchQuery, onSetSearchQuery }) => {
+const NotesSearchPageHeader = ({ searchQuery, onSetSearchQuery, onOpenModal }) => {
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
 
   return (
@@ -11,7 +11,9 @@ const NotesSearchPageHeader = ({ searchQuery, onSetSearchQuery }) => {
       {editableNotesIds.length > 0 
       ? 
         (
-          <SearchedNotesEditingContent/>
+          <SearchedNotesEditingContent
+            onOpenModal={onOpenModal}
+          />
         ) 
       : 
         (

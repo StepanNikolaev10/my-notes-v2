@@ -1,4 +1,0 @@
-export const MODAL_VARIANTS = {
-  NOTE_ADD: 'NOTE_ADD',
-  NOTE_EDIT_COLOR: 'NOTE_EDIT_COLOR'
-}

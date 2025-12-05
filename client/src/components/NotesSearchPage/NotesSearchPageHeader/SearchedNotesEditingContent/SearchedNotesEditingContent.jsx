@@ -1,9 +1,9 @@
-import { MODAL_VARIANTS } from '../../../../constants/modalVariants';
 import styles from './SearchedNotesEditingContent.module.scss';
 import useEditableNotesStore from '../../../../store/useEditableNotesStore';
 import useNotesStore from '../../../../store/useNotesStore';
+import { MODAL_CONTENT_VARIANTS } from '../../../../constants/modalContentVariants';
 
-const SearchedNotesEditingContent = () => {
+const SearchedNotesEditingContent = ({ onOpenModal }) => {
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
   const deleteNotes = useNotesStore(state => state.deleteNotes);
   const stopEditing = useEditableNotesStore(state => state.stopEditing);
@@ -26,8 +26,7 @@ const SearchedNotesEditingContent = () => {
         </div>
 
         <div className={styles.editTools}>
-          <button className={styles.openColorModalBtn}>
-            {/* onClick={() => onOpenModal(MODAL_VARIANTS.NOTE_EDIT_COLOR)} */}
+          <button className={styles.openColorModalBtn} onClick={() => onOpenModal(MODAL_CONTENT_VARIANTS.NOTE_COLOR_EDITING)}>
             <img src="src/assets/icons/palette.svg" alt="open-color-modal-btn"/>
           </button>
           <button className={styles.deleteNoteBtn} onClick={deleteNotesHandler}>
