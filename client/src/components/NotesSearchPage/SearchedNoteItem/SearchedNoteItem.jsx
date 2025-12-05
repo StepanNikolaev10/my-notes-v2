@@ -30,7 +30,7 @@ const SearchedNoteItem = ({ searchedNote, searchQuery }) => {
         backgroundColor: searchedNote.styles?.color,
         border: searchedNote.styles?.color && !isEditable && 'none'
       }}
-      onClick={() => router(`/notes/${id}`)}
+      onClick={() => router(`/notes/${searchedNote.id}`)}
     >
 
       <div className={styles.noteContent}>
