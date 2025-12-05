@@ -4,12 +4,15 @@ import styles from './NotesSearchPage.module.scss';
 import { useState, useMemo } from 'react';
 import useNotesStore from '../../store/useNotesStore'
 import Modal from '../../components/Shared/Modal/Modal';
+import useDebounce from '../../hooks/useDebounce';
 
 const NotesSearchPage = () => {
   const notes = useNotesStore(state => state.notes);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [activeModal, setActiveModal] = useState(null);
+
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
   const searchedNotes = useMemo(() => {
     const normalizedQuery = searchQuery.trim().toLowerCase();
@@ -19,7 +22,7 @@ const NotesSearchPage = () => {
       const text = item.content?.mainText?.toLowerCase() || '';
       return title.includes(normalizedQuery) || text.includes(normalizedQuery);
     });
-  }, [searchQuery, notes])
+  }, [debouncedSearchQuery, notes])
 
   const openModal = (type) => {
     setActiveModal(type); 
