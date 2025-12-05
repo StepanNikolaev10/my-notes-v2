@@ -6,21 +6,7 @@ import ModalHeader from '../UI/ModalHeader/ModalHeader';
 import styles from './NoteColorEditingContent.module.scss';
 import useNotesStore from '../../../../store/useNotesStore';
 import useEditableNotesStore from '../../../../store/useEditableNotesStore';
-
-const colorOptions = [
-  'transparent',
-  'rgb(247, 155, 159)',
-  'rgb(237, 155, 96)',
-  'rgb(255, 240, 139)',
-  'rgb(144, 182, 213)',
-  'rgb(194, 221, 243)',
-  'rgb(138, 215, 200)',
-  'rgb(193, 237, 193)',
-  'rgb(225, 188, 217)',
-  'rgb(255, 233, 203)',
-  'rgb(228, 222, 213)',
-  'rgb(247, 244, 244)'
-];
+import { NOTE_COLORS } from '../../../../constants/noteColors';
 
 const NoteColorEditingContent = ({ onClose, ...props }) => {
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
@@ -43,7 +29,7 @@ const NoteColorEditingContent = ({ onClose, ...props }) => {
     <div className={styles.noteColorEditingContent} {...props}>
       <ModalHeader title={'Change note color'} onClose={onClose}/>
       <div className={styles.content}>
-        {colorOptions.map(color => {
+        {NOTE_COLORS.map(color => {
           const isSelected = selectedColor === color;
           return (
             <button
