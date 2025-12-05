@@ -1,9 +1,9 @@
 import styles from './DefaultContent.module.scss';
-
+import { Link } from 'react-router-dom';
 const DefaultContent = ({ searchQuery, onSetSearchQuery }) => {
   return (
     <div className={styles.defaultContent}>
-      <button className={styles.backBtn}></button>
+      <Link className={styles.backBtn} to={'/'}>Back</Link>
       <input 
         value={searchQuery}
         onChange={(e) => onSetSearchQuery(e.target.value)}
