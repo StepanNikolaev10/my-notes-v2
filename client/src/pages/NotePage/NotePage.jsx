@@ -21,27 +21,6 @@ const NotePage = () => {
     setMainText(foundNote.content.mainText || '');
   }, []);
 
-
-  // const saveNote = () => {
-  //   const updatedNotes = notes.map((note) => {
-  //     if (note.id.toString() === id) {
-  //       return {
-  //         ...note,
-  //         content: {
-  //           ...note.content, 
-  //           title: titleValue,
-  //           mainText: textValue
-  //         }
-  //       };
-  //     }
-  //     return note;
-  //   });
-
-  //   setNotes(updatedNotes);
-  //   localStorage.setItem('notesData', JSON.stringify(updatedNotes));
-  // }
-
-
   return (
     <div className={styles.notePage}>
       <NotePageHeader
