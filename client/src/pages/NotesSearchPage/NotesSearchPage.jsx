@@ -3,14 +3,14 @@ import NotesSearchPageMain from '../../components/NotesSearchPage/NotesSearchPag
 import styles from './NotesSearchPage.module.scss';
 import { useState, useMemo } from 'react';
 import useNotesStore from '../../store/useNotesStore'
-import Modal from '../../components/Shared/Modal/Modal';
+import EditNoteColorModal from '../../components/Shared/EditNoteColorModal/EditNoteColorModal';
 import useDebounce from '../../hooks/useDebounce';
 
 const NotesSearchPage = () => {
   const notes = useNotesStore(state => state.notes);
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeModal, setActiveModal] = useState(null);
+  const [modalActivity, setModalActivity] = useState(false);
 
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
@@ -24,24 +24,20 @@ const NotesSearchPage = () => {
     });
   }, [debouncedSearchQuery, notes])
 
-  const openModal = (type) => {
-    setActiveModal(type); 
-  }
-
   return (
     <div className={styles.notesSearchPage}>
       <NotesSearchPageHeader
         onSetSearchQuery={setSearchQuery}
         searchQuery={searchQuery}
-        onOpenModal={openModal}
+        onOpenModal={() => setModalActivity(true)}
       />
       <NotesSearchPageMain
         searchedNotes={searchedNotes}
         searchQuery={searchQuery}
       />
-      <Modal
-        isOpen={activeModal}
-        onClose={() => setActiveModal(null)}
+      <EditNoteColorModal
+        isOpen={modalActivity}
+        onClose={() => setModalActivity(false)}
       />
     </div>
   )

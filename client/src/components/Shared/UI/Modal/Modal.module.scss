@@ -1,4 +1,4 @@
-.modal {
+.modalBackdrop {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -12,4 +12,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.modal {
+    background: white;
+    border: 1px solid silver;
+    border-radius: 10px;
 }
