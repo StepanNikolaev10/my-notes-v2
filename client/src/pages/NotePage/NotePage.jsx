@@ -13,16 +13,18 @@ const NotePage = () => {
 
   const [title, setTitle] = useState('');
   const [mainText, setMainText] = useState('');
-  
+  const [noteColor, setNoteColor] = useState('');
+
   useEffect(() => {
     const foundNote = notes.find((item) => item.id === id);
     if (!foundNote) return
     setTitle(foundNote.content.title || '');
     setMainText(foundNote.content.mainText || '');
+    setNoteColor(foundNote.styles.color || 'transparent');
   }, []);
 
   return (
-    <div className={styles.notePage}>
+    <div className={styles.notePage} style={{backgroundColor: noteColor}}>
       <NotePageHeader
         onSaveNote={() => updateNoteContent(id, {title, mainText})}
       />
