@@ -7,7 +7,7 @@ import ModalFooter from '../../Shared/UI/ModalFooter/ModalFooter';
 import ModalHeader from '../../Shared/UI/ModalHeader/ModalHeader';
 import styles from './AddNoteModal.module.scss';
 
-const AddNoteModal = ({ isOpen, onClose }) => {
+const AddNoteModal = ({ onClose }) => {
   const addNote = useNotesStore(state => state.addNote);
 
   const [title, setTitle] = useState('');
@@ -22,8 +22,8 @@ const AddNoteModal = ({ isOpen, onClose }) => {
   }
 
   return (
-    <Modal isOpen={isOpen}>
-      <form className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+    <Modal onClose={onClose}>
+      <form className={styles.modalContent}>
         <ModalHeader title={'Add note'} onClose={onClose}/>
         <div className={styles.modalMain}>
           <input

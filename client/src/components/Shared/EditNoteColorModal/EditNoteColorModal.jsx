@@ -9,7 +9,7 @@ import useEditableNotesStore from '../../../store/useEditableNotesStore';
 import { NOTE_COLORS } from '../../../constants/noteColors';
 import Modal from '../UI/Modal/Modal';
 
-const EditNoteColorModal = ({ isOpen, onClose}) => {
+const EditNoteColorModal = ({ onClose }) => {
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
   const stopEditing = useEditableNotesStore(state => state.stopEditing);
   const changeNotesColor = useNotesStore(state => state.changeNotesColor);
@@ -27,8 +27,8 @@ const EditNoteColorModal = ({ isOpen, onClose}) => {
   }
 
   return (
-    <Modal isOpen={isOpen}>
-      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+    <Modal onClose={onClose}>
+      <div className={styles.modalContent}>
         <ModalHeader title={'Change note color'} onClose={onClose}/>
         <div className={styles.content}>
           {NOTE_COLORS.map(color => {

@@ -1,15 +1,9 @@
 import styles from './Modal.module.scss';
 
-const Modal = ({ isOpen, children }) => {
-  const rootStyles = [styles.modalBackdrop]
-
-  if(isOpen) {
-    rootStyles.push(styles.active);
-  }
-
+const Modal = ({ onClose, children }) => {
   return (
-    <div className={rootStyles.join(' ')} >
-      <div className={styles.modal}>
+    <div className={styles.modalBackdrop} onClick={onClose}>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         {children}
       </div>
     </div>
