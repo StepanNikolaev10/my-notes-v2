@@ -35,10 +35,13 @@ const NotesSearchPage = () => {
         searchedNotes={searchedNotes}
         searchQuery={searchQuery}
       />
-      <EditNoteColorModal
-        isOpen={modalActivity}
-        onClose={() => setModalActivity(false)}
-      />
+      {modalActivity && (
+        <EditNoteColorModal
+          isOpen={modalActivity}
+          onClose={() => setModalActivity(false)}
+        />
+      )}
+
     </div>
   )
 }
