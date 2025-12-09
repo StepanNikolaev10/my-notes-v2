@@ -3,11 +3,11 @@ import styles from './DefaultContent.module.scss';
 import UserMenu from './UserMenu/UserMenu';
 import SearchNotesBox from './SearchNotesBox/SearchNotesBox';
 
-const DefaultContent = () => {
+const DefaultContent = ({ onOpenModal }) => {
   return (
     <div className={styles.defaultContent}>
       <AppName/>
-      <SearchNotesBox/>
+      <SearchNotesBox onOpenModal={onOpenModal}/>
       <UserMenu/>
     </div>
   )
