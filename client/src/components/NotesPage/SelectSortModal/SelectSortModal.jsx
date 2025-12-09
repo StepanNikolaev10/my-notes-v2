@@ -1,25 +1,45 @@
-import { useState } from 'react';
-import useNotesStore from '../../../store/useNotesStore';
 import Modal from '../../Shared/UI/Modal/Modal';
-import CloseModalBtn from '../../Shared/UI/CloseModalBtn/CloseModalBtn';
-import ConfirmModalBtn from '../../Shared/UI/ConfirmModalBtn/ConfirmModalBtn';
-import ModalFooter from '../../Shared/UI/ModalFooter/ModalFooter';
 import ModalHeader from '../../Shared/UI/ModalHeader/ModalHeader';
 import styles from './SelectSortModal.module.scss';
+import { NOTES_SORT_METHODS } from '../../../constants/notesSortMethods';
+import CheckmarkIcon from '/src/assets/icons/checkmark.svg?react';
 
-const SelectSortModal = ({ onClose }) => {
+const SelectSortModal = ({ onClose, selectedSort, onSelectSort }) => {
 
+  const handleSelectSort = (method) => {
+    selectedSort !== method && onSelectSort(method);
+  }
+
+  const sortMethodsList = Object.values(NOTES_SORT_METHODS);
+  
   return (
     <Modal onClose={onClose}>
       <div className={styles.modalContent}>
-        <ModalHeader title={'Add note'} onClose={onClose}/>
+        <ModalHeader title={'Sort by'} onClose={onClose}/>
         <div className={styles.modalMain}>
-
+          <div className={styles.sortMethods}>
+            {sortMethodsList.map(method => (
+              <div 
+                key={method.value}
+                className={`${styles.sortMethod} ${selectedSort === method.value ? styles.active : ''}`}
+                onClick={() => handleSelectSort(method.value)}
+              >
+                <div className={styles.checkmarkBox}>
+                  {selectedSort === method.value && (
+                    <CheckmarkIcon
+                      style={{
+                        width: '35px',
+                        height: '35px',
+                        fill: 'black'
+                      }}
+                    />
+                  )}
+                </div>
+                <div className={styles.sortMethodLabel}>{method.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
-        <ModalFooter>
-          <CloseModalBtn onClick={onClose} type='button'>Cancel</CloseModalBtn>
-          <ConfirmModalBtn onClick={addNoteHandler} type='submit'>Add</ConfirmModalBtn>
-        </ModalFooter>
       </div>
     </Modal>
   )
