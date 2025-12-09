@@ -11,6 +11,8 @@ const useNotesStore = create(
       addNote: (title, mainText) => {
         const newNote = {
           id: uuidv4(),
+          dateCreated: Date.now(),
+          dateModified: Date.now(), 
           content: {
             title: title,
             mainText: mainText
@@ -18,6 +20,7 @@ const useNotesStore = create(
           styles: {
             color: null
           }
+
         }
         set(state => ({
           notes: [...state.notes, newNote]
