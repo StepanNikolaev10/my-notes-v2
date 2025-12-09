@@ -14,7 +14,7 @@ const NotesPageHeader = ({ onOpenModal }) => {;
         ) 
       : 
         (
-          <DefaultContent/>
+          <DefaultContent onOpenModal={onOpenModal}/>
         )
       }
     </div>
