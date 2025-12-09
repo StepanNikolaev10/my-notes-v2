@@ -1,5 +1,6 @@
 import styles from './ModalHeader.module.scss';
-import CrossIcon from '/src/assets/icons/cross.svg?react'
+import CrossIcon from '/src/assets/icons/cross.svg?react';
+
 const ModalHeader = ({ title, onClose}) => {
   return (
     <div className={styles.modalHeader}>
@@ -16,4 +17,4 @@ const ModalHeader = ({ title, onClose}) => {
     </div>
   )
 }
-export default ModalHeader
+export default ModalHeader;
