@@ -1,5 +1,5 @@
 import styles from './NotesPage.module.scss';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import NotesPageMain from '/src/components/NotesPage/NotesPageMain/NotesPageMain';
 import NotesPageHeader from '../../components/NotesPage/NotesPageHeader/NotesPageHeader';
 import useNotesStore from '../../store/useNotesStore';
@@ -14,18 +14,32 @@ const NotesPage = () => {
 
   const [openedModal, setOpenedModal] = useState(null);
   const [selectedSort, setSelectedSort] = useState(NOTES_SORT_METHODS.CUSTOM.value);
+  console.log(selectedSort)
 
-  // const sortedNotes = useMemo(() => {
+  const sortedNotes = useMemo(() => {
+    if (selectedSort === NOTES_SORT_METHODS.CUSTOM.value) {
+      return notes;
+    }
 
-  // }, selectedSort)
+    if (selectedSort === NOTES_SORT_METHODS.DATE_CREATED.value) {
+      return [...notes].sort((a,b) => b.dateCreated - a.dateCreated);
+    }
 
+    if (selectedSort === NOTES_SORT_METHODS.DATE_MODIFIED.value) {
+      return [...notes].sort((a,b) => b.dateModified - a.dateModified);
+    }
+
+    return notes;
+  }, [selectedSort, notes]);
+
+  console.log(sortedNotes)
+  
   const openModal = (type) => {
     setOpenedModal(type)
   }
 
   const sortNotes = (sort) => {
     setSelectedSort(sort)
-    console.log(sort)
   }
 
   return (
@@ -34,7 +48,7 @@ const NotesPage = () => {
         onOpenModal={openModal} 
       />
       <NotesPageMain
-        notes={notes}
+        notes={sortedNotes}
         onOpenModal={openModal} 
       />
       {openedModal === MODAL_CONTENT_VARIANTS.NOTE_ADDING && (
