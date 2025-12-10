@@ -1,11 +1,9 @@
 import NoteItem from "../NoteItem/NoteItem";
 import styles from "./NotesPageMain.module.scss";
 import NoteAddBtn from "../UI/NoteAddBtn/NoteAddBtn";
-import useNotesStore from "../../../store/useNotesStore";
 import { MODAL_CONTENT_VARIANTS } from "../../../constants/modalContentVariants";
 
-const NotesPageMain = ({ onOpenModal }) => {
-  const notes = useNotesStore(state => state.notes);
+const NotesPageMain = ({ onOpenModal, notes }) => {
 
   return (
     <div className={styles.notesPageMain}>
