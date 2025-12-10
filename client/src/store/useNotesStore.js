@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { v4 as uuidv4 } from 'uuid';
+import { NOTE_MOVEMENT_DIRECTION } from '../constants/noteMovementDirection';
 
 const useNotesStore = create(
   persist(
@@ -13,7 +14,6 @@ const useNotesStore = create(
           id: uuidv4(),
           dateCreated: Date.now(),
           dateModified: Date.now(), 
-          positionIndex: get().notes.length+1,
           content: {
             title: title,
             mainText: mainText
@@ -46,7 +46,36 @@ const useNotesStore = create(
           ? { ...note, dateModified: Date.now(), content: newContent }
           : note
         )
-      }))
+      })),
+
+      changeNotePosition: (id, movementDirection) => {
+        const currentNotes = get().notes;
+
+        const currentIndex = currentNotes.findIndex(note => note.id === id);
+        if (currentIndex === -1) return;
+
+        let newIndex = currentIndex;
+        if (movementDirection === NOTE_MOVEMENT_DIRECTION.UP) {
+            newIndex = newIndex - 1;
+        } else if (movementDirection === NOTE_MOVEMENT_DIRECTION.DOWN) {
+            newIndex = newIndex + 1;
+        }
+
+        if (newIndex < 0 || newIndex >= currentNotes.length) {
+            return; 
+        }
+
+        const newNotes = [...currentNotes];
+
+        const noteToMove = newNotes[currentIndex];
+        
+        newNotes.splice(currentIndex, 1);
+        newNotes.splice(newIndex, 0, noteToMove);
+        
+        set({
+            notes: newNotes
+        });
+      }
 
     }),
     {
