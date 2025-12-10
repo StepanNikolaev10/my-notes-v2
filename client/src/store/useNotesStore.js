@@ -23,7 +23,7 @@ const useNotesStore = create(
 
         }
         set(state => ({
-          notes: [...state.notes, newNote]
+          notes: [newNote, ...state.notes]
         }));
       },
 
