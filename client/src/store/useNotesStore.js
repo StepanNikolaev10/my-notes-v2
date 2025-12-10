@@ -34,7 +34,7 @@ const useNotesStore = create(
       changeNotesColor: (ids, color) => set(state => ({
         notes: state.notes.map(note => 
           ids.includes(note.id)
-          ? { ...note, styles: { ...note.styles, color } } 
+          ? { ...note, dateModified: Date.now(), styles: { ...note.styles, color } } 
           : note
         )
       })),
@@ -42,7 +42,7 @@ const useNotesStore = create(
       updateNoteContent: (id, newContent) => set(state => ({
         notes: state.notes.map(note =>
           note.id === id 
-          ? { ...note, content: newContent }
+          ? { ...note, dateModified: Date.now(), content: newContent }
           : note
         )
       }))
