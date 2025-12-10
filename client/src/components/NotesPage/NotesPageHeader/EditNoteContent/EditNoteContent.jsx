@@ -15,7 +15,7 @@ const EditNoteContent = ({ onOpenModal }) => {
 
   return (
     <div className={styles.editNoteContent}>
-      <div className={styles.colLeft}>
+      <div className={styles.leftGroup}>
         <button className={styles.stopEditingBtn} onClick={stopEditing}>
           <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M20 20L4 4.00003M20 4L4.00002 20" stroke="gray" strokeWidth="2" strokeLinecap="round"/>
@@ -23,7 +23,7 @@ const EditNoteContent = ({ onOpenModal }) => {
         </button>
         <div className={styles.selectedNotesCount}>Selected: {editableNotesIds.length}</div>
       </div>
-      <div className={styles.colRight}>
+      <div className={styles.editTools}>
         <div className={styles.editTools}>
           <button className={styles.openColorModalBtn} onClick={() => onOpenModal(MODAL_CONTENT_VARIANTS.NOTE_COLOR_EDITING)}>
             <img src="src/assets/icons/palette.svg" alt="open-color-modal-btn"/>
