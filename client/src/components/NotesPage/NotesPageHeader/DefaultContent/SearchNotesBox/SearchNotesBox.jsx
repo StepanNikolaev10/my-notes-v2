@@ -10,7 +10,6 @@ const SearchNotesBox = ({ onOpenModal }) => {
     <div className={styles.searchNotesBox} onClick={() => router('/search')}>
       <div className={styles.searchBoxText}>Search notes</div>
       <div className={styles.sortBtns}>
-        <button className={styles.toggleNoteViewBtn} onClick={(e) => e.stopPropagation()}></button>
         <button className={styles.openSortModalBtn} onClick={(e) => e.stopPropagation()}>
           <SortIcon 
             style={{
