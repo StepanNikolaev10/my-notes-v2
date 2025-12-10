@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const useNotesStore = create(
   persist(
-    (set) => ({
+    (set, get) => ({
       // СОСТОЯНИЯ
       notes: [],
       // ДЕЙСТВИЯ
@@ -13,6 +13,7 @@ const useNotesStore = create(
           id: uuidv4(),
           dateCreated: Date.now(),
           dateModified: Date.now(), 
+          positionIndex: get().notes.length+1,
           content: {
             title: title,
             mainText: mainText
