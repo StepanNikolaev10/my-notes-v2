@@ -45,3 +45,12 @@
     background-color: rgba(192, 192, 192, 0.8);
   }
 }
+
+.inactive {
+  opacity: 0.5;
+  cursor: default;
+
+  &:hover {
+    background: rgba(192, 192, 192, 0.5);
+  }
+}

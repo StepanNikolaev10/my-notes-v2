@@ -45,41 +45,45 @@ const EditNoteContent = ({ onOpenModal }) => {
         <div className={styles.selectedNotesCount}>Selected: {editableNotesIds.length}</div>
       </div>
       <div className={styles.editTools}>
-        <div className={styles.editTools}>
-          <button className={styles.editNoteBtn} onClick={handleNoteDown}>
-            <ArrowNarrowIcon
-              style={{
-                width: '30px',
-                height: '30px',
-                transform: 'scaleY(-1)'
-              }}
-            />
-          </button>
-          <button className={styles.editNoteBtn} onClick={handleNoteUp}>
-            <ArrowNarrowIcon
-              style={{
-                width: '30px',
-                height: '30px'
-              }}
-            />
-          </button>
-          <button className={styles.editNoteBtn} onClick={() => onOpenModal(MODAL_CONTENT_VARIANTS.NOTE_COLOR_EDITING)}>
-            <PaletteIcon
-              style={{
-                width: '30px',
-                height: '30px'
-              }}
-            />
-          </button>
-          <button className={styles.editNoteBtn} onClick={deleteNotesHandler}>
-            <TrashCanIcon
-              style={{
-                width: '30px',
-                height: '30px'
-              }}
-            />
-          </button>
-        </div>
+        <button 
+          className={`${styles.editNoteBtn} ${editableNotesIds.length > 1 ? styles.inactive : ''}`} 
+          onClick={handleNoteDown}
+        >
+          <ArrowNarrowIcon
+            style={{
+              width: '30px',
+              height: '30px',
+              transform: 'scaleY(-1)'
+            }}
+          />
+        </button>
+        <button 
+          className={`${styles.editNoteBtn} ${editableNotesIds.length > 1 ? styles.inactive : ''}`} 
+          onClick={handleNoteUp}
+        >
+          <ArrowNarrowIcon
+            style={{
+              width: '30px',
+              height: '30px'
+            }}
+          />
+        </button>
+        <button className={styles.editNoteBtn} onClick={() => onOpenModal(MODAL_CONTENT_VARIANTS.NOTE_COLOR_EDITING)}>
+          <PaletteIcon
+            style={{
+              width: '30px',
+              height: '30px'
+            }}
+          />
+        </button>
+        <button className={styles.editNoteBtn} onClick={deleteNotesHandler}>
+          <TrashCanIcon
+            style={{
+              width: '30px',
+              height: '30px'
+            }}
+          />
+        </button>
       </div>
     </div>
   )
