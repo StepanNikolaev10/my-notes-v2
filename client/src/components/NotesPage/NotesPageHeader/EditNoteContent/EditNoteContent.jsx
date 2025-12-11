@@ -41,7 +41,7 @@ const EditNoteContent = ({ onOpenModal }) => {
       </div>
       <div className={styles.editTools}>
         <div className={styles.editTools}>
-          <button className={styles.downNoteBtn} onClick={handleNoteDown}>
+          <button className={styles.changeNotePositionBtn} onClick={handleNoteDown}>
             <ArrowNarrowIcon
               style={{
                 width: '30px',
@@ -50,7 +50,7 @@ const EditNoteContent = ({ onOpenModal }) => {
               }}
             />
           </button>
-          <button className={styles.upNoteBtn} onClick={handleNoteUp}>
+          <button className={styles.changeNotePositionBtnGIT } onClick={handleNoteUp}>
             <ArrowNarrowIcon
               style={{
                 width: '30px',
