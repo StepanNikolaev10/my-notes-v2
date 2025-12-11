@@ -3,6 +3,8 @@ import useEditableNotesStore from '../../../../store/useEditableNotesStore';
 import useNotesStore from '../../../../store/useNotesStore';
 import { MODAL_CONTENT_VARIANTS } from '../../../../constants/modalContentVariants';
 import { NOTE_MOVEMENT_DIRECTION } from '../../../../constants/noteMovementDirection';
+import ArrowNarrowIcon from '/src/assets/icons/arrow-narrow-up.svg?react';
+
 
 const EditNoteContent = ({ onOpenModal }) => {
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
@@ -40,10 +42,21 @@ const EditNoteContent = ({ onOpenModal }) => {
       <div className={styles.editTools}>
         <div className={styles.editTools}>
           <button className={styles.downNoteBtn} onClick={handleNoteDown}>
-            down
+            <ArrowNarrowIcon
+              style={{
+                width: '30px',
+                height: '30px',
+                transform: 'scaleY(-1)'
+              }}
+            />
           </button>
           <button className={styles.upNoteBtn} onClick={handleNoteUp}>
-            up
+            <ArrowNarrowIcon
+              style={{
+                width: '30px',
+                height: '30px'
+              }}
+            />
           </button>
           <button className={styles.openColorModalBtn} onClick={() => onOpenModal(MODAL_CONTENT_VARIANTS.NOTE_COLOR_EDITING)}>
             <img src="src/assets/icons/palette.svg" alt="open-color-modal-btn"/>
