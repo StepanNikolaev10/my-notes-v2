@@ -1,6 +1,5 @@
 .editNoteContent {
-  width: 100%;
-  height: 50px;
+  flex: 1;
   display: flex;
   justify-content: space-between;
 }
@@ -11,24 +10,21 @@
 }
 
 .stopEditingBtn {
-  height: 30px;
-  width: 30px;
   @include button-reset;
+  @include flex-center;
+  padding: 0.3rem;
   cursor: pointer;
-  margin-right: 10px;
+  margin-right: 0.6rem;
+  border-radius: 0.6rem;
+  
   &:hover {
-    svg {
-      path {
-        stroke: black;
-      }
-    }
+    background-color: rgba(192, 192, 192, 0.8);
   }
-
 }
 
 .selectedNotesCount {
   font-family: $main-font;
-  font-size: 20px;
+  font-size: 1.4rem
 }
 
 .editTools {
