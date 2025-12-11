@@ -41,7 +41,7 @@ const EditNoteContent = ({ onOpenModal }) => {
       </div>
       <div className={styles.editTools}>
         <div className={styles.editTools}>
-          <button className={styles.changeNotePositionBtn} onClick={handleNoteDown}>
+          <button className={styles.editNoteBtn} onClick={handleNoteDown}>
             <ArrowNarrowIcon
               style={{
                 width: '30px',
@@ -50,7 +50,7 @@ const EditNoteContent = ({ onOpenModal }) => {
               }}
             />
           </button>
-          <button className={styles.changeNotePositionBtnGIT } onClick={handleNoteUp}>
+          <button className={styles.editNoteBtn} onClick={handleNoteUp}>
             <ArrowNarrowIcon
               style={{
                 width: '30px',
@@ -58,10 +58,10 @@ const EditNoteContent = ({ onOpenModal }) => {
               }}
             />
           </button>
-          <button className={styles.openColorModalBtn} onClick={() => onOpenModal(MODAL_CONTENT_VARIANTS.NOTE_COLOR_EDITING)}>
+          <button className={styles.editNoteBtn} onClick={() => onOpenModal(MODAL_CONTENT_VARIANTS.NOTE_COLOR_EDITING)}>
             <img src="src/assets/icons/palette.svg" alt="open-color-modal-btn"/>
           </button>
-          <button className={styles.deleteNoteBtn} onClick={deleteNotesHandler}>
+          <button className={styles.editNoteBtn} onClick={deleteNotesHandler}>
             <img src="src/assets/icons/trash-can.svg" alt="delete-note-btn"/>
           </button>
         </div>
