@@ -1,5 +1,5 @@
 .App {
   height: 100%;
-  font-family: $main-font;
-  color: $light-theme-main-font-color;
+  display: flex;
+  flex-direction: column;
 }
