@@ -1,0 +1,32 @@
+:root {
+  --color-bg-primary: #202020;
+  --color-bg-surface: #363636;
+  --color-block-surface: #555555;
+
+  // add note btn, editable notes border, selected sort method in sort modal
+  --color-interactive: #5596F6;
+  --color-content-interactive: rgb(0, 0, 0);
+
+  --color-text-interface: rgb(230, 230, 230);
+  --color-text-note: #ffffff;
+
+  --color-border-note: rgb(133, 133, 133);
+  --color-note-bg: rgb(19, 19, 19);
+  --color-underline-modal: silver;
+}
+
+[data-theme='dark'] {
+  --color-bg-primary: #121212;
+  --color-bg-surface: #1e1e1e;
+  --color-block-surface: #2a2a2a;
+  
+  --color-interactive: #5596F6;
+  --color-content-interactive: #ffffff;
+  
+  --color-text-interface: #e0e0e0;
+  --color-text-note: #ffffff;
+  
+  --color-border-note: #555555;
+  --color-note-bg: #1c1c1c;
+  --color-underline-modal: silver;
+}
