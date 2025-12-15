@@ -1,5 +1,6 @@
 @use './themes-variables';
 @use './scrollbar';
+@use './variables';
 
 * {
   margin: 0;
@@ -8,7 +9,8 @@
 }
 
 body {
-  font-family: $main-font;
+  font-family: var(--main-font);
+  color: var(--color-text-interface);
   background-color: var(--color-bg-primary);
 }
 

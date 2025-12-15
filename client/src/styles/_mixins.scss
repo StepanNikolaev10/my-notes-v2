@@ -1,0 +1,12 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin btn-reset {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+}
