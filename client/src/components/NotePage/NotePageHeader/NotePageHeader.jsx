@@ -1,3 +1,4 @@
+import Header from '../../Shared/UI/Header/Header';
 import styles from './NotePageHeader.module.scss';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,10 +11,10 @@ const NotePageHeader = ({ onSaveNote }) => {
   }
 
   return (
-    <div className={styles.notePageHeader}>
+    <Header>
       <button className={styles.backBtn} onClick={() => router('/')}>Back</button>
       <button className={styles.saveBtn} onClick={saveNote}>Save</button>
-    </div>
+    </Header>
   )
 }
 export default NotePageHeader

@@ -1,11 +1,12 @@
 import { AUTH_PAGE_VARIANTS } from '../../../constants/authPageVariants';
 import AppName from '../UI/AppName/AppName';
+import Header from '../UI/Header/Header';
 import styles from './NotAuthPagesHeader.module.scss';
 import { Link } from 'react-router';
 
 const NotAuthPagesHeader = ({ currentPage }) => {
   return (
-    <header className={styles.notAuthPagesHeader}>
+    <Header>
       <AppName/>
       <nav className={styles.authLinks}>
         <Link to="/sign-in" className={`${styles.link} ${currentPage === AUTH_PAGE_VARIANTS.SIGN_IN ? styles.opened : ''}`}>
@@ -15,7 +16,7 @@ const NotAuthPagesHeader = ({ currentPage }) => {
           Sign up
         </Link>
       </nav>
-    </header>
+    </Header>
   )
 }
 export default NotAuthPagesHeader;

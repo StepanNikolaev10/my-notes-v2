@@ -1,12 +1,13 @@
-import styles from './NotesPageHeader.module.scss';
 import DefaultContent from './DefaultContent/DefaultContent';
 import EditNoteContent from './EditNoteContent/EditNoteContent';
 import useEditableNotesStore from '../../../store/useEditableNotesStore';
+import Header from '../../Shared/UI/Header/Header';
 
 const NotesPageHeader = ({ onOpenModal }) => {;
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
+
   return (
-    <header className={styles.notesPageHeader}>
+    <Header>
       {editableNotesIds.length > 0 
       ? 
         (
@@ -17,7 +18,8 @@ const NotesPageHeader = ({ onOpenModal }) => {;
           <DefaultContent onOpenModal={onOpenModal}/>
         )
       }
-    </header>
+    </Header>
   )
 }
+
 export default NotesPageHeader;

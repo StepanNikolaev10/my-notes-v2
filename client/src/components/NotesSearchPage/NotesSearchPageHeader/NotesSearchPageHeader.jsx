@@ -1,13 +1,13 @@
-import styles from './NotesSearchPageHeader.module.scss';
 import useEditableNotesStore from '../../../store/useEditableNotesStore';
 import SearchedNotesEditingContent from './SearchedNotesEditingContent/SearchedNotesEditingContent';
 import DefaultContent from './DefaultContent/DefaultContent';
+import Header from '../../Shared/UI/Header/Header';
 
 const NotesSearchPageHeader = ({ searchQuery, onSetSearchQuery, onOpenModal }) => {
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
 
   return (
-    <header className={styles.notesSearchPageHeader}>
+    <Header>
       {editableNotesIds.length > 0 
       ? 
         (
@@ -23,7 +23,7 @@ const NotesSearchPageHeader = ({ searchQuery, onSetSearchQuery, onOpenModal }) =
           />
         )
       }
-    </header>
+    </Header>
   )
 }
 export default NotesSearchPageHeader;
