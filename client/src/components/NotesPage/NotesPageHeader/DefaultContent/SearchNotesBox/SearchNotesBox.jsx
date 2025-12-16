@@ -6,18 +6,22 @@ import { MODAL_CONTENT_VARIANTS } from '../../../../../constants/modalContentVar
 const SearchNotesBox = ({ onOpenModal }) => {
   const router = useNavigate();
 
+  const handleOpenSortModal = (e) => {
+    e.stopPropagation();
+    onOpenModal(MODAL_CONTENT_VARIANTS.SORT_SELECTING)
+  } 
+
   return (
     <div className={styles.searchNotesBox} onClick={() => router('/search')}>
       <div className={styles.searchBoxText}>Search notes</div>
       <div className={styles.sortBtns}>
-        <button className={styles.openSortModalBtn} onClick={(e) => e.stopPropagation()}>
+        <button className={styles.openSortModalBtn} onClick={(e) => handleOpenSortModal(e)}>
           <SortIcon 
             style={{
               width: '20px', 
               height: '20px',
               fill: 'rgb(218, 218, 218)'
             }}
-            onClick={() => onOpenModal(MODAL_CONTENT_VARIANTS.SORT_SELECTING)}
           />
         </button>
       </div>
