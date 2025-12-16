@@ -7,22 +7,24 @@ const NotesPageMain = ({ onOpenModal, notes }) => {
 
   return (
     <main className={styles.notesPageMain}>
-      <div className={styles.notes}>
-        {notes.length > 0 ? (
-          notes.map(note => {
-            return (
-              <NoteItem
-                key={note.id}
-                id={note.id}
-                content={note.content}
-                noteStyles={note.styles}
-              />
-            );
-          })
-        ) : (
-          <div className={styles.emptyNotesText}>Your notes is empty</div>
-        )}
-      </div>
+      {notes.length > 0 ? (
+        <div className={styles.notes}>
+          {
+            notes.map(note => {
+              return (
+                <NoteItem
+                  key={note.id}
+                  id={note.id}
+                  content={note.content}
+                  noteStyles={note.styles}
+                />
+              );
+            })
+          }
+        </div>
+      ) : (
+        <div className={styles.emptyNotesText}>Your notes is empty</div>
+      )}
 
       <NoteAddBtn onClick={() => onOpenModal(MODAL_CONTENT_VARIANTS.NOTE_ADDING)}/>
     </main>

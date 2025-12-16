@@ -1,6 +1,5 @@
 .notesPageMain {
-  display: flex;
-  flex: 1;
+  height: calc(100% - var(--header-height));
   position: relative;
   overflow: auto;
   margin-top: var(--header-height);
@@ -8,6 +7,7 @@
 
 .notes {
   max-width: 800px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,8 +16,8 @@
 }
 
 .emptyNotesText {
+  height: 100%;
   display: flex;
-  flex: 1;
   justify-content: center;
   align-items: center;
   color: var(--color-text-interface);
