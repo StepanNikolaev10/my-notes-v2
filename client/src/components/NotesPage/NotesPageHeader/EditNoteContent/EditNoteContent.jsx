@@ -38,7 +38,8 @@ const EditNoteContent = ({ onOpenModal }) => {
           <CrossIcon
             style={{
               width: '30px',
-              height: '30px'
+              height: '30px',
+              fill: 'rgb(218, 218, 218)'
             }}
           />
         </button>
@@ -53,7 +54,8 @@ const EditNoteContent = ({ onOpenModal }) => {
             style={{
               width: '30px',
               height: '30px',
-              transform: 'scaleY(-1)'
+              transform: 'scaleY(-1)',
+              stroke: 'rgb(218, 218, 218)'
             }}
           />
         </button>
@@ -64,7 +66,8 @@ const EditNoteContent = ({ onOpenModal }) => {
           <ArrowNarrowIcon
             style={{
               width: '30px',
-              height: '30px'
+              height: '30px',
+              stroke: 'rgb(218, 218, 218)'
             }}
           />
         </button>
@@ -72,7 +75,8 @@ const EditNoteContent = ({ onOpenModal }) => {
           <PaletteIcon
             style={{
               width: '30px',
-              height: '30px'
+              height: '30px',
+              fill: 'rgb(218, 218, 218)'
             }}
           />
         </button>
@@ -80,7 +84,8 @@ const EditNoteContent = ({ onOpenModal }) => {
           <TrashCanIcon
             style={{
               width: '30px',
-              height: '30px'
+              height: '30px',
+              fill: 'rgb(218, 218, 218)'
             }}
           />
         </button>

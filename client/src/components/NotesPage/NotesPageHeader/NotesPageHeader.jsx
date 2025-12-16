@@ -6,7 +6,7 @@ import useEditableNotesStore from '../../../store/useEditableNotesStore';
 const NotesPageHeader = ({ onOpenModal }) => {;
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
   return (
-    <div className={styles.notesPageHeader}>
+    <header className={styles.notesPageHeader}>
       {editableNotesIds.length > 0 
       ? 
         (
@@ -17,7 +17,7 @@ const NotesPageHeader = ({ onOpenModal }) => {;
           <DefaultContent onOpenModal={onOpenModal}/>
         )
       }
-    </div>
+    </header>
   )
 }
 export default NotesPageHeader;

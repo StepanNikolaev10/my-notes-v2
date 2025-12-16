@@ -6,7 +6,7 @@ import { MODAL_CONTENT_VARIANTS } from "../../../constants/modalContentVariants"
 const NotesPageMain = ({ onOpenModal, notes }) => {
 
   return (
-    <div className={styles.notesPageMain}>
+    <main className={styles.notesPageMain}>
       <div className={styles.notes}>
         {notes.length > 0 ? (
           notes.map(note => {
@@ -25,7 +25,7 @@ const NotesPageMain = ({ onOpenModal, notes }) => {
       </div>
 
       <NoteAddBtn onClick={() => onOpenModal(MODAL_CONTENT_VARIANTS.NOTE_ADDING)}/>
-    </div>
+    </main>
   );
 };
 

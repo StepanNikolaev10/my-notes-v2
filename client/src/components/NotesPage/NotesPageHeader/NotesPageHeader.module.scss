@@ -1,8 +1,9 @@
 .notesPageHeader {
   width: 100%;
-  min-height: 50px;
-  background: white;
-  border-bottom: 1px solid rgba(192, 192, 192, 0.5);
+  height: var(--header-height);
+  position: fixed;
+  z-index: 100;
+  background: var(--color-bg-surface);
   display: flex;
   align-items: center;
   padding: 0 10px;

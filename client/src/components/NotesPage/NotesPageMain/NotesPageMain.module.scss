@@ -1,21 +1,25 @@
 .notesPageMain {
   display: flex;
-  justify-content: center;
   flex: 1;
-  overflow-y: auto;
+  position: relative;
+  overflow: auto;
+  margin-top: var(--header-height);
 }
 
 .notes {
+  max-width: 800px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 16px 10px;
 }
 
 .emptyNotesText {
-  flex: 1;
   display: flex;
+  flex: 1;
   justify-content: center;
   align-items: center;
-  color: gray;
-  font-family: $main-font;
+  color: var(--color-text-interface);
   font-size: 20px;
 }

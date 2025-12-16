@@ -15,6 +15,7 @@ const SearchNotesBox = ({ onOpenModal }) => {
             style={{
               width: '20px', 
               height: '20px',
+              fill: 'rgb(218, 218, 218)'
             }}
             onClick={() => onOpenModal(MODAL_CONTENT_VARIANTS.SORT_SELECTING)}
           />
