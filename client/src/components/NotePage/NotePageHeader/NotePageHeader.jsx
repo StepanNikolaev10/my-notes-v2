@@ -12,8 +12,8 @@ const NotePageHeader = ({ onSaveNote }) => {
 
   return (
     <Header>
-      <button className={styles.backBtn} onClick={() => router('/')}>Back</button>
-      <button className={styles.saveBtn} onClick={saveNote}>Save</button>
+      <button className={styles.headerBtn} onClick={() => router('/')}>Back</button>
+      <button className={styles.headerBtn} onClick={saveNote}>Save</button>
     </Header>
   )
 }

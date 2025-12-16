@@ -1,13 +1,13 @@
-.backBtn {
-  padding: 5px 15px;
-  font-size: 20px;
-  border-radius: 10px;
+.headerBtn {
+  @include btn-reset;
+  padding: 8px 16px;
+  text-decoration: none;
+  background-color: var(--color-block-surface);
+  border-radius: 8px;
+  margin-right: 10px;
   cursor: pointer;
-}
-
-.saveBtn {
-  padding: 5px 15px;
-  font-size: 20px;
-  border-radius: 10px;
-  cursor: pointer;
+  
+  &:hover {
+    background-color: var(--color-hover-block-surface);
+  }
 }

@@ -7,8 +7,8 @@ const NotePageMain = ({ title, mainText, onSetTitle, onSetMainText }) => {
   const modules = {
     toolbar: [
       [{ 'header': '1'}, {'header': '2'}],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{'list': 'ordered'}, {'list': 'bullet'}],
       ['clean']
     ],
     clipboard: {
@@ -31,8 +31,12 @@ const NotePageMain = ({ title, mainText, onSetTitle, onSetMainText }) => {
   return (
     <div className={styles.notePageMain}>
       <input 
+        className={styles.titleInput}
+        style={{
+          backgroundColor: 'transparent'
+        }}
         type="text" 
-        placeholder='Title...'
+        placeholder='Title'
         value={title}
         onChange={(e) => onSetTitle(e.target.value)}
       />
@@ -43,7 +47,7 @@ const NotePageMain = ({ title, mainText, onSetTitle, onSetMainText }) => {
         onChange={onSetMainText}
         modules={modules}
         formats={formats}
-        placeholder="Note text..."
+        placeholder="Note"
       />
     </div>
   )
