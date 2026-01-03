@@ -12,8 +12,8 @@
   "dependencies": {
     "dompurify": "^3.3.0",
     "html-react-parser": "^5.2.10",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "react-quill-new": "^3.6.0",
     "react-router-dom": "^7.9.5",
     "uuid": "^13.0.0",
