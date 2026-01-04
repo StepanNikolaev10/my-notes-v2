@@ -1,21 +1,21 @@
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import type { AuthPageVariants } from '../../../types/AuthPageTypes';
 import styles from './AuthForm.module.scss';
 import { AUTH_PAGE_VARIANTS } from '../../../constants/authPageVariants';
 import { useAuth } from '../../../context/auth/useAuth';
 
-const AuthForm = ({ pageVariant }) => {
+const AuthForm:React.FC<AuthPageVariants> = ({ pageVariant }) => {
   const router = useNavigate();
   const { setIsAuth } = useAuth();
 
-  const handleSignIn = (e) => {
+  const handleSignIn = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     localStorage.setItem('auth', 'true');
     setIsAuth(true);
     router(`/`);
   }
 
-  const handleSignUp = (e) => {
+  const handleSignUp = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     localStorage.setItem('auth', 'true');
     setIsAuth(true);
