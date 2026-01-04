@@ -1,8 +1,9 @@
 import styles from './AuthFormCard.module.scss';
 import { AUTH_PAGE_VARIANTS } from '../../../constants/authPageVariants';
 import AuthForm from '../AuthForm/AuthForm';
+import type { AuthPageVariants } from '../../../types/AuthPageTypes';
 
-const AuthFormCard = ({ pageVariant }) => {
+const AuthFormCard: React.FC<AuthPageVariants> = ({ pageVariant }) => {
   return (
     <div className={styles.authFormCard}>
       {pageVariant === AUTH_PAGE_VARIANTS.SIGN_IN && (
