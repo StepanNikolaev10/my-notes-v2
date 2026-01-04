@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { AuthContext } from '../../../context';
 import styles from './AuthForm.module.scss';
 import { AUTH_PAGE_VARIANTS } from '../../../constants/authPageVariants';
+import { useAuth } from '../../../context/auth/useAuth';
 
 const AuthForm = ({ pageVariant }) => {
   const router = useNavigate();
-  const { setIsAuth } = useContext(AuthContext);
+  const { setIsAuth } = useAuth();
 
   const handleSignIn = (e) => {
     e.preventDefault();

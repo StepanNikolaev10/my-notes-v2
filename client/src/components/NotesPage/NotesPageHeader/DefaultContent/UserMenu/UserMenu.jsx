@@ -1,13 +1,14 @@
 import { useState, useRef, useContext } from 'react';
 import styles from './UserMenu.module.scss';
 import { useClickOutside } from '../../../../../hooks/useClickOutside';
-import { AuthContext } from '../../../../../context';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../../../context/auth/useAuth';
+
 const UserMenu = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const menuRef = useRef(null);
   const router = useNavigate();
-  const { setIsAuth } = useContext(AuthContext);
+  const { setIsAuth } = useAuth();
 
   useClickOutside(menuRef, () => {
     if (isDropdownOpen) setDropdownOpen(false);
