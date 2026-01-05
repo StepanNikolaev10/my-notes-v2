@@ -1,5 +1,6 @@
 import styles from './LandingPageMain.module.scss';
 import { Link } from 'react-router-dom';
+
 const LandingPageMain = () => {
   return (
     <div className={styles.landingPageMain}>
