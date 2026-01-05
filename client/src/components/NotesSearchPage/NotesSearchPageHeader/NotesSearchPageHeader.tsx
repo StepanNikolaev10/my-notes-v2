@@ -3,7 +3,13 @@ import SearchedNotesEditingContent from './SearchedNotesEditingContent/SearchedN
 import DefaultContent from './DefaultContent/DefaultContent';
 import Header from '../../Shared/UI/Header/Header';
 
-const NotesSearchPageHeader = ({ searchQuery, onSetSearchQuery, onOpenModal }) => {
+interface NotesSearchPageHeaderProps {
+  searchQuery: string,
+  onSetSearchQuery: React.Dispatch<React.SetStateAction<string>>,
+  onOpenModal: () => void
+}
+
+const NotesSearchPageHeader = ({ searchQuery, onSetSearchQuery, onOpenModal }:NotesSearchPageHeaderProps) => {
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
 
   return (
