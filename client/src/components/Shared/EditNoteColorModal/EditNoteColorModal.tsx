@@ -9,14 +9,18 @@ import useEditableNotesStore from '../../../store/useEditableNotesStore';
 import { NOTE_COLORS } from '../../../constants/noteColors';
 import Modal from '../UI/Modal/Modal';
 
-const EditNoteColorModal = ({ onClose }) => {
+interface EditNoteColorModal {
+  onClose: () => void
+}
+
+const EditNoteColorModal = ({ onClose }:EditNoteColorModal) => {
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
   const stopEditing = useEditableNotesStore(state => state.stopEditing);
   const changeNotesColor = useNotesStore(state => state.changeNotesColor);
 
   const [selectedColor, setSelectedColor] = useState(null);
 
-  const handleColorBtnClick = (color) => {
+  const handleColorBtnClick = (color: any) => {
     setSelectedColor(color);
   }
 
