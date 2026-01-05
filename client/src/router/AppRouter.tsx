@@ -1,7 +1,6 @@
 import { Route, Routes, Navigate } from 'react-router'
-import { useContext } from 'react'
 import { publicRoutes, privateRoutes } from '../router/routes'
-import Loader from '/src/components/Shared/UI/Loader/Loader'
+import Loader from '../components/Shared/UI/Loader/Loader'
 import { useAuth } from '../context/auth/useAuth'
 
 const AppRouter = () => {
@@ -20,7 +19,6 @@ const AppRouter = () => {
                   key={route.path}
                   path={route.path} 
                   element={route.element} 
-                  exact={route.exact}
                 />
             )}
             <Route path="*" element={<Navigate to="/" replace />} />
@@ -32,7 +30,6 @@ const AppRouter = () => {
                   key={route.path}
                   path={route.path} 
                   element={route.element} 
-                  exact={route.exact}
                 />
             )}
             <Route path="*" element={<Navigate to="/" replace />} />
@@ -40,4 +37,4 @@ const AppRouter = () => {
     )
 }
 
-export default AppRouter
+export default AppRouter;
