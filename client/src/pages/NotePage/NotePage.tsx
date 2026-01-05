@@ -16,7 +16,7 @@ const NotePage = () => {
   const [noteColor, setNoteColor] = useState('');
 
   useEffect(() => {
-    const foundNote = notes.find((item) => item.id === id);
+    const foundNote = notes.find((item: any) => item.id === id); // ANY ЗАМЕНИТЬ НА ИНТЕРФЕЙС
     if (!foundNote) return
     setTitle(foundNote.content.title || '');
     setMainText(foundNote.content.mainText || '');
@@ -38,4 +38,5 @@ const NotePage = () => {
     </div>
   )
 }
+
 export default NotePage;
