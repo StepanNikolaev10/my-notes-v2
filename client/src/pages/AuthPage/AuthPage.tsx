@@ -1,12 +1,13 @@
 import styles from './AuthPage.module.scss';
 import AuthPageMain from '../../components/AuthPage/AuthPageMain/AuthPageMain';
 import NotAuthPagesHeader from '../../components/Shared/NotAuthPagesHeader/NotAuthPagesHeader';
-import type { AuthPageVariants } from '../../types/AuthPageTypes';
+import type NotAuthPagesVariants from '../../types/NotAuthPagesVariants';
 
-const AuthPage: React.FC<AuthPageVariants> = ({ pageVariant }) => {
+const AuthPage:React.FC<NotAuthPagesVariants> = ({ pageVariant }) => {
+
   return (
     <div className={styles.authPage}>
-      <NotAuthPagesHeader currentPage={pageVariant}/>
+      <NotAuthPagesHeader pageVariant={pageVariant}/>
       <AuthPageMain pageVariant={pageVariant}/>
     </div>
   )
