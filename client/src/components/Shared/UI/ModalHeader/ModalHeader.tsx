@@ -1,7 +1,12 @@
 import styles from './ModalHeader.module.scss';
 import CrossIcon from '/src/assets/icons/cross.svg?react';
 
-const ModalHeader = ({ title, onClose}) => {
+interface ModalHeaderProps {
+  title: string,
+  onClose: () => void 
+}
+
+const ModalHeader = ({ title, onClose}:ModalHeaderProps) => {
   return (
     <div className={styles.modalHeader}>
       <div className={styles.title}>{title}</div>
