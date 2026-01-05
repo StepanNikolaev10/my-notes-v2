@@ -2,11 +2,15 @@ import Header from '../../Shared/UI/Header/Header';
 import styles from './NotePageHeader.module.scss';
 import { useNavigate } from 'react-router-dom';
 
-const NotePageHeader = ({ onSaveNote }) => {
+interface NotePageHeaderProps {
+  onSaveNote: () => void;
+}
+
+const NotePageHeader: React.FC<NotePageHeaderProps> = ({ onSaveNote }) => {
   const router = useNavigate();
 
-  const saveNote = async () => {
-    await onSaveNote();
+  const saveNote = () => {
+    onSaveNote();
     router('/');
   }
 
@@ -17,4 +21,4 @@ const NotePageHeader = ({ onSaveNote }) => {
     </Header>
   )
 }
-export default NotePageHeader
+export default NotePageHeader;
