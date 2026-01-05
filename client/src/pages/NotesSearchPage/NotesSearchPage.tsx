@@ -17,7 +17,7 @@ const NotesSearchPage = () => {
   const searchedNotes = useMemo(() => {
     const normalizedQuery = searchQuery.trim().toLowerCase();
     if (!normalizedQuery) return [];
-    return notes.filter(item => {
+    return notes.filter((item: any) => {
       const title = item.content?.title?.toLowerCase() || '';
       const text = item.content?.mainText?.toLowerCase() || '';
       return title.includes(normalizedQuery) || text.includes(normalizedQuery);
@@ -37,7 +37,6 @@ const NotesSearchPage = () => {
       />
       {modalActivity && (
         <EditNoteColorModal
-          isOpen={modalActivity}
           onClose={() => setModalActivity(false)}
         />
       )}
