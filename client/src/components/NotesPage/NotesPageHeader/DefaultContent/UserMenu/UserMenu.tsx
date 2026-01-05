@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from 'react';
+import { useState, useRef } from 'react';
 import styles from './UserMenu.module.scss';
 import { useClickOutside } from '../../../../../hooks/useClickOutside';
 import { useNavigate } from 'react-router-dom';
