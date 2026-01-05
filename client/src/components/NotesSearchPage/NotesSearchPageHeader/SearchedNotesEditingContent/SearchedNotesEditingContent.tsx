@@ -3,7 +3,11 @@ import useEditableNotesStore from '../../../../store/useEditableNotesStore';
 import useNotesStore from '../../../../store/useNotesStore';
 import { MODAL_CONTENT_VARIANTS } from '../../../../constants/modalContentVariants';
 
-const SearchedNotesEditingContent = ({ onOpenModal }) => {
+interface SearchedNotesEditingContent {
+  onOpenModal: (modalType: string) => void
+}
+
+const SearchedNotesEditingContent = ({ onOpenModal }:SearchedNotesEditingContent) => {
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
   const deleteNotes = useNotesStore(state => state.deleteNotes);
   const stopEditing = useEditableNotesStore(state => state.stopEditing);
