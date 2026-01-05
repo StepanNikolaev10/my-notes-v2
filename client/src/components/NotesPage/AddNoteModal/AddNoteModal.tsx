@@ -7,13 +7,17 @@ import ModalFooter from '../../Shared/UI/ModalFooter/ModalFooter';
 import ModalHeader from '../../Shared/UI/ModalHeader/ModalHeader';
 import styles from './AddNoteModal.module.scss';
 
-const AddNoteModal = ({ onClose }) => {
+interface AddNoteModalProps {
+  onClose: () => void
+}
+
+const AddNoteModal:React.FC<AddNoteModalProps> = ({ onClose }) => {
   const addNote = useNotesStore(state => state.addNote);
 
   const [title, setTitle] = useState('');
   const [mainText, setMainText] = useState('');
 
-  const addNoteHandler = (e) => {
+  const addNoteHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     addNote(title, mainText)
     onClose();
