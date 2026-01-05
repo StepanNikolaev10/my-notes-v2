@@ -1,14 +1,19 @@
 import styles from './NotesSearchPageMain.module.scss';
 import SearchedNoteItem from '../SearchedNoteItem/SearchedNoteItem';
 
-const NotesSearchPageMain = ({ searchedNotes, searchQuery }) => {
+interface NotesSearchPageMainProps {
+  searchedNotes: any,
+  searchQuery: string
+}
+
+const NotesSearchPageMain = ({ searchedNotes, searchQuery }:NotesSearchPageMainProps) => {
   return (
     <main className={styles.notesSearchPageMain}>
       <div className={styles.searchedNotes}>
         {searchedNotes.length > 0 
         ? 
           (
-            searchedNotes.map(item => {
+            searchedNotes.map((item: any)=> {
               return (
                 <SearchedNoteItem
                   key={item.id}
