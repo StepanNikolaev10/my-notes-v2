@@ -4,7 +4,12 @@ import DOMPurify from 'dompurify';
 import parse from 'html-react-parser';
 import useEditableNotesStore from '../../../store/useEditableNotesStore';
 
-const SearchedNoteItem = ({ searchedNote, searchQuery }) => {
+interface SearchedNoteItemProps {
+  searchedNote: any,
+  searchQuery: string
+}
+
+const SearchedNoteItem = ({ searchedNote }:SearchedNoteItemProps) => {
   console.log(searchedNote)
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds)
   const addEditableNoteId = useEditableNotesStore(state => state.addEditableNoteId);
@@ -13,12 +18,12 @@ const SearchedNoteItem = ({ searchedNote, searchQuery }) => {
 
   const rootStyles = [styles.searchedNoteItem]
 
-  const isEditable = editableNotesIds.some(editableNoteId => editableNoteId === searchedNote.id);
+  const isEditable = editableNotesIds.some((editableNoteId: string) => editableNoteId === searchedNote.id);
   if(isEditable) {
     rootStyles.push(styles.editable);
   }
 
-  const addEditableNoteHandler = (e) => {
+  const addEditableNoteHandler = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     addEditableNoteId(searchedNote.id)
   }
