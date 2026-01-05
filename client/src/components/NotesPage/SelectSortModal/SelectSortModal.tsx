@@ -4,9 +4,15 @@ import styles from './SelectSortModal.module.scss';
 import { NOTES_SORT_METHODS } from '../../../constants/notesSortMethods';
 import CheckmarkIcon from '/src/assets/icons/checkmark.svg?react';
 
-const SelectSortModal = ({ onClose, selectedSort, onSelectSort }) => {
+interface SelectSortModalProps {
+  onClose: () => void,
+  selectedSort: string,
+  onSelectSort: React.Dispatch<React.SetStateAction<string>>
+}
 
-  const handleSelectSort = (method) => {
+const SelectSortModal = ({ onClose, selectedSort, onSelectSort }:SelectSortModalProps) => {
+
+  const handleSelectSort = (method: string) => {
     selectedSort !== method && onSelectSort(method);
   }
 
