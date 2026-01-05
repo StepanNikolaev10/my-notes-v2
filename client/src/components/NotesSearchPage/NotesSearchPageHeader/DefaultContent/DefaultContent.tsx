@@ -1,6 +1,12 @@
 import styles from './DefaultContent.module.scss';
 import { Link } from 'react-router-dom';
-const DefaultContent = ({ searchQuery, onSetSearchQuery }) => {
+
+interface DefaultContentProps {
+  searchQuery: string,
+  onSetSearchQuery: React.Dispatch<React.SetStateAction<string>>,
+}
+
+const DefaultContent = ({ searchQuery, onSetSearchQuery }: DefaultContentProps) => {
   return (
     <div className={styles.defaultContent}>
       <Link className={styles.backBtn} to={'/'}>Back</Link>
@@ -15,4 +21,5 @@ const DefaultContent = ({ searchQuery, onSetSearchQuery }) => {
     </div>
   )
 }
+
 export default DefaultContent;
