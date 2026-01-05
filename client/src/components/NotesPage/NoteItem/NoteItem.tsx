@@ -4,20 +4,26 @@ import DOMPurify from 'dompurify';
 import parse from 'html-react-parser';
 import useEditableNotesStore from '../../../store/useEditableNotesStore';
 
-const NoteItem = ({ id, content, noteStyles }) => {
-  const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds)
+interface NoteItemProps {
+  id: string,
+  content: any,
+  noteStyles: any
+}
+
+const NoteItem = ({ id, content, noteStyles }: NoteItemProps) => {
+  const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
   const addEditableNoteId = useEditableNotesStore(state => state.addEditableNoteId);
 
   const router = useNavigate();
 
   const rootStyles = [styles.noteItem]
 
-  const isEditable = editableNotesIds.some(editableNoteId => editableNoteId === id);
+  const isEditable = editableNotesIds.some((editableNoteId:any) => editableNoteId === id);
   if(isEditable) {
     rootStyles.push(styles.editable);
   }
 
-  const addEditableNoteHandler = (e) => {
+  const addEditableNoteHandler = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     addEditableNoteId(id)
   }
@@ -54,4 +60,4 @@ const NoteItem = ({ id, content, noteStyles }) => {
   );
 };
 
-export default NoteItem
+export default NoteItem;
