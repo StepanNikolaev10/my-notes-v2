@@ -11,7 +11,7 @@ export const privateRoutes = [
 ]
 
 export const publicRoutes = [
-    {path: '/', element: <LandingPage/>, exact: true},
+    {path: '/', element: <LandingPage pageVariant={'LANDING'}/>, exact: true},
     {path: '/sign-in', element: <AuthPage pageVariant={'SIGN_IN'}/>, exact: true},
     {path: '/sign-up', element: <AuthPage pageVariant={'SIGN_UP'}/>, exact: true},
 ]
