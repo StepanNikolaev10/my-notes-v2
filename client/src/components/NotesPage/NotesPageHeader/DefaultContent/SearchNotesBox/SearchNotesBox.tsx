@@ -3,10 +3,14 @@ import styles from './SearchNotesBox.module.scss';
 import SortIcon from '/src/assets/icons/sort-icon.svg?react';
 import { MODAL_CONTENT_VARIANTS } from '../../../../../constants/modalContentVariants';
 
-const SearchNotesBox = ({ onOpenModal }) => {
+interface SearchNotesBoxProps {
+  onOpenModal: (modalVariant: string) => void
+}
+
+const SearchNotesBox = ({ onOpenModal }: SearchNotesBoxProps) => {
   const router = useNavigate();
 
-  const handleOpenSortModal = (e) => {
+  const handleOpenSortModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     onOpenModal(MODAL_CONTENT_VARIANTS.SORT_SELECTING)
   } 
