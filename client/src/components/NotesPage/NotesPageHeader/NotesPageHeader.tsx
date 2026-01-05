@@ -3,7 +3,11 @@ import EditNoteContent from './EditNoteContent/EditNoteContent';
 import useEditableNotesStore from '../../../store/useEditableNotesStore';
 import Header from '../../Shared/UI/Header/Header';
 
-const NotesPageHeader = ({ onOpenModal }) => {;
+interface NotesPageHeader {
+  onOpenModal: () => void
+}
+
+const NotesPageHeader = ({ onOpenModal }: NotesPageHeader) => {;
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
 
   return (
