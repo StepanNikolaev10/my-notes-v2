@@ -3,14 +3,19 @@ import styles from "./NotesPageMain.module.scss";
 import NoteAddBtn from "../UI/NoteAddBtn/NoteAddBtn";
 import { MODAL_CONTENT_VARIANTS } from "../../../constants/modalContentVariants";
 
-const NotesPageMain = ({ onOpenModal, notes }) => {
+interface NotesPageMainProps {
+  onOpenModal: (modalType: string) => void,
+  notes: any
+}
+
+const NotesPageMain = ({ onOpenModal, notes }:NotesPageMainProps) => {
 
   return (
     <main className={styles.notesPageMain}>
       {notes.length > 0 ? (
         <div className={styles.notes}>
           {
-            notes.map(note => {
+            notes.map((note: any) => {
               return (
                 <NoteItem
                   key={note.id}
