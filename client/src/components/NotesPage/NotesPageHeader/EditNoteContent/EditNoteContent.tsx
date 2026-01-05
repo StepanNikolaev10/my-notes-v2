@@ -8,7 +8,11 @@ import PaletteIcon from '/src/assets/icons/palette.svg?react';
 import TrashCanIcon from '/src/assets/icons/trash-can.svg?react';
 import CrossIcon from '/src/assets/icons/cross.svg?react';
 
-const EditNoteContent = ({ onOpenModal }) => {
+interface EditNoteContentProps {
+  onOpenModal: (modalType: string) => void
+}
+
+const EditNoteContent = ({ onOpenModal }: EditNoteContentProps) => {
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
   const deleteNotes = useNotesStore(state => state.deleteNotes);
   const stopEditing = useEditableNotesStore(state => state.stopEditing);
