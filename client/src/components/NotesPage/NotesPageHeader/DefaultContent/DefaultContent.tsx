@@ -4,7 +4,7 @@ import UserMenu from './UserMenu/UserMenu';
 import SearchNotesBox from './SearchNotesBox/SearchNotesBox';
 
 interface DefaultContentProps {
-  onOpenModal: () => void;
+  onOpenModal: (modalType: string) => void;
 }
 
 const DefaultContent = ({ onOpenModal }: DefaultContentProps) => {
