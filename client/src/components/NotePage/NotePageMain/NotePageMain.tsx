@@ -2,7 +2,14 @@ import styles from './NotePageMain.module.scss';
 import ReactQuill from 'react-quill-new'; 
 import 'react-quill-new/dist/quill.snow.css'; 
 
-const NotePageMain = ({ title, mainText, onSetTitle, onSetMainText }) => {
+interface NotePageMainProps {
+  title: string,
+  mainText: string,
+  onSetTitle: React.Dispatch<React.SetStateAction<string>>,
+  onSetMainText: React.Dispatch<React.SetStateAction<string>>
+}
+
+const NotePageMain: React.FC<NotePageMainProps> = ({ title, mainText, onSetTitle, onSetMainText }) => {
 
   const modules = {
     toolbar: [
@@ -52,4 +59,5 @@ const NotePageMain = ({ title, mainText, onSetTitle, onSetMainText }) => {
     </div>
   )
 }
+
 export default NotePageMain;
