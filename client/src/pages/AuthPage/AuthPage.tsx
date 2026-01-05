@@ -3,7 +3,7 @@ import AuthPageMain from '../../components/AuthPage/AuthPageMain/AuthPageMain';
 import NotAuthPagesHeader from '../../components/Shared/NotAuthPagesHeader/NotAuthPagesHeader';
 import type NotAuthPagesVariants from '../../types/NotAuthPagesVariants';
 
-const AuthPage:React.FC<NotAuthPagesVariants> = ({ pageVariant }) => {
+const AuthPage = ({ pageVariant }:NotAuthPagesVariants) => {
 
   return (
     <div className={styles.authPage}>

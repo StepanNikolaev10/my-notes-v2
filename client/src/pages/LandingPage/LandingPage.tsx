@@ -3,7 +3,7 @@ import styles from './LandingPage.module.scss';
 import LandingPageMain from '../../components/LandingPage/LandingPageMain/LandingPageMain';
 import type NotAuthPagesVariants from '../../types/NotAuthPagesVariants';
 
-const LandingPage:React.FC<NotAuthPagesVariants> = ({ pageVariant }) => {
+const LandingPage = ({ pageVariant }:NotAuthPagesVariants) => {
 
   return (
     <div className={styles.landingPage}>

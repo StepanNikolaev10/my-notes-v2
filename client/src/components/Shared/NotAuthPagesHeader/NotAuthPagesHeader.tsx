@@ -4,7 +4,7 @@ import styles from './NotAuthPagesHeader.module.scss';
 import { Link } from 'react-router-dom';
 import type NotAuthPagesVariants from '../../../types/NotAuthPagesVariants';
 
-const NotAuthPagesHeader:React.FC<NotAuthPagesVariants> = ({ pageVariant }) => {
+const NotAuthPagesHeader = ({ pageVariant }:NotAuthPagesVariants) => {
   return (
     <Header>
       <AppName/>

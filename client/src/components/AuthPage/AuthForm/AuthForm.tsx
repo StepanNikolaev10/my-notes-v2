@@ -4,7 +4,7 @@ import styles from './AuthForm.module.scss';
 import { AUTH_PAGE_VARIANTS } from '../../../constants/authPageVariants';
 import { useAuth } from '../../../context/auth/useAuth';
 
-const AuthForm:React.FC<NotAuthPagesVariants> = ({ pageVariant }) => {
+const AuthForm = ({ pageVariant }:NotAuthPagesVariants) => {
   const router = useNavigate();
   const { setIsAuth } = useAuth();
 

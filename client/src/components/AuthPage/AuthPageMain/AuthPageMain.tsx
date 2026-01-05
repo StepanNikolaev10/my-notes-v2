@@ -2,7 +2,7 @@ import AuthFormCard from '../AuthFormCard/AuthFormCard';
 import styles from './AuthPageMain.module.scss';
 import type NotAuthPagesVariants from '../../../types/NotAuthPagesVariants';
 
-const AuthPageMain: React.FC<NotAuthPagesVariants> = ({ pageVariant }) => {
+const AuthPageMain = ({ pageVariant }:NotAuthPagesVariants) => {
     return (
       <main className={styles.authPageMain}>
         <AuthFormCard pageVariant={pageVariant}/>
