@@ -1,6 +1,6 @@
 import styles from './NotesPage.module.scss';
 import { useMemo, useState } from 'react';
-import NotesPageMain from '/src/components/NotesPage/NotesPageMain/NotesPageMain';
+import NotesPageMain from '../../components/NotesPage/NotesPageMain/NotesPageMain';
 import NotesPageHeader from '../../components/NotesPage/NotesPageHeader/NotesPageHeader';
 import useNotesStore from '../../store/useNotesStore';
 import AddNoteModal from '../../components/NotesPage/AddNoteModal/AddNoteModal';
@@ -31,14 +31,12 @@ const NotesPage = () => {
 
     return notes;
   }, [selectedSort, notes]);
-
-  console.log(sortedNotes)
   
-  const openModal = (type) => {
+  const openModal = (type: any) => { // ANY ЗАМЕНИТЬ НА ТИП
     setOpenedModal(type)
   }
 
-  const sortNotes = (sort) => {
+  const sortNotes = (sort: any) => { // ANY ЗАМЕНИТЬ НА ТИП
     setSelectedSort(sort)
   }
 
