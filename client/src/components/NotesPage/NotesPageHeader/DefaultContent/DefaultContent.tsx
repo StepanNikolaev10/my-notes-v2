@@ -1,9 +1,13 @@
-import AppName from '/src/components/Shared/UI/AppName/AppName';
+import AppName from '../../../Shared/UI/AppName/AppName';
 import styles from './DefaultContent.module.scss';
 import UserMenu from './UserMenu/UserMenu';
 import SearchNotesBox from './SearchNotesBox/SearchNotesBox';
 
-const DefaultContent = ({ onOpenModal }) => {
+interface DefaultContentProps {
+  onOpenModal: () => void;
+}
+
+const DefaultContent = ({ onOpenModal }: DefaultContentProps) => {
   return (
     <div className={styles.defaultContent}>
       <AppName/>
