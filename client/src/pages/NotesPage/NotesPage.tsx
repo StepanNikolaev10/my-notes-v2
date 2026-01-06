@@ -4,17 +4,16 @@ import NotesPageMain from '../../components/NotesPage/NotesPageMain/NotesPageMai
 import NotesPageHeader from '../../components/NotesPage/NotesPageHeader/NotesPageHeader';
 import useNotesStore from '../../store/useNotesStore';
 import AddNoteModal from '../../components/NotesPage/AddNoteModal/AddNoteModal';
-import { MODAL_CONTENT_VARIANTS } from '../../constants/modalContentVariants';
 import EditNoteColorModal from '../../components/Shared/EditNoteColorModal/EditNoteColorModal';
 import SelectSortModal from '../../components/NotesPage/SelectSortModal/SelectSortModal';
 import { NOTES_SORT_METHODS } from '../../constants/notesSortMethods';
+import type { ModalContentVariant } from '../types';
 
 const NotesPage = () => {
   const notes = useNotesStore(state => state.notes);
 
-  const [openedModal, setOpenedModal] = useState(null);
+  const [openedModal, setOpenedModal] = useState<ModalContentVariant | null>(null);
   const [selectedSort, setSelectedSort] = useState(NOTES_SORT_METHODS.CUSTOM.value);
-  console.log(selectedSort)
 
   const sortedNotes = useMemo(() => {
     if (selectedSort === NOTES_SORT_METHODS.CUSTOM.value) {
@@ -32,8 +31,8 @@ const NotesPage = () => {
     return notes;
   }, [selectedSort, notes]);
   
-  const openModal = (type: any) => { // ANY ЗАМЕНИТЬ НА ТИП
-    setOpenedModal(type)
+  const openModal = (variant: any) => {
+    setOpenedModal(variant)
   }
 
   const sortNotes = (sort: any) => { // ANY ЗАМЕНИТЬ НА ТИП
@@ -49,17 +48,17 @@ const NotesPage = () => {
         notes={sortedNotes}
         onOpenModal={openModal} 
       />
-      {openedModal === MODAL_CONTENT_VARIANTS.NOTE_ADDING && (
+      {openedModal === 'NOTE_ADDING' && (
         <AddNoteModal
           onClose={() => setOpenedModal(null)}
         />
       )}
-      {openedModal === MODAL_CONTENT_VARIANTS.NOTE_COLOR_EDITING && (
+      {openedModal === 'NOTE_COLOR_EDITING' && (
         <EditNoteColorModal
           onClose={() => setOpenedModal(null)}
         />
       )}
-      {openedModal === MODAL_CONTENT_VARIANTS.SORT_SELECTING && (
+      {openedModal === 'SORT_SELECTING' && (
         <SelectSortModal
           onClose={() => setOpenedModal(null)}
           selectedSort={selectedSort}
