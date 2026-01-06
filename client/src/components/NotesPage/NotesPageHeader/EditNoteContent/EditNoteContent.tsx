@@ -2,7 +2,6 @@ import styles from './EditNoteContent.module.scss';
 import useEditableNotesStore from '../../../../store/useEditableNotesStore';
 import useNotesStore from '../../../../store/useNotesStore';
 import { MODAL_CONTENT_VARIANTS } from '../../../../constants/modalContentVariants';
-import { NOTE_MOVEMENT_DIRECTION } from '../../../../constants/noteMovementDirection';
 import ArrowNarrowIcon from '/src/assets/icons/arrow-narrow-up.svg?react';
 import PaletteIcon from '/src/assets/icons/palette.svg?react';
 import TrashCanIcon from '/src/assets/icons/trash-can.svg?react';
@@ -23,15 +22,15 @@ const EditNoteContent = ({ onOpenModal }: EditNoteContentProps) => {
     stopEditing();
   }
 
-  const handleNoteDown = () => {
+  const handleNoteUp = () => {
     if (editableNotesIds.length === 1) {
-      changeNotePosition(editableNotesIds[0], NOTE_MOVEMENT_DIRECTION.DOWN);
+      changeNotePosition(editableNotesIds[0], 'UP');
     }
   }
 
-  const handleNoteUp = () => {
+  const handleNoteDown = () => {
     if (editableNotesIds.length === 1) {
-      changeNotePosition(editableNotesIds[0], NOTE_MOVEMENT_DIRECTION.UP);
+      changeNotePosition(editableNotesIds[0], 'DOWN');
     }
   }
 
