@@ -1,7 +1,7 @@
 import styles from './AuthPage.module.scss';
 import AuthPageMain from '../../components/AuthPage/AuthPageMain/AuthPageMain';
 import NotAuthPagesHeader from '../../components/Shared/NotAuthPagesHeader/NotAuthPagesHeader';
-import type { NotAuthPageVariants } from '../../types/sharedProps';
+import type { NotAuthPageVariants } from '../../types/ui';
 
 interface AuthPageProps {
   pageVariant: NotAuthPageVariants

@@ -1,10 +1,10 @@
 import NoteItem from "../NoteItem/NoteItem";
 import styles from "./NotesPageMain.module.scss";
 import NoteAddBtn from "../UI/NoteAddBtn/NoteAddBtn";
-import { MODAL_CONTENT_VARIANTS } from "../../../constants/modalContentVariants";
+import type { ModalContentVariant } from "../../../types/ui";
 
 interface NotesPageMainProps {
-  onOpenModal: (modalType: string) => void,
+  onOpenModal: (modalType: ModalContentVariant) => void,
   notes: any
 }
 
@@ -31,7 +31,7 @@ const NotesPageMain = ({ onOpenModal, notes }:NotesPageMainProps) => {
         <div className={styles.emptyNotesText}>Your notes is empty</div>
       )}
 
-      <NoteAddBtn onClick={() => onOpenModal(MODAL_CONTENT_VARIANTS.NOTE_ADDING)}/>
+      <NoteAddBtn onClick={() => onOpenModal('NOTE_ADDING')}/>
     </main>
   );
 };

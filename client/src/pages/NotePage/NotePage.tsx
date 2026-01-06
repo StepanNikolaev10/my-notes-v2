@@ -7,6 +7,10 @@ import useNotesStore from '../../store/useNotesStore';
 
 const NotePage = () => {
   const { id } = useParams();
+    
+  if (!id) {
+    return <div>Note not found</div>;
+  }
 
   const notes = useNotesStore(state => state.notes);
   const updateNoteContent = useNotesStore(state => state.updateNoteContent)

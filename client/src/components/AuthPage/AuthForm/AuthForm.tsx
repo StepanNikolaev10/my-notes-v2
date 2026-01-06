@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import type { NotAuthPageVariants } from '../../../types/sharedProps';
+import type { NotAuthPageVariants } from '../../../types/ui';
 import styles from './AuthForm.module.scss';
 import { useAuth } from '../../../context/auth/useAuth';
 

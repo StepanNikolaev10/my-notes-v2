@@ -1,6 +1,6 @@
 import AuthFormCard from '../AuthFormCard/AuthFormCard';
 import styles from './AuthPageMain.module.scss';
-import type { NotAuthPageVariants } from '../../../types/sharedProps';
+import type { NotAuthPageVariants } from '../../../types/ui';
 
 interface AuthPageMainProps {
   pageVariant: NotAuthPageVariants

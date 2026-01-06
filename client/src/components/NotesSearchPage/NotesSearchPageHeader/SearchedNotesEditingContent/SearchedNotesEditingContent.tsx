@@ -1,10 +1,10 @@
 import styles from './SearchedNotesEditingContent.module.scss';
 import useEditableNotesStore from '../../../../store/useEditableNotesStore';
 import useNotesStore from '../../../../store/useNotesStore';
-import { MODAL_CONTENT_VARIANTS } from '../../../../constants/modalContentVariants';
+import type { ModalContentVariant } from '../../../../types/ui';
 
 interface SearchedNotesEditingContent {
-  onOpenModal: (modalType: string) => void
+  onOpenModal: (modalType: ModalContentVariant) => void
 }
 
 const SearchedNotesEditingContent = ({ onOpenModal }:SearchedNotesEditingContent) => {
@@ -30,7 +30,7 @@ const SearchedNotesEditingContent = ({ onOpenModal }:SearchedNotesEditingContent
         </div>
 
         <div className={styles.editTools}>
-          <button className={styles.openColorModalBtn} onClick={() => onOpenModal(MODAL_CONTENT_VARIANTS.NOTE_COLOR_EDITING)}>
+          <button className={styles.openColorModalBtn} onClick={() => onOpenModal('NOTE_COLOR_EDITING')}>
             <img src="src/assets/icons/palette.svg" alt="open-color-modal-btn"/>
           </button>
           <button className={styles.deleteNoteBtn} onClick={deleteNotesHandler}>

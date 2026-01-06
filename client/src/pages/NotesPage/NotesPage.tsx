@@ -7,7 +7,7 @@ import AddNoteModal from '../../components/NotesPage/AddNoteModal/AddNoteModal';
 import EditNoteColorModal from '../../components/Shared/EditNoteColorModal/EditNoteColorModal';
 import SelectSortModal from '../../components/NotesPage/SelectSortModal/SelectSortModal';
 import { NOTES_SORT_METHODS } from '../../constants/notesSortMethods';
-import type { ModalContentVariant } from '../types';
+import type { ModalContentVariant } from '../../types/ui';
 
 const NotesPage = () => {
   const notes = useNotesStore(state => state.notes);
