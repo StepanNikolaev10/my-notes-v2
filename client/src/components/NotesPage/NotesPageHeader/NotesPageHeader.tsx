@@ -4,7 +4,7 @@ import useEditableNotesStore from '../../../store/useEditableNotesStore';
 import Header from '../../Shared/UI/Header/Header';
 
 interface NotesPageHeaderProps {
-  onOpenModal: (modalType: string) => void
+  onOpenModal: (variant: string) => void
 }
 
 const NotesPageHeader = ({ onOpenModal }: NotesPageHeaderProps) => {;
