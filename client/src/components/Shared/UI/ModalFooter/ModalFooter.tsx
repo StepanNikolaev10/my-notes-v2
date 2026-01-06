@@ -2,7 +2,6 @@ import styles from './ModalFooter.module.scss';
 import type { ReactNode } from 'react';
 
 interface ModalFooterProps {
-  onClose: () => void;
   children: ReactNode;
 }
 
