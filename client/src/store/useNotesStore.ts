@@ -2,14 +2,24 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { v4 as uuidv4 } from 'uuid';
 import { NOTE_MOVEMENT_DIRECTION } from '../constants/noteMovementDirection';
+import type { Note } from '../types/entities';
 
-const useNotesStore = create(
+interface NotesStore {
+  notes: Note[];
+  addNote: (title: string, mainText: string) => void;
+  deleteNotes: (ids: string[]) => void;
+  changeNotesColor: (ids: string[], color: string | null) => void;
+  updateNoteContent: (id: string, newContent: Note['content']) => void;
+  changeNotePosition: (id: string, movementDirection: string) => void;
+}
+
+const useNotesStore = create<NotesStore>()(
   persist(
     (set, get) => ({
       // СОСТОЯНИЯ
       notes: [],
       // ДЕЙСТВИЯ
-      addNote: (title, mainText) => {
+      addNote: (title:string, mainText:string) => {
         const newNote = {
           id: uuidv4(),
           dateCreated: Date.now(),
