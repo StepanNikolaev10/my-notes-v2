@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { v4 as uuidv4 } from 'uuid';
-import { NOTE_MOVEMENT_DIRECTION } from '../constants/noteMovementDirection';
 import type { Note } from '../types/entities';
 
 interface NotesStore {
@@ -10,7 +9,7 @@ interface NotesStore {
   deleteNotes: (ids: string[]) => void;
   changeNotesColor: (ids: string[], color: string | null) => void;
   updateNoteContent: (id: string, newContent: Note['content']) => void;
-  changeNotePosition: (id: string, movementDirection: string) => void;
+  changeNotePosition: (id: string, movementDirection: 'UP' | 'DOWN') => void;
 }
 
 const useNotesStore = create<NotesStore>()(
@@ -65,9 +64,9 @@ const useNotesStore = create<NotesStore>()(
         if (currentIndex === -1) return;
 
         let newIndex = currentIndex;
-        if (movementDirection === NOTE_MOVEMENT_DIRECTION.UP) {
+        if (movementDirection === 'UP') {
             newIndex = newIndex - 1;
-        } else if (movementDirection === NOTE_MOVEMENT_DIRECTION.DOWN) {
+        } else if (movementDirection === 'DOWN') {
             newIndex = newIndex + 1;
         }
 
