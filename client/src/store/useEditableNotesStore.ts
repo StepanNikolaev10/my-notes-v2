@@ -1,7 +1,13 @@
 import { create } from 'zustand';
 import useNotesStore from './useNotesStore';
 
-const useEditableNotesStore = create(
+interface EditableNotesStore {
+  editableNotesIds: string[];
+  addEditableNoteId: (id: string) => void;
+  stopEditing: () => void;
+}
+
+const useEditableNotesStore = create<EditableNotesStore>()(
   (set, get) => ({
     // СОСТОЯНИЯ
     editableNotesIds: [],
