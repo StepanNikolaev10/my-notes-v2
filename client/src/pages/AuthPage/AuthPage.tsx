@@ -1,9 +1,13 @@
 import styles from './AuthPage.module.scss';
 import AuthPageMain from '../../components/AuthPage/AuthPageMain/AuthPageMain';
 import NotAuthPagesHeader from '../../components/Shared/NotAuthPagesHeader/NotAuthPagesHeader';
-import type NotAuthPagesVariants from '../../types/NotAuthPagesVariants';
+import type { NotAuthPageVariants } from '../../types/sharedProps';
 
-const AuthPage = ({ pageVariant }:NotAuthPagesVariants) => {
+interface AuthPageProps {
+  pageVariant: NotAuthPageVariants
+}
+
+const AuthPage = ({ pageVariant }: AuthPageProps) => {
 
   return (
     <div className={styles.authPage}>

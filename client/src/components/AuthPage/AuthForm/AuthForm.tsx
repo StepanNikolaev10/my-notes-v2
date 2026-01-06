@@ -1,10 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-import type NotAuthPagesVariants from '../../../types/NotAuthPagesVariants';
+import type { NotAuthPageVariants } from '../../../types/sharedProps';
 import styles from './AuthForm.module.scss';
 import { AUTH_PAGE_VARIANTS } from '../../../constants/authPageVariants';
 import { useAuth } from '../../../context/auth/useAuth';
 
-const AuthForm = ({ pageVariant }:NotAuthPagesVariants) => {
+interface AuthFormProps {
+  pageVariant: NotAuthPageVariants
+}
+
+const AuthForm = ({ pageVariant }: AuthFormProps) => {
   const router = useNavigate();
   const { setIsAuth } = useAuth();
 
