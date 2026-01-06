@@ -1,0 +1,1 @@
+export type ModalContentVariant = 'NOTE_ADDING' | 'NOTE_COLOR_EDITING' | 'SORT_SELECTING';
