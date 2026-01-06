@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import type { NotAuthPageVariants } from '../../../types/sharedProps';
 import styles from './AuthForm.module.scss';
-import { AUTH_PAGE_VARIANTS } from '../../../constants/authPageVariants';
 import { useAuth } from '../../../context/auth/useAuth';
 
 interface AuthFormProps {
@@ -28,7 +27,7 @@ const AuthForm = ({ pageVariant }: AuthFormProps) => {
 
   return (
     <form className={styles.authForm}>
-      {pageVariant === AUTH_PAGE_VARIANTS.SIGN_IN && (
+      {pageVariant === 'SIGN_IN' && (
         <>
           <input type="email" placeholder="Email address" className={styles.inputField} />
           <input type="password" placeholder="Password" className={styles.inputField} />
@@ -44,7 +43,7 @@ const AuthForm = ({ pageVariant }: AuthFormProps) => {
           </a>
         </>
       )}
-      {pageVariant === AUTH_PAGE_VARIANTS.SIGN_UP && (
+      {pageVariant === 'SIGN_UP' && (
         <>
           <input type="email" placeholder="Email address" className={styles.inputField} />
           <input type="password" placeholder="Password" className={styles.inputField} />

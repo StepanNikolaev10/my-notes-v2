@@ -1,5 +1,4 @@
 import styles from './AuthFormCard.module.scss';
-import { AUTH_PAGE_VARIANTS } from '../../../constants/authPageVariants';
 import AuthForm from '../AuthForm/AuthForm';
 import type { NotAuthPageVariants} from '../../../types/sharedProps';
 
@@ -10,7 +9,7 @@ interface AuthFormCardProps {
 const AuthFormCard = ({ pageVariant }: AuthFormCardProps) => {
   return (
     <div className={styles.authFormCard}>
-      {pageVariant === AUTH_PAGE_VARIANTS.SIGN_IN && (
+      {pageVariant === 'SIGN_IN' && (
         <>
           <h2>Welcome back!</h2>
           <p className={styles.subText}>Sign in to your account</p>
@@ -20,7 +19,7 @@ const AuthFormCard = ({ pageVariant }: AuthFormCardProps) => {
           </div>
         </>
       )}
-      {pageVariant === AUTH_PAGE_VARIANTS.SIGN_UP && (
+      {pageVariant === 'SIGN_IN' && (
         <>
           <h2>Create account</h2>
           <p className={styles.subText}>Sign up to get started</p>
