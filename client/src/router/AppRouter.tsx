@@ -1,4 +1,4 @@
-import { Route, Routes, Navigate } from 'react-router'
+import { Route, Routes, Navigate } from 'react-router-dom'
 import { publicRoutes, privateRoutes } from '../router/routes'
 import Loader from '../components/Shared/UI/Loader/Loader'
 import { useAuth } from '../context/auth/useAuth'
