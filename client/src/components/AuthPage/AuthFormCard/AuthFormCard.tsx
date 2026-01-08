@@ -19,7 +19,7 @@ const AuthFormCard = ({ pageVariant }: AuthFormCardProps) => {
           </div>
         </>
       )}
-      {pageVariant === 'SIGN_IN' && (
+      {pageVariant === 'SIGN_UP' && (
         <>
           <h2>Create account</h2>
           <p className={styles.subText}>Sign up to get started</p>
