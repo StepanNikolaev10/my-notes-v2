@@ -1,9 +1,9 @@
 import styles from './AuthFormCard.module.scss';
 import AuthForm from '../AuthForm/AuthForm';
-import type { NotAuthPageVariants } from '../../../types/ui';
+import type { AuthPageVariants } from '../../../types/ui';
 
 interface AuthFormCardProps {
-  pageVariant: NotAuthPageVariants
+  pageVariant: AuthPageVariants
 }
 
 const AuthFormCard = ({ pageVariant }: AuthFormCardProps) => {

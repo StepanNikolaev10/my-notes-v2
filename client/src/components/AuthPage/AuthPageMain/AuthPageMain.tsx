@@ -1,9 +1,9 @@
 import AuthFormCard from '../AuthFormCard/AuthFormCard';
 import styles from './AuthPageMain.module.scss';
-import type { NotAuthPageVariants } from '../../../types/ui';
+import type { AuthPageVariants } from '../../../types/ui';
 
 interface AuthPageMainProps {
-  pageVariant: NotAuthPageVariants
+  pageVariant: AuthPageVariants
 }
 
 const AuthPageMain = ({ pageVariant }: AuthPageMainProps) => {

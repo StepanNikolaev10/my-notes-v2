@@ -2,10 +2,10 @@ import AppName from '../UI/AppName/AppName';
 import Header from '../UI/Header/Header';
 import styles from './NotAuthPagesHeader.module.scss';
 import { Link } from 'react-router-dom';
-import type { NotAuthPageVariants } from '../../../types/sharedProps';
+import type { AuthPageVariants } from '../../../types/ui';
 
 interface NotAuthPagesHeaderProps {
-  pageVariant: NotAuthPageVariants
+  pageVariant?: AuthPageVariants
 }
 
 const NotAuthPagesHeader = ({ pageVariant }: NotAuthPagesHeaderProps) => {
