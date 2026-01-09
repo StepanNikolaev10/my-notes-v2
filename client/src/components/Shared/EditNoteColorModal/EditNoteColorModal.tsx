@@ -6,8 +6,9 @@ import ModalHeader from '../UI/ModalHeader/ModalHeader';
 import styles from './EditNoteColorModal.module.scss';
 import useNotesStore from '../../../store/useNotesStore';
 import useEditableNotesStore from '../../../store/useEditableNotesStore';
-import { NOTE_COLORS } from '../../../constants/noteColors';
 import Modal from '../UI/Modal/Modal';
+import { NOTE_COLORS, noteKeys } from '../../../constants/noteColors';
+import type { NoteColorsType } from '../../../constants/noteColors';
 
 interface EditNoteColorModal {
   onClose: () => void
@@ -18,13 +19,14 @@ const EditNoteColorModal = ({ onClose }:EditNoteColorModal) => {
   const stopEditing = useEditableNotesStore(state => state.stopEditing);
   const changeNotesColor = useNotesStore(state => state.changeNotesColor);
 
-  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedColor, setSelectedColor] = useState<NoteColorsType | null>(null);
 
-  const handleColorBtnClick = (color: any) => {
+  const handleColorBtnClick = (color: NoteColorsType) => {
     setSelectedColor(color);
   }
 
-  const handleChangeNotesColor = () =>{
+  const handleChangeNotesColor = () => {
+    if (!selectedColor) return;
     changeNotesColor(editableNotesIds, selectedColor)
     onClose();
     stopEditing();
@@ -35,13 +37,14 @@ const EditNoteColorModal = ({ onClose }:EditNoteColorModal) => {
       <div className={styles.modalContent}>
         <ModalHeader title={'Change note color'} onClose={onClose}/>
         <div className={styles.content}>
-          {NOTE_COLORS.map(color => {
+          {
+          noteKeys.map(color => {
             const isSelected = selectedColor === color;
             return (
               <button
                 key={color} 
                 className={`${styles.colorBtn} ${isSelected ? styles.selectedColorBtn : ''}`}
-                style={{ backgroundColor: color }}
+                style={{ backgroundColor:  NOTE_COLORS[color]}}
                 onClick={() => handleColorBtnClick(color)}
               >
                 {isSelected && <img src="src/assets/icons/check-mark.svg" alt="check-mark"/> }

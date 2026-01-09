@@ -1,3 +1,5 @@
+import type { NoteColorsType } from "../constants/noteColors"
+
 export interface Note {
   id: string,
   dateCreated: number,
@@ -7,6 +9,6 @@ export interface Note {
     mainText: string
   },
   styles: {
-    color: null | string
+    color: NoteColorsType
   }
 }

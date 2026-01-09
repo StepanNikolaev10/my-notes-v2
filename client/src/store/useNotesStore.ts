@@ -2,12 +2,13 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { v4 as uuidv4 } from 'uuid';
 import type { Note } from '../types/entities';
+import { noteKeys, type NoteColorsType } from '../constants/noteColors';
 
 interface NotesStore {
   notes: Note[];
   addNote: (title: string, mainText: string) => void;
   deleteNotes: (ids: string[]) => void;
-  changeNotesColor: (ids: string[], color: string | null) => void;
+  changeNotesColor: (ids: string[], color: NoteColorsType) => void;
   updateNoteContent: (id: string, newContent: Note['content']) => void;
   changeNotePosition: (id: string, movementDirection: 'UP' | 'DOWN') => void;
 }
@@ -28,7 +29,7 @@ const useNotesStore = create<NotesStore>()(
             mainText: mainText
           },
           styles: {
-            color: null
+            color: noteKeys[0]
           }
 
         }
@@ -41,7 +42,7 @@ const useNotesStore = create<NotesStore>()(
         notes: state.notes.filter((note) => !ids.includes(note.id))
       })),
 
-      changeNotesColor: (ids, color) => set(state => ({
+      changeNotesColor: (ids, color: NoteColorsType) => set(state => ({
         notes: state.notes.map(note => 
           ids.includes(note.id)
           ? { ...note, dateModified: Date.now(), styles: { ...note.styles, color } } 
