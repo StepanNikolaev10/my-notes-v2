@@ -1,10 +1,10 @@
 import styles from './SearchedNotesEditingContent.module.scss';
 import useEditableNotesStore from '../../../../store/useEditableNotesStore';
 import useNotesStore from '../../../../store/useNotesStore';
-import type { ModalContentVariant } from '../../../../types/ui';
+import type { ModalContentVariants } from '../../../../types/ui';
 
 interface SearchedNotesEditingContent {
-  onOpenModal: (modalType: ModalContentVariant) => void
+  onOpenModal: (modalType: ModalContentVariants) => void
 }
 
 const SearchedNotesEditingContent = ({ onOpenModal }:SearchedNotesEditingContent) => {

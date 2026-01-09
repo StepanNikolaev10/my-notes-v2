@@ -1,14 +1,14 @@
 import styles from './EditNoteContent.module.scss';
 import useEditableNotesStore from '../../../../store/useEditableNotesStore';
 import useNotesStore from '../../../../store/useNotesStore';
-import type { ModalContentVariant } from '../../../../types/ui';
+import type { ModalContentVariants } from '../../../../types/ui';
 import ArrowNarrowIcon from '/src/assets/icons/arrow-narrow-up.svg?react';
 import PaletteIcon from '/src/assets/icons/palette.svg?react';
 import TrashCanIcon from '/src/assets/icons/trash-can.svg?react';
 import CrossIcon from '/src/assets/icons/cross.svg?react';
 
 interface EditNoteContentProps {
-  onOpenModal: (modalType: ModalContentVariant) => void
+  onOpenModal: (modalType: ModalContentVariants) => void
 }
 
 const EditNoteContent = ({ onOpenModal }: EditNoteContentProps) => {
