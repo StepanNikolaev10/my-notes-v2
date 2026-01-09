@@ -9,6 +9,7 @@ import useEditableNotesStore from '../../../store/useEditableNotesStore';
 import Modal from '../UI/Modal/Modal';
 import { NOTE_COLORS, noteKeys } from '../../../constants/noteColors';
 import type { NoteColorsType } from '../../../constants/noteColors';
+import CheckmarkIcon from '/src/assets/icons/checkmark.svg?react'
 
 interface EditNoteColorModal {
   onClose: () => void
@@ -47,7 +48,15 @@ const EditNoteColorModal = ({ onClose }:EditNoteColorModal) => {
                 style={{ backgroundColor:  NOTE_COLORS[color]}}
                 onClick={() => handleColorBtnClick(color)}
               >
-                {isSelected && <img src="src/assets/icons/check-mark.svg" alt="check-mark"/> }
+                {isSelected && 
+                  <CheckmarkIcon
+                    className={styles.checkmarkIcon}
+                    style={{
+                      width: '30px',
+                      height: '30px',
+                    }}
+                  />
+                }
               </button>
             )
           })}

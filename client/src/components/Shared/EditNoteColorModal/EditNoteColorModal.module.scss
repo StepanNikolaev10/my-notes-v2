@@ -23,5 +23,9 @@
 }
 
 .selectedColorBtn {
-  border: 3px solid rgb(36, 93, 143);
+  border: 3.2px solid var(--color-interactive);
+}
+
+.checkmarkIcon {
+  fill: var(--color-interactive);
 }
