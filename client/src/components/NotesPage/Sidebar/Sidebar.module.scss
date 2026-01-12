@@ -1,0 +1,86 @@
+.sidebar {
+  width: 320px;
+  height: 100%;
+  background: var(--color-bg-surface);
+  position: absolute;
+  top: 0;
+  left: -320px;
+  transition: left 0.3s ease;
+  z-index: 1001;
+  border-radius: 0 15px 15px 0;
+
+  &.opened {
+    left: 0;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background: var(--color-block-surface);
+  border-radius: 0px 10px 0px 0px;
+}
+
+.appName {
+  font-size: 20px;
+  color: var(--color--text-interface)
+}
+
+.closeSideBarBtn {
+  @include square-header-svg-btn;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.navList {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  padding: 4px;
+  border-radius: 5px;
+  position: relative;
+  &:hover {
+    background: rgba(192, 192, 192, 0.2);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: rgb(158, 158, 158);
+  }
+
+  &.active {
+    background: rgba(192, 192, 192, 0.2);
+
+    &::before {
+      content: '';
+      width: 4px;
+      height: 80%;
+      background: var(--color-interactive);
+      position: absolute;
+      left: -7px;
+      border-radius: 6px;
+    }
+  }
+  
+}
+
+.navLink {
+  font-size: 18px;
+  margin-left: 8px;
+  @include link-reset
+}

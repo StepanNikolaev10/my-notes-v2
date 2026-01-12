@@ -1,9 +1,9 @@
 import styles from './BurgerBtn.module.scss';
 import BurgerIcon from '/src/assets/icons/burger.svg?react';
 
-const BurgerBtn = () => {
+const BurgerBtn = ({ ...props }) => {
   return (
-    <button className={styles.burgerBtn}>
+    <button className={styles.burgerBtn} {...props}>
       <BurgerIcon
         className={styles.burgerIcon}
         style={{

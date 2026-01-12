@@ -8,12 +8,14 @@ import EditNoteColorModal from '../../components/Shared/EditNoteColorModal/EditN
 import SelectSortModal from '../../components/NotesPage/SelectSortModal/SelectSortModal';
 import { NOTES_SORT_METHODS } from '../../constants/notesSortMethods';
 import type { ModalContentVariants } from '../../types/ui';
+import Sidebar from '../../components/NotesPage/Sidebar/Sidebar';
 
 const NotesPage = () => {
   const notes = useNotesStore(state => state.notes);
 
   const [openedModal, setOpenedModal] = useState<ModalContentVariants | null>(null);
   const [selectedSort, setSelectedSort] = useState(NOTES_SORT_METHODS.CUSTOM.value);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const sortedNotes = useMemo(() => {
     if (selectedSort === NOTES_SORT_METHODS.CUSTOM.value) {
@@ -39,10 +41,19 @@ const NotesPage = () => {
     setSelectedSort(sort)
   }
 
+  const toggleSidebar = () => {
+    isSidebarOpen ? setIsSidebarOpen(false) : setIsSidebarOpen(true);
+  }
+
   return (
     <div className={styles.notesPage}>
       <NotesPageHeader
         onOpenModal={openModal} 
+        onToggleSidebar={toggleSidebar}
+      />
+      <Sidebar
+        isSidebarOpen={isSidebarOpen}
+        onCloseSidebar={() => setIsSidebarOpen(false)}
       />
       <NotesPageMain
         notes={sortedNotes}

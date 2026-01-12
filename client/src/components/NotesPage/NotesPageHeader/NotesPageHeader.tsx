@@ -5,9 +5,10 @@ import Header from '../../Shared/UI/Header/Header';
 
 interface NotesPageHeaderProps {
   onOpenModal: (variant: string) => void
+  onToggleSidebar: () => void;
 }
 
-const NotesPageHeader = ({ onOpenModal }: NotesPageHeaderProps) => {;
+const NotesPageHeader = ({ onOpenModal, onToggleSidebar }: NotesPageHeaderProps) => {;
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
 
   return (
@@ -19,7 +20,7 @@ const NotesPageHeader = ({ onOpenModal }: NotesPageHeaderProps) => {;
         ) 
       : 
         (
-          <DefaultContent onOpenModal={onOpenModal}/>
+          <DefaultContent onOpenModal={onOpenModal} onToggleSidebar={onToggleSidebar}/>
         )
       }
     </Header>
