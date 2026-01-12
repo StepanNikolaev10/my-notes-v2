@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './SearchNotesBox.module.scss';
 import SortIcon from '/src/assets/icons/sort-icon.svg?react';
-import type { ModalContentVariant } from '../../../../../types/ui';
+import type { ModalContentVariants } from '../../../../../types/ui';
 
 interface SearchNotesBoxProps {
-  onOpenModal: (modalVariant: ModalContentVariant) => void
+  onOpenModal: (modalVariant: ModalContentVariants) => void
 }
 
 const SearchNotesBox = ({ onOpenModal }: SearchNotesBoxProps) => {
