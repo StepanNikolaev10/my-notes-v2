@@ -33,3 +33,21 @@
     background: none;
   }
 }
+
+@mixin square-header-svg-btn {
+  @include btn-reset;
+  @include flex-center;
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  &:hover {
+    background: var(--color-hover-block-surface);
+  }
+}
