@@ -1,7 +1,7 @@
 import styles from './NotesPage.module.scss';
 import { useMemo, useState } from 'react';
 import NotesPageMain from '../../components/NotesPage/NotesPageMain/NotesPageMain';
-import MainHeader from '../../components/Shared/MainHeader/MainHeader';
+import NotesPageHeader from '../../components/NotesPage/NotesPageHeader/NotesPageHeader';
 import useNotesStore from '../../store/useNotesStore';
 import AddNoteModal from '../../components/NotesPage/AddNoteModal/AddNoteModal';
 import EditNoteColorModal from '../../components/Shared/EditNoteColorModal/EditNoteColorModal';
@@ -47,7 +47,7 @@ const NotesPage = () => {
 
   return (
     <div className={styles.notesPage}>
-      <MainHeader
+      <NotesPageHeader
         onOpenModal={openModal} 
         onToggleSidebar={toggleSidebar}
       />
