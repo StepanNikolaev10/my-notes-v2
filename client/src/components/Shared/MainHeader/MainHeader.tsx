@@ -3,12 +3,12 @@ import EditNoteContent from './EditNoteContent/EditNoteContent';
 import useEditableNotesStore from '../../../store/useEditableNotesStore';
 import Header from '../../Shared/UI/Header/Header';
 
-interface NotesPageHeaderProps {
-  onOpenModal: (variant: string) => void
+interface MainHeaderProps {
+  onOpenModal: (variant: string) => void;
   onToggleSidebar: () => void;
 }
 
-const NotesPageHeader = ({ onOpenModal, onToggleSidebar }: NotesPageHeaderProps) => {;
+const MainHeader = ({ onOpenModal, onToggleSidebar }: MainHeaderProps) => {;
   const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
 
   return (
@@ -27,4 +27,4 @@ const NotesPageHeader = ({ onOpenModal, onToggleSidebar }: NotesPageHeaderProps)
   )
 }
 
-export default NotesPageHeader;
+export default MainHeader;

@@ -6,10 +6,6 @@ const BurgerBtn = ({ ...props }) => {
     <button className={styles.burgerBtn} {...props}>
       <BurgerIcon
         className={styles.burgerIcon}
-        style={{
-          width: '100%',
-          height: '100%',
-        }}
       />
     </button>
   )

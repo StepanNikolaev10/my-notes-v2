@@ -2,7 +2,7 @@ import AppName from '../../../Shared/UI/AppName/AppName';
 import styles from './DefaultContent.module.scss';
 import UserMenu from './UserMenu/UserMenu';
 import SearchNotesBox from './SearchNotesBox/SearchNotesBox';
-import BurgerBtn from '../../UI/BurgerBtn/BurgerBtn';
+import BurgerBtn from './BurgerBtn/BurgerBtn';
 
 interface DefaultContentProps {
   onOpenModal: (modalType: string) => void;

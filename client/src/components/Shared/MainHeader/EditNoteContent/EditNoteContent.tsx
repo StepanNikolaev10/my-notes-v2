@@ -8,7 +8,7 @@ import TrashCanIcon from '/src/assets/icons/trash-can.svg?react';
 import CrossIcon from '/src/assets/icons/cross.svg?react';
 
 interface EditNoteContentProps {
-  onOpenModal: (modalType: ModalContentVariants) => void
+  onOpenModal: (modalType: ModalContentVariants) => void;
 }
 
 const EditNoteContent = ({ onOpenModal }: EditNoteContentProps) => {
@@ -40,8 +40,6 @@ const EditNoteContent = ({ onOpenModal }: EditNoteContentProps) => {
         <button className={styles.stopEditingBtn} onClick={stopEditing}>
           <CrossIcon
             style={{
-              width: '30px',
-              height: '30px',
               fill: 'rgb(218, 218, 218)'
             }}
           />
@@ -55,8 +53,6 @@ const EditNoteContent = ({ onOpenModal }: EditNoteContentProps) => {
         >
           <ArrowNarrowIcon
             style={{
-              width: '30px',
-              height: '30px',
               transform: 'scaleY(-1)',
               stroke: 'rgb(218, 218, 218)'
             }}
@@ -68,8 +64,6 @@ const EditNoteContent = ({ onOpenModal }: EditNoteContentProps) => {
         >
           <ArrowNarrowIcon
             style={{
-              width: '30px',
-              height: '30px',
               stroke: 'rgb(218, 218, 218)'
             }}
           />
@@ -77,8 +71,6 @@ const EditNoteContent = ({ onOpenModal }: EditNoteContentProps) => {
         <button className={styles.editNoteBtn} onClick={() => onOpenModal('NOTE_COLOR_EDITING')}>
           <PaletteIcon
             style={{
-              width: '30px',
-              height: '30px',
               fill: 'rgb(218, 218, 218)'
             }}
           />
@@ -86,8 +78,6 @@ const EditNoteContent = ({ onOpenModal }: EditNoteContentProps) => {
         <button className={styles.editNoteBtn} onClick={deleteNotesHandler}>
           <TrashCanIcon
             style={{
-              width: '30px',
-              height: '30px',
               fill: 'rgb(218, 218, 218)'
             }}
           />

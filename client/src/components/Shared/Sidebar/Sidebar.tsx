@@ -44,11 +44,11 @@ const Sidebar = ({ isSidebarOpen, onCloseSidebar }: SidebarProps) => {
                 className={`${styles.navItem} ${
                   location.pathname === item.path ? styles.active : ''
                 }`}
-              >
-                {item.iconElement}
-                <Link to={item.path} className={styles.navLink}>
-                  {item.name}
-                </Link>
+                >
+                  <Link to={item.path} className={styles.navLink}>
+                    {item.iconElement}
+                    <span>{item.name}</span>
+                  </Link>
               </li>
             ))}
           </ul>
