@@ -5,7 +5,9 @@ const BurgerBtn = ({ ...props }) => {
   return (
     <button className={styles.burgerBtn} {...props}>
       <BurgerIcon
-        className={styles.burgerIcon}
+        style={{
+          stroke: 'rgb(220, 220, 220)'
+        }}
       />
     </button>
   )

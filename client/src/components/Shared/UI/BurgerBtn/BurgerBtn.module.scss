@@ -1,11 +1,6 @@
 .burgerBtn {
+  @include btn-reset;
   @include square-header-svg-btn;
   margin-right: 8px;
-}
-
-.burgerIcon {
-  path {
-    stroke: var(--color-text-interface);
-  }
 }
 
