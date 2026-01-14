@@ -1,10 +1,10 @@
-import NoteItem from "../NoteItem/NoteItem";
+import NoteItem from "../../Shared/NoteItem/NoteItem";
 import styles from "./NotesPageMain.module.scss";
 import NoteAddBtn from "../UI/NoteAddBtn/NoteAddBtn";
-import type { ModalContentVariant } from "../../../types/ui";
+import type { ModalContentVariants } from "../../../types/ui";
 
 interface NotesPageMainProps {
-  onOpenModal: (modalType: ModalContentVariant) => void,
+  onOpenModal: (modalType: ModalContentVariants) => void,
   notes: any
 }
 
