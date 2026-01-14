@@ -2,7 +2,7 @@ import styles from './NoteItem.module.scss';
 import { useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import parse from 'html-react-parser';
-import useEditableNotesStore from '../../../store/useEditableNotesStore';
+import useEditableNotesStore from '../../../../store/useEditableNotesStore';
 
 interface NoteItemProps {
   id: string,
