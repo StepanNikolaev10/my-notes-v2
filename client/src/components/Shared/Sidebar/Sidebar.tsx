@@ -5,30 +5,35 @@ import { Link, useLocation } from 'react-router-dom';
 import NotesIcon from '/src/assets/icons/notes.svg?react';
 import ArchiveIcon from '/src/assets/icons/archive.svg?react';
 import TrashIcon from '/src/assets/icons/trash-can.svg?react';
+import useSidebarStore from '../../../store/useSidebarStore';
+import { useEffect } from 'react';
 
-interface SidebarProps {
-  isSidebarOpen: boolean;
-  onCloseSidebar: () => void;
-}
+const navItems = [
+  { name: 'Notes', path: '/', iconElement: NotesIcon },
+  { name: 'Archive', path: '/archive', iconElement: ArchiveIcon },
+  { name: 'Trash', path: '/trash', iconElement: TrashIcon },
+] as const;
 
-const Sidebar = ({ isSidebarOpen, onCloseSidebar }: SidebarProps) => {
+const Sidebar = () => {
+  const isSidebarOpened = useSidebarStore(state => state.isSidebarOpened);
+  const closeSidebar = useSidebarStore(state => state.closeSidebar);
   const location = useLocation();
-  
-  const navItems = [
-    { name: 'Notes', path: '/', iconElement: <NotesIcon/> },
-    { name: 'Archive', path: '/archive',iconElement: <ArchiveIcon/> },
-    { name: 'Trash', path: '/trash', iconElement: <TrashIcon/> },
-  ];
+
+  useEffect(() => {
+    if (isSidebarOpened) {
+      closeSidebar();
+    }
+  }, [location.pathname])
 
   return (
-    <Backdrop isOpen={isSidebarOpen} onClose={onCloseSidebar}>
+    <Backdrop isOpen={isSidebarOpened} onClose={closeSidebar}>
       <div 
-        className={`${styles.sidebar} ${isSidebarOpen ? styles.opened : ''}`}
+        className={`${styles.sidebar} ${isSidebarOpened ? styles.opened : ''}`}
         onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
       >
         <div className={styles.header}>
           <div className={styles.appName}>My notes</div>
-          <button className={styles.closeSideBarBtn} onClick={onCloseSidebar}>
+          <button className={styles.closeSideBarBtn} onClick={closeSidebar}>
             <CrossIcon
               style={{
                 fill: 'rgb(230, 230, 230)'
@@ -40,13 +45,13 @@ const Sidebar = ({ isSidebarOpen, onCloseSidebar }: SidebarProps) => {
           <ul className={styles.navList}>
             {navItems.map((item) => (
               <li 
-                key={item.name} 
+                key={item.path} 
                 className={`${styles.navItem} ${
                   location.pathname === item.path ? styles.active : ''
                 }`}
                 >
                   <Link to={item.path} className={styles.navLink}>
-                    {item.iconElement}
+                    <item.iconElement/>
                     <span>{item.name}</span>
                   </Link>
               </li>

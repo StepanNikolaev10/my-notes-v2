@@ -15,7 +15,6 @@ const NotesPage = () => {
 
   const [openedModal, setOpenedModal] = useState<ModalContentVariants | null>(null);
   const [selectedSort, setSelectedSort] = useState(NOTES_SORT_METHODS.CUSTOM.value);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const sortedNotes = useMemo(() => {
     if (selectedSort === NOTES_SORT_METHODS.CUSTOM.value) {
@@ -41,20 +40,12 @@ const NotesPage = () => {
     setSelectedSort(sort)
   }
 
-  const toggleSidebar = () => {
-    isSidebarOpen ? setIsSidebarOpen(false) : setIsSidebarOpen(true);
-  }
-
   return (
     <div className={styles.notesPage}>
       <NotesPageHeader
         onOpenModal={openModal} 
-        onToggleSidebar={toggleSidebar}
       />
-      <Sidebar
-        isSidebarOpen={isSidebarOpen}
-        onCloseSidebar={() => setIsSidebarOpen(false)}
-      />
+      <Sidebar/>
       <NotesPageMain
         notes={sortedNotes}
         onOpenModal={openModal} 

@@ -3,17 +3,19 @@ import styles from './DefaultContent.module.scss';
 import UserMenu from './UserMenu/UserMenu';
 import SearchNotesBox from './SearchNotesBox/SearchNotesBox';
 import BurgerBtn from '../../../Shared/UI/BurgerBtn/BurgerBtn';
+import useSidebarStore from '../../../../store/useSidebarStore';
 
 interface DefaultContentProps {
   onOpenModal: (modalType: string) => void;
-  onToggleSidebar: () => void;
 }
 
-const DefaultContent = ({ onOpenModal, onToggleSidebar }: DefaultContentProps) => {
+const DefaultContent = ({ onOpenModal }: DefaultContentProps) => {
+  const toggleSidebar = useSidebarStore(state => state.toggleSidebar)
+
   return (
     <div className={styles.defaultContent}>
       <div className={styles.startContainer}>
-        <BurgerBtn onClick={onToggleSidebar}/>
+        <BurgerBtn onClick={toggleSidebar}/>
         <AppName/>
       </div>
       <div className={styles.centerContainer}>
