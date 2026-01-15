@@ -1,0 +1,15 @@
+.trashPageMain {
+  height: calc(100% - var(--header-height));
+  position: relative;
+  overflow: auto;
+  margin-top: var(--header-height);
+}
+
+.noNotesMessage {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-text-interface);
+  font-size: 20px;
+}

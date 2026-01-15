@@ -1,0 +1,28 @@
+.notesSelectedContent {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sideSection {
+  display: flex;
+  align-items: center;
+}
+
+.stopSelectingBtn {
+  @include square-header-svg-btn;
+  margin-right: 10px;
+}
+
+.restoreNoteBtn {
+  @include square-header-svg-btn;
+  margin-right: 10px;
+}
+
+.dropdownContainer {
+  position: relative;
+}
+
+.moreBtn {
+  @include square-header-svg-btn;
+}
