@@ -2,7 +2,7 @@ import styles from './NoteItem.module.scss';
 import { useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import parse from 'html-react-parser';
-import useEditableNotesStore from '../../../../store/useEditableNotesStore';
+import useSelectedNotesStore from '../../../../store/useSelectedNotesStore';
 
 interface NoteItemProps {
   id: string,
@@ -11,21 +11,21 @@ interface NoteItemProps {
 }
 
 const NoteItem = ({ id, content, noteStyles }: NoteItemProps) => {
-  const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
-  const addEditableNoteId = useEditableNotesStore(state => state.addEditableNoteId);
+  const selectedNotesIds = useSelectedNotesStore(state => state.selectedNotesIds);
+  const toggleSelectNote = useSelectedNotesStore(state => state.toggleSelectNote);
 
   const router = useNavigate();
 
   const rootStyles = [styles.noteItem]
 
-  const isEditable = editableNotesIds.some((editableNoteId:any) => editableNoteId === id);
+  const isEditable = selectedNotesIds.some(editableNoteId => editableNoteId === id);
   if(isEditable) {
     rootStyles.push(styles.editable);
   }
 
   const addEditableNoteHandler = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    addEditableNoteId(id)
+    toggleSelectNote(id)
   }
 
   return (

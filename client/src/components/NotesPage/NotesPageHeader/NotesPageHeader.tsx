@@ -1,6 +1,6 @@
 import DefaultContent from './DefaultContent/DefaultContent';
 import EditNoteContent from './EditNoteContent/EditNoteContent';
-import useEditableNotesStore from '../../../store/useEditableNotesStore';
+import useSelectedNotesStore from '../../../store/useSelectedNotesStore';
 import Header from '../../Shared/UI/Header/Header';
 
 interface NotesPageHeaderProps {
@@ -8,11 +8,11 @@ interface NotesPageHeaderProps {
 }
 
 const NotesPageHeader = ({ onOpenModal }: NotesPageHeaderProps) => {;
-  const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
+  const selectedNotesIds = useSelectedNotesStore(state => state.selectedNotesIds);
 
   return (
     <Header>
-      {editableNotesIds.length > 0 
+      {selectedNotesIds.length > 0 
       ? 
         (
           <EditNoteContent onOpenModal={onOpenModal}/>

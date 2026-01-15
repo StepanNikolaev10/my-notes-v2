@@ -2,7 +2,7 @@ import styles from './SearchedNoteItem.module.scss';
 import { useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import parse from 'html-react-parser';
-import useEditableNotesStore from '../../../store/useEditableNotesStore';
+import useSelectedNotesStore from '../../../store/useSelectedNotesStore';
 
 interface SearchedNoteItemProps {
   searchedNote: any,
@@ -11,21 +11,21 @@ interface SearchedNoteItemProps {
 
 const SearchedNoteItem = ({ searchedNote }:SearchedNoteItemProps) => {
   console.log(searchedNote)
-  const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds)
-  const addEditableNoteId = useEditableNotesStore(state => state.addEditableNoteId);
+  const selectedNotesIds = useSelectedNotesStore(state => state.selectedNotesIds)
+  const toggleSelectNote = useSelectedNotesStore(state => state.toggleSelectNote);
 
   const router = useNavigate();
 
   const rootStyles = [styles.searchedNoteItem]
 
-  const isEditable = editableNotesIds.some((editableNoteId: string) => editableNoteId === searchedNote.id);
+  const isEditable = selectedNotesIds.some((editableNoteId: string) => editableNoteId === searchedNote.id);
   if(isEditable) {
     rootStyles.push(styles.editable);
   }
 
   const addEditableNoteHandler = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    addEditableNoteId(searchedNote.id)
+    toggleSelectNote(searchedNote.id)
   }
 
   return (

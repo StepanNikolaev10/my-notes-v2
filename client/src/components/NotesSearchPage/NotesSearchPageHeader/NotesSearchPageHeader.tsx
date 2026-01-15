@@ -1,4 +1,4 @@
-import useEditableNotesStore from '../../../store/useEditableNotesStore';
+import useSelectedNotesStore from '../../../store/useSelectedNotesStore';
 import SearchedNotesEditingContent from './SearchedNotesEditingContent/SearchedNotesEditingContent';
 import DefaultContent from './DefaultContent/DefaultContent';
 import Header from '../../Shared/UI/Header/Header';
@@ -10,11 +10,11 @@ interface NotesSearchPageHeaderProps {
 }
 
 const NotesSearchPageHeader = ({ searchQuery, onSetSearchQuery, onOpenModal }:NotesSearchPageHeaderProps) => {
-  const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
+  const selectedNotesIds = useSelectedNotesStore(state => state.selectedNotesIds);
 
   return (
     <Header>
-      {editableNotesIds.length > 0 
+      {selectedNotesIds.length > 0 
       ? 
         (
           <SearchedNotesEditingContent

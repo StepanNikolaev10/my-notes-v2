@@ -1,5 +1,5 @@
 import styles from './SearchedNotesEditingContent.module.scss';
-import useEditableNotesStore from '../../../../store/useEditableNotesStore';
+import useSelectedNotesStore from '../../../../store/useSelectedNotesStore';
 import useNotesStore from '../../../../store/useNotesStore';
 import type { ModalContentVariants } from '../../../../types/ui';
 
@@ -8,25 +8,25 @@ interface SearchedNotesEditingContent {
 }
 
 const SearchedNotesEditingContent = ({ onOpenModal }:SearchedNotesEditingContent) => {
-  const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
+  const selectedNotesIds = useSelectedNotesStore(state => state.selectedNotesIds);
   const deleteNotes = useNotesStore(state => state.deleteNotes);
-  const stopEditing = useEditableNotesStore(state => state.stopEditing);
+  const deselectAll = useSelectedNotesStore(state => state.deselectAll);
 
   const deleteNotesHandler = () => {
-    deleteNotes(editableNotesIds);
-    stopEditing();
+    deleteNotes(selectedNotesIds);
+    deselectAll();
   }
 
   return (
     <div className={styles.searchedNotesEditingContent}>
       
         <div className={styles.leftGroup}>
-          <button className={styles.stopEditingBtn} onClick={stopEditing}>
+          <button className={styles.stopEditingBtn} onClick={deselectAll}>
             <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M20 20L4 4.00003M20 4L4.00002 20" stroke="gray" strokeWidth="2" strokeLinecap="round"/>
             </svg>
           </button>
-          <div className={styles.selectedNotesCount}>Selected: {editableNotesIds.length}</div>
+          <div className={styles.selectedNotesCount}>Selected: {selectedNotesIds.length}</div>
         </div>
 
         <div className={styles.editTools}>

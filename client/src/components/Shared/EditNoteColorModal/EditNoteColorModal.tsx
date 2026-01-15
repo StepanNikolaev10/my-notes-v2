@@ -5,7 +5,7 @@ import ModalFooter from '../UI/ModalFooter/ModalFooter';
 import ModalHeader from '../UI/ModalHeader/ModalHeader';
 import styles from './EditNoteColorModal.module.scss';
 import useNotesStore from '../../../store/useNotesStore';
-import useEditableNotesStore from '../../../store/useEditableNotesStore';
+import useSelectedNotesStore from '../../../store/useSelectedNotesStore';
 import Modal from '../UI/Modal/Modal';
 import { NOTE_COLORS, noteKeys } from '../../../constants/noteColors';
 import type { NoteColorsType } from '../../../constants/noteColors';
@@ -16,8 +16,8 @@ interface EditNoteColorModal {
 }
 
 const EditNoteColorModal = ({ onClose }:EditNoteColorModal) => {
-  const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
-  const stopEditing = useEditableNotesStore(state => state.stopEditing);
+  const selectedNotesIds = useSelectedNotesStore(state => state.selectedNotesIds);
+  const deselectAll = useSelectedNotesStore(state => state.deselectAll);
   const changeNotesColor = useNotesStore(state => state.changeNotesColor);
 
   const [selectedColor, setSelectedColor] = useState<NoteColorsType | null>(null);
@@ -28,9 +28,9 @@ const EditNoteColorModal = ({ onClose }:EditNoteColorModal) => {
 
   const handleChangeNotesColor = () => {
     if (!selectedColor) return;
-    changeNotesColor(editableNotesIds, selectedColor)
+    changeNotesColor(selectedNotesIds, selectedColor)
     onClose();
-    stopEditing();
+    deselectAll();
   }
 
   return (

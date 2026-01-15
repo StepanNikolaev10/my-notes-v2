@@ -1,5 +1,5 @@
 import styles from './EditNoteContent.module.scss';
-import useEditableNotesStore from '../../../../store/useEditableNotesStore';
+import useSelectedNotesStore from '../../../../store/useSelectedNotesStore';
 import useNotesStore from '../../../../store/useNotesStore';
 import type { ModalContentVariants } from '../../../../types/ui';
 import ArrowNarrowIcon from '/src/assets/icons/arrow-narrow-up.svg?react';
@@ -12,43 +12,43 @@ interface EditNoteContentProps {
 }
 
 const EditNoteContent = ({ onOpenModal }: EditNoteContentProps) => {
-  const editableNotesIds = useEditableNotesStore(state => state.editableNotesIds);
+  const selectedNotesIds = useSelectedNotesStore(state => state.selectedNotesIds);
   const deleteNotes = useNotesStore(state => state.deleteNotes);
-  const stopEditing = useEditableNotesStore(state => state.stopEditing);
+  const deselectAll = useSelectedNotesStore(state => state.deselectAll);
   const changeNotePosition = useNotesStore(state => state.changeNotePosition);
 
   const deleteNotesHandler = () => {
-    deleteNotes(editableNotesIds);
-    stopEditing();
+    deleteNotes(selectedNotesIds);
+    deselectAll();
   }
 
   const handleNoteUp = () => {
-    if (editableNotesIds.length === 1) {
-      changeNotePosition(editableNotesIds[0], 'UP');
+    if (selectedNotesIds.length === 1) {
+      changeNotePosition(selectedNotesIds[0], 'UP');
     }
   }
 
   const handleNoteDown = () => {
-    if (editableNotesIds.length === 1) {
-      changeNotePosition(editableNotesIds[0], 'DOWN');
+    if (selectedNotesIds.length === 1) {
+      changeNotePosition(selectedNotesIds[0], 'DOWN');
     }
   }
 
   return (
     <div className={styles.editNoteContent}>
       <div className={styles.leftGroup}>
-        <button className={styles.stopEditingBtn} onClick={stopEditing}>
+        <button className={styles.stopEditingBtn} onClick={deselectAll}>
           <CrossIcon
             style={{
               fill: 'rgb(218, 218, 218)'
             }}
           />
         </button>
-        <div className={styles.selectedNotesCount}>Selected: {editableNotesIds.length}</div>
+        <div className={styles.selectedNotesCount}>Selected: {selectedNotesIds.length}</div>
       </div>
       <div className={styles.editTools}>
         <button 
-          className={`${styles.editNoteBtn} ${editableNotesIds.length > 1 ? styles.inactive : ''}`} 
+          className={`${styles.editNoteBtn} ${selectedNotesIds.length > 1 ? styles.inactive : ''}`} 
           onClick={handleNoteDown}
         >
           <ArrowNarrowIcon
@@ -59,7 +59,7 @@ const EditNoteContent = ({ onOpenModal }: EditNoteContentProps) => {
           />
         </button>
         <button 
-          className={`${styles.editNoteBtn} ${editableNotesIds.length > 1 ? styles.inactive : ''}`} 
+          className={`${styles.editNoteBtn} ${selectedNotesIds.length > 1 ? styles.inactive : ''}`} 
           onClick={handleNoteUp}
         >
           <ArrowNarrowIcon
