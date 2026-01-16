@@ -2,15 +2,15 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { v4 as uuidv4 } from 'uuid';
 import type { Note } from '../types/entities';
-import { noteKeys, type NoteColorsType } from '../constants/noteColors';
+import { type NoteColorsKeysType } from '../constants/noteColors';
 import useSelectedNotesStore from './useSelectedNotesStore';
 
 interface NotesStore {
   notes: Note[];
   trashedNotes: Note[];
-  addNote: (title: string, mainText: string) => void;
+  addNote: ({ title, mainText }: Note['content'] ) => void;
   deleteNotes: (ids: string[]) => void;
-  changeNotesColor: (ids: string[], color: NoteColorsType) => void;
+  changeNotesColor: (ids: string[], colorKey: NoteColorsKeysType) => void;
   updateNoteContent: (id: string, newContent: Note['content']) => void;
   changeNotePosition: (id: string, movementDirection: 'UP' | 'DOWN') => void;
   deleteTrashedNotes: (ids: string[]) => void;
@@ -25,8 +25,8 @@ const useNotesStore = create<NotesStore>()(
       notes: [],
       trashedNotes: [],
       // ДЕЙСТВИЯ
-      addNote: (title:string, mainText:string) => {
-        const newNote = {
+      addNote: ({ title, mainText }) => {
+        const newNote: Note = {
           id: uuidv4(),
           dateCreated: Date.now(),
           dateModified: Date.now(), 
@@ -34,10 +34,7 @@ const useNotesStore = create<NotesStore>()(
             title: title,
             mainText: mainText
           },
-          noteStyles: {
-            color: noteKeys[0]
-          }
-
+          colorKey: 'UNCOLORED'
         }
         set(state => ({
           notes: [newNote, ...state.notes]
@@ -52,10 +49,10 @@ const useNotesStore = create<NotesStore>()(
         notes: state.notes.filter(note => !ids.includes(note.id))
       })),
 
-      changeNotesColor: (ids, color: NoteColorsType) => set(state => ({
+      changeNotesColor: (ids, colorKey) => set(state => ({
         notes: state.notes.map(note => 
           ids.includes(note.id)
-          ? { ...note, dateModified: Date.now(), noteStyles: { ...note.noteStyles, color } } 
+          ? { ...note, dateModified: Date.now(), colorKey: colorKey } 
           : note
         )
       })),

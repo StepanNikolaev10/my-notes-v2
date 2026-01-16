@@ -1,4 +1,4 @@
-import type { NoteColorsType } from "../constants/noteColors"
+import type { NoteColorsKeysType } from "../constants/noteColors"
 
 export interface Note {
   id: string,
@@ -8,7 +8,5 @@ export interface Note {
     title: string,
     mainText: string
   },
-  noteStyles: {
-    color: NoteColorsType
-  }
+  colorKey: NoteColorsKeysType;
 }

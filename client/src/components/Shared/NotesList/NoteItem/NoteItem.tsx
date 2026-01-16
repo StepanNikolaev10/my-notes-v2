@@ -9,20 +9,25 @@ import type { Note } from '../../../../types/entities';
 interface NoteItemProps {
   id: Note['id'];
   content: Note['content'];
-  noteStyles: Note['noteStyles'];
+  colorKey: Note['colorKey'];
 }
 
-const NoteItem = ({ id, content, noteStyles }: NoteItemProps) => {
+const NoteItem = ({ id, content, colorKey }: NoteItemProps) => {
   const selectedNotesIds = useSelectedNotesStore(state => state.selectedNotesIds);
   const toggleSelectNote = useSelectedNotesStore(state => state.toggleSelectNote);
 
   const router = useNavigate();
 
   const rootStyles = [styles.noteItem]
+  
+  const isColorable = colorKey !== 'UNCOLORED';
+  if(isColorable) {
+    rootStyles.push(styles.colorable)
+  }
 
-  const isEditable = selectedNotesIds.some(editableNoteId => editableNoteId === id);
-  if(isEditable) {
-    rootStyles.push(styles.editable);
+  const isSelected = selectedNotesIds.some(editableNoteId => editableNoteId === id);
+  if(isSelected) {
+    rootStyles.push(styles.selected);
   }
 
   const addEditableNoteHandler = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -34,7 +39,7 @@ const NoteItem = ({ id, content, noteStyles }: NoteItemProps) => {
     <div 
       className={rootStyles.join(' ')} 
       style={{
-        backgroundColor: NOTE_COLORS[noteStyles.color]
+        backgroundColor: NOTE_COLORS[colorKey],
       }}
       onClick={() => router(`/notes/${id}`)}
     >
