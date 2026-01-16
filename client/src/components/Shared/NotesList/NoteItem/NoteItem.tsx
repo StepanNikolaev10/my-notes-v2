@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import parse from 'html-react-parser';
 import useSelectedNotesStore from '../../../../store/useSelectedNotesStore';
+import { NOTE_COLORS } from '../../../../constants/noteColors';
+import type { Note } from '../../../../types/entities';
 
 interface NoteItemProps {
-  id: string,
-  content: any,
-  noteStyles: any
+  id: Note['id'];
+  content: Note['content'];
+  noteStyles: Note['noteStyles'];
 }
 
 const NoteItem = ({ id, content, noteStyles }: NoteItemProps) => {
@@ -32,8 +34,7 @@ const NoteItem = ({ id, content, noteStyles }: NoteItemProps) => {
     <div 
       className={rootStyles.join(' ')} 
       style={{
-        backgroundColor: noteStyles.color,
-        border: noteStyles.color && !isEditable && 'none'
+        backgroundColor: NOTE_COLORS[noteStyles.color]
       }}
       onClick={() => router(`/notes/${id}`)}
     >

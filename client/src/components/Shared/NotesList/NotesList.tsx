@@ -16,7 +16,7 @@ const NotesList = ({ notes }: NotesListProps) => {
               key={note.id}
               id={note.id}
               content={note.content}
-              noteStyles={note.styles}
+              noteStyles={note.noteStyles}
             />
           );
         })

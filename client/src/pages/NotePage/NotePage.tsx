@@ -4,6 +4,8 @@ import NotePageHeader from '../../components/NotePage/NotePageHeader/NotePageHea
 import NotePageMain from '../../components/NotePage/NotePageMain/NotePageMain';
 import { useEffect, useState } from 'react';
 import useNotesStore from '../../store/useNotesStore';
+import { NOTE_COLORS } from '../../constants/noteColors';
+import type { NoteColorsType } from '../../constants/noteColors';
 
 const NotePage = () => {
   const { id } = useParams();
@@ -17,18 +19,18 @@ const NotePage = () => {
 
   const [title, setTitle] = useState('');
   const [mainText, setMainText] = useState('');
-  const [noteColor, setNoteColor] = useState('');
+  const [noteColor, setNoteColor] = useState<NoteColorsType>('FIRST');
 
   useEffect(() => {
-    const foundNote = notes.find((item: any) => item.id === id); // ANY ЗАМЕНИТЬ НА ИНТЕРФЕЙС
+    const foundNote = notes.find(item => item.id === id);
     if (!foundNote) return
     setTitle(foundNote.content.title || '');
     setMainText(foundNote.content.mainText || '');
-    setNoteColor(foundNote.styles.color || 'transparent');
+    setNoteColor(foundNote.noteStyles.color);
   }, []);
 
   return (
-    <div className={styles.notePage} style={{backgroundColor: noteColor}}>
+    <div className={styles.notePage} style={{backgroundColor: NOTE_COLORS[noteColor]}}>
       <NotePageHeader
         onSaveNote={() => updateNoteContent(id, {title, mainText})}
       />

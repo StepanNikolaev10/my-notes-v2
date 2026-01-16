@@ -8,7 +8,7 @@ export interface Note {
     title: string,
     mainText: string
   },
-  styles: {
+  noteStyles: {
     color: NoteColorsType
   }
 }

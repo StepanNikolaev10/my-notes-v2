@@ -34,7 +34,7 @@ const useNotesStore = create<NotesStore>()(
             title: title,
             mainText: mainText
           },
-          styles: {
+          noteStyles: {
             color: noteKeys[0]
           }
 
@@ -55,7 +55,7 @@ const useNotesStore = create<NotesStore>()(
       changeNotesColor: (ids, color: NoteColorsType) => set(state => ({
         notes: state.notes.map(note => 
           ids.includes(note.id)
-          ? { ...note, dateModified: Date.now(), styles: { ...note.styles, color } } 
+          ? { ...note, dateModified: Date.now(), noteStyles: { ...note.noteStyles, color } } 
           : note
         )
       })),
