@@ -1,9 +1,9 @@
-import LandingPage from "../pages/LandingPage/LandingPage";
-import NotePage from "../pages/NotePage/NotePage";
-import NotesPage from "../pages/NotesPage/NotesPage";
-import AuthPage from "../pages/AuthPage/AuthPage";
-import NotesSearchPage from "../pages/NotesSearchPage/NotesSearchPage";
-import TrashPage from "../pages/TrashPage/TrashPage";
+import LandingPage from "../pages/LandingPage";
+import NotePage from "../pages/NotePage";
+import NotesPage from "../pages/NotesPage";
+import AuthPage from "../pages/AuthPage";
+import NotesSearchPage from "../pages/NotesSearchPage";
+import TrashPage from "../pages/TrashPage";
 
 export const privateRoutes = [
     {path: '/', element: <NotesPage/>},
@@ -13,7 +13,7 @@ export const privateRoutes = [
 ]
 
 export const publicRoutes = [
-    {path: '/', element: <LandingPage pageVariant={'LANDING'}/>},
+    {path: '/', element: <LandingPage/>},
     {path: '/sign-in', element: <AuthPage pageVariant={'SIGN_IN'}/>},
     {path: '/sign-up', element: <AuthPage pageVariant={'SIGN_UP'}/>},
 ]

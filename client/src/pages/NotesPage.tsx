@@ -1,14 +1,14 @@
-import styles from './NotesPage.module.scss';
 import { useMemo, useState } from 'react';
-import NotesPageMain from '../../components/NotesPage/NotesPageMain/NotesPageMain';
-import NotesPageHeader from '../../components/NotesPage/NotesPageHeader/NotesPageHeader';
-import useNotesStore from '../../store/useNotesStore';
-import AddNoteModal from '../../components/NotesPage/AddNoteModal/AddNoteModal';
-import EditNoteColorModal from '../../components/Shared/EditNoteColorModal/EditNoteColorModal';
-import SelectSortModal from '../../components/NotesPage/SelectSortModal/SelectSortModal';
-import { NOTES_SORT_METHODS } from '../../constants/notesSortMethods';
-import type { ModalContentVariants } from '../../types/ui';
-import Sidebar from '../../components/Shared/Sidebar/Sidebar';
+import NotesPageMain from '../components/NotesPage/NotesPageMain/NotesPageMain';
+import NotesPageHeader from '../components/NotesPage/NotesPageHeader/NotesPageHeader';
+import useNotesStore from '../store/useNotesStore';
+import AddNoteModal from '../components/NotesPage/AddNoteModal/AddNoteModal';
+import EditNoteColorModal from '../components/Shared/EditNoteColorModal/EditNoteColorModal';
+import SelectSortModal from '../components/NotesPage/SelectSortModal/SelectSortModal';
+import { NOTES_SORT_METHODS } from '../constants/notesSortMethods';
+import type { ModalContentVariants } from '../types/ui';
+import Sidebar from '../components/Shared/Sidebar/Sidebar';
+import PageWrapper from '../components/Shared/UI/PageWrapper/PageWrapper';
 
 const NotesPage = () => {
   const notes = useNotesStore(state => state.notes);
@@ -41,7 +41,7 @@ const NotesPage = () => {
   }
 
   return (
-    <div className={styles.notesPage}>
+    <PageWrapper>
       <NotesPageHeader
         onOpenModal={openModal} 
       />
@@ -67,7 +67,7 @@ const NotesPage = () => {
           onSelectSort={sortNotes}
         />
       )}
-    </div>
+    </PageWrapper>
   );
   
 }

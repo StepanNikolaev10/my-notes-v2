@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
-import styles from './NotePage.module.scss';
-import NotePageHeader from '../../components/NotePage/NotePageHeader/NotePageHeader';
-import NotePageMain from '../../components/NotePage/NotePageMain/NotePageMain';
+import NotePageHeader from '../components/NotePage/NotePageHeader/NotePageHeader';
+import NotePageMain from '../components/NotePage/NotePageMain/NotePageMain';
 import { useEffect, useState } from 'react';
-import useNotesStore from '../../store/useNotesStore';
-import { NOTE_COLORS } from '../../constants/noteColors';
-import type { NoteColorsKeysType } from '../../constants/noteColors';
+import useNotesStore from '../store/useNotesStore';
+import { NOTE_COLORS } from '../constants/noteColors';
+import type { NoteColorsKeysType } from '../constants/noteColors';
+import PageWrapper from '../components/Shared/UI/PageWrapper/PageWrapper';
 
 const NotePage = () => {
   const { id } = useParams();
@@ -30,7 +30,7 @@ const NotePage = () => {
   }, []);
 
   return (
-    <div className={styles.notePage} style={{backgroundColor: NOTE_COLORS[noteColor]}}>
+    <PageWrapper style={{backgroundColor: NOTE_COLORS[noteColor]}}>
       <NotePageHeader
         onSaveNote={() => updateNoteContent(id, {title, mainText})}
       />
@@ -41,7 +41,7 @@ const NotePage = () => {
         onSetMainText={setMainText}
       />
 
-    </div>
+    </PageWrapper>
   )
 }
 

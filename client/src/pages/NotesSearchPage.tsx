@@ -1,10 +1,10 @@
-import NotesSearchPageHeader from '../../components/NotesSearchPage/NotesSearchPageHeader/NotesSearchPageHeader';
-import NotesSearchPageMain from '../../components/NotesSearchPage/NotesSearchPageMain/NotesSearchPageMain';
-import styles from './NotesSearchPage.module.scss';
+import NotesSearchPageHeader from '../components/NotesSearchPage/NotesSearchPageHeader/NotesSearchPageHeader';
+import NotesSearchPageMain from '../components/NotesSearchPage/NotesSearchPageMain/NotesSearchPageMain';
 import { useState, useMemo } from 'react';
-import useNotesStore from '../../store/useNotesStore'
-import EditNoteColorModal from '../../components/Shared/EditNoteColorModal/EditNoteColorModal';
-import useDebounce from '../../hooks/useDebounce';
+import useNotesStore from '../store/useNotesStore'
+import EditNoteColorModal from '../components/Shared/EditNoteColorModal/EditNoteColorModal';
+import useDebounce from '../hooks/useDebounce';
+import PageWrapper from '../components/Shared/UI/PageWrapper/PageWrapper';
 
 const NotesSearchPage = () => {
   const notes = useNotesStore(state => state.notes);
@@ -25,7 +25,7 @@ const NotesSearchPage = () => {
   }, [debouncedSearchQuery, notes])
 
   return (
-    <div className={styles.notesSearchPage}>
+    <PageWrapper>
       <NotesSearchPageHeader
         onSetSearchQuery={setSearchQuery}
         searchQuery={searchQuery}
@@ -41,7 +41,7 @@ const NotesSearchPage = () => {
         />
       )}
 
-    </div>
+    </PageWrapper>
   )
 }
 export default NotesSearchPage;
