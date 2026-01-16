@@ -1,5 +1,4 @@
 import AppName from '../UI/AppName/AppName';
-import Header from '../UI/Header/Header';
 import styles from './NotAuthPagesHeader.module.scss';
 import { Link } from 'react-router-dom';
 import type { AuthPageVariants } from '../../../types/ui';
@@ -10,7 +9,7 @@ interface NotAuthPagesHeaderProps {
 
 const NotAuthPagesHeader = ({ pageVariant }: NotAuthPagesHeaderProps) => {
   return (
-    <Header>
+    <header className={styles.header}>
       <AppName/>
       <nav className={styles.authLinks}>
         <Link to="/sign-in" className={`${styles.link} ${pageVariant === 'SIGN_IN' ? styles.opened : ''}`}>
@@ -20,7 +19,7 @@ const NotAuthPagesHeader = ({ pageVariant }: NotAuthPagesHeaderProps) => {
           Sign up
         </Link>
       </nav>
-    </Header>
+    </header>
   )
 }
 export default NotAuthPagesHeader;

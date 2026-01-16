@@ -1,7 +1,7 @@
+import styles from './NotesSearchPageHeader.module.scss';
 import useSelectedNotesStore from '../../../store/useSelectedNotesStore';
 import SearchedNotesEditingContent from './SearchedNotesEditingContent/SearchedNotesEditingContent';
 import DefaultContent from './DefaultContent/DefaultContent';
-import Header from '../../Shared/UI/Header/Header';
 
 interface NotesSearchPageHeaderProps {
   searchQuery: string,
@@ -13,7 +13,7 @@ const NotesSearchPageHeader = ({ searchQuery, onSetSearchQuery, onOpenModal }:No
   const selectedNotesIds = useSelectedNotesStore(state => state.selectedNotesIds);
 
   return (
-    <Header>
+    <header className={styles.header}>
       {selectedNotesIds.length > 0 
       ? 
         (
@@ -29,7 +29,7 @@ const NotesSearchPageHeader = ({ searchQuery, onSetSearchQuery, onOpenModal }:No
           />
         )
       }
-    </Header>
+    </header>
   )
 }
 export default NotesSearchPageHeader;

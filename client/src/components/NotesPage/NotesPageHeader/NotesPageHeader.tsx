@@ -1,7 +1,7 @@
+import styles from './NotesPageHeader.module.scss';
 import DefaultContent from './DefaultContent/DefaultContent';
 import EditNoteContent from './EditNoteContent/EditNoteContent';
 import useSelectedNotesStore from '../../../store/useSelectedNotesStore';
-import Header from '../../Shared/UI/Header/Header';
 
 interface NotesPageHeaderProps {
   onOpenModal: (variant: string) => void;
@@ -11,7 +11,7 @@ const NotesPageHeader = ({ onOpenModal }: NotesPageHeaderProps) => {;
   const selectedNotesIds = useSelectedNotesStore(state => state.selectedNotesIds);
 
   return (
-    <Header>
+    <header className={styles.header}>
       {selectedNotesIds.length > 0 
       ? 
         (
@@ -22,7 +22,7 @@ const NotesPageHeader = ({ onOpenModal }: NotesPageHeaderProps) => {;
           <DefaultContent onOpenModal={onOpenModal}/>
         )
       }
-    </Header>
+    </header>
   )
 }
 

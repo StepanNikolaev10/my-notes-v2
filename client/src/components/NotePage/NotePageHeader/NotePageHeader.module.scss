@@ -1,3 +1,9 @@
+.header {
+  @include header-base;
+  display: flex;
+  justify-content: space-between;
+}
+
 .headerBtn {
   @include btn-reset;
   padding: 8px 16px;
