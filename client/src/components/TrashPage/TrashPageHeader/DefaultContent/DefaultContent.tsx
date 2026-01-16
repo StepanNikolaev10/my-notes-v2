@@ -2,11 +2,9 @@ import { useRef, useState } from 'react';
 import styles from './DefaultContent.module.scss';
 import useSidebarStore from '../../../../store/useSidebarStore';
 import useNotesStore from '../../../../store/useNotesStore';
-import useSelectedNotesStore from '../../../../store/useSelectedNotesStore';
 import { useClickOutside } from '../../../../hooks/useClickOutside';
 import BurgerBtn from '../../../Shared/UI/BurgerBtn/BurgerBtn';
 import MoreIcon from '/src/assets/icons/more.svg?react';
-
 import DropdownMenu from '../../../Shared/UI/DropdownMenu/DropdownMenu';
 import DropdownItem from '../../../Shared/UI/DropdownItem/DropdownItem';
 
@@ -15,9 +13,7 @@ const DefaultContent = () => {
   const menuRef = useRef(null);
   const toggleSidebar = useSidebarStore(state => state.toggleSidebar);
   const trashedNotes = useNotesStore(state => state.trashedNotes);
-  const selectedNotesIds = useSelectedNotesStore(state => state.selectedNotesIds);
   const deleteAllTrashedNotes = useNotesStore(state => state.deleteAllTrashedNotes);
-  const restoreTrashedNotes = useNotesStore(state => state.restoreTrashedNotes);
 
   useClickOutside(menuRef, () => {
     if (isDropdownOpen) setIsDropdownOpen(false);
