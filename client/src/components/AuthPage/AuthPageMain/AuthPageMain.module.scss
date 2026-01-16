@@ -1,7 +1,4 @@
 .authPageMain {
+  @include main-base;
   @include flex-center;
-  width: 100%;
-  display: flex;
-  flex: 1;
-  overflow-y: auto;
 }

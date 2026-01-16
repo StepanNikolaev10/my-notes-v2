@@ -1,8 +1,7 @@
 .notesPageMain {
-  height: calc(100% - var(--header-height));
+  @include main-base;
   position: relative;
   overflow: auto;
-  margin-top: var(--header-height);
 }
 
 .emptyNotesText {

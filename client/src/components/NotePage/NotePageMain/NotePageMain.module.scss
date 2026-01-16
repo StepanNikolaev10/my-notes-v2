@@ -1,8 +1,7 @@
 .notePageMain {
+  @include main-base;
   display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  margin-top: var(--header-height);
+  flex-direction: column
 }
 
 .titleInput {

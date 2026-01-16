@@ -1,9 +1,6 @@
 .notesSearchPageMain {
-  display: flex;
-  flex: 1;
-  position: relative;
-  overflow: auto;
-  margin-top: var(--header-height);
+  @include main-base;
+  @include flex-center;
 }
 
 .searchedNotes {
