@@ -1,10 +1,10 @@
 import NotAuthPagesHeader from '../../components/Shared/NotAuthPagesHeader/NotAuthPagesHeader';
 import styles from './LandingPage.module.scss'; 
 import LandingPageMain from '../../components/LandingPage/LandingPageMain/LandingPageMain';
-import type { NotAuthPageVariants } from '../../types/ui';
+import type { AuthPageVariants } from '../../types/ui';
 
 interface LandingPageProps {
-  pageVariant: NotAuthPageVariants
+  pageVariant: AuthPageVariants
 }
 
 const LandingPage = ({ pageVariant }: LandingPageProps) => {
