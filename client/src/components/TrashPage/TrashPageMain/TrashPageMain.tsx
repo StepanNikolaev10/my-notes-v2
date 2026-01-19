@@ -1,16 +1,13 @@
 import styles from './TrashPageMain.module.scss';
-import type { Note } from '../../../types/entities';
 import NotesList from '../../Shared/NotesList/NotesList';
+import useNotesStore from '../../../store/useNotesStore';
 
-interface TrashPageMainProps {
-  notes: Note[];
-}
-
-const TrashPageMain = ({ notes }: TrashPageMainProps) => {
+const TrashPageMain = () => {
+  const trashedNotes = useNotesStore(state => state.trashedNotes);
   return (
     <main className={styles.trashPageMain}>
-      {notes.length > 0
-        ? <NotesList notes={notes}/>
+      {trashedNotes.length > 0
+        ? <NotesList notes={trashedNotes}/>
         : <div className={styles.noNotesMessage}>No notes in trash</div>
       }
 
