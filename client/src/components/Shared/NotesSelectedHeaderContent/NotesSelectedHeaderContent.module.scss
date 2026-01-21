@@ -1,10 +1,10 @@
-.editNoteContent {
+.notesSelectedHeaderContent {
   flex: 1;
   display: flex;
   justify-content: space-between;
 }
 
-.leftGroup {
+.sideSection {
   display: flex;
   align-items: center;
 }
@@ -17,11 +17,6 @@
 .selectedNotesCount {
   font-family: var(--main-font);
   font-size: 20px;
-}
-
-.editTools {
-  display: flex;
-  align-items: center;
 }
 
 .editNoteBtn {
@@ -37,3 +32,12 @@
     background: rgba(192, 192, 192, 0.5);
   }
 }
+
+.dropdownContainer {
+  position: relative;
+}
+
+.moreBtn {
+  @include square-header-svg-btn;
+}
+
