@@ -5,9 +5,9 @@ interface PageWrapperProps {
   style?: React.CSSProperties;
 }
 
-const PageWrapper = ({ children }: PageWrapperProps) => {
+const PageWrapper = ({ children, style }: PageWrapperProps) => {
   return (
-    <div className={styles.pageWrapper}>
+    <div className={styles.pageWrapper} style={style}>
       {children}
     </div>
   )
