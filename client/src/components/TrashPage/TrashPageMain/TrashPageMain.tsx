@@ -7,8 +7,12 @@ const TrashPageMain = () => {
   return (
     <main className={styles.main}>
       {trashedNotes.length > 0
-        ? <NotesList notes={trashedNotes}/>
-        : <div className={styles.noNotesMessage}>No notes in trash</div>
+        ? (
+          <>
+            <div className={styles.trashInfoMessage}>After 30 days in the Trash, this notes will be permanently deleted.</div>
+            <NotesList notes={trashedNotes}/>
+          </>
+        ) : <div className={styles.noNotesMessage}>No notes in trash</div>
       }
     </main>
   )

@@ -1,7 +1,14 @@
+.trashInfoMessage {
+  @include flex-center;
+  margin-top: 15px;
+}
+
 .main {
   @include main-base;
   position: relative;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .noNotesMessage {
