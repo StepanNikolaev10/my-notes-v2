@@ -7,11 +7,12 @@ import ArchiveIcon from '/src/assets/icons/archive.svg?react';
 import TrashIcon from '/src/assets/icons/trash-can.svg?react';
 import useSidebarStore from '../../../store/useSidebarStore';
 import { useEffect } from 'react';
+import { NOTES_SECTIONS_PATHS } from '../../../constants/NotesSectionPaths';
 
 const navItems = [
-  { name: 'Notes', path: '/', iconElement: NotesIcon },
-  { name: 'Archive', path: '/archive', iconElement: ArchiveIcon },
-  { name: 'Trash', path: '/trash', iconElement: TrashIcon },
+  { name: 'Notes', path: NOTES_SECTIONS_PATHS.NOTES, iconElement: NotesIcon },
+  { name: 'Archive', path: NOTES_SECTIONS_PATHS.ARCHIVE, iconElement: ArchiveIcon },
+  { name: 'Trash', path: NOTES_SECTIONS_PATHS.TRASH, iconElement: TrashIcon },
 ] as const;
 
 const Sidebar = () => {
