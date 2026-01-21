@@ -1,0 +1,27 @@
+.defaultContent {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sideSection {
+  display: flex;
+  align-items: center;
+}
+
+.pageName {
+  font-size: 24px;
+}
+
+.stopSelectingBtn {
+  @include square-header-svg-btn;
+  margin-right: 10px;
+}
+
+.dropdownContainer {
+  position: relative;
+}
+
+.moreBtn {
+  @include square-header-svg-btn;
+}

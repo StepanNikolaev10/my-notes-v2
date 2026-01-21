@@ -1,0 +1,14 @@
+.main {
+  @include main-base;
+  position: relative;
+  overflow: auto;
+}
+
+.noNotesMessage {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-text-interface);
+  font-size: 20px;
+}
