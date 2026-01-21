@@ -4,15 +4,25 @@ import { v4 as uuidv4 } from 'uuid';
 import type { Note } from '../types/entities';
 import { type NoteColorsKeysType } from '../constants/noteColors';
 import useSelectedNotesStore from './useSelectedNotesStore';
+import type { NotesSortMethodsKeysType } from '../constants/notesSortMethods';
+// Дописать методы сортировки для модального окна с сортировкой, продолжать внедлять NotesSelectedHeaderContent, доделать ArchivePage
 
 interface NotesStore {
   notes: Note[];
+  selectedSort: NotesSortMethodsKeysType;
+  archivedNotes: Note[];
   trashedNotes: Note[];
   addNote: ({ title, mainText }: Note['content'] ) => void;
   deleteNotes: (ids: string[]) => void;
   changeNotesColor: (ids: string[], colorKey: NoteColorsKeysType) => void;
   updateNoteContent: (id: string, newContent: Note['content']) => void;
   changeNotePosition: (id: string, movementDirection: 'UP' | 'DOWN') => void;
+  selectSort: (sortMethod: NotesSortMethodsKeysType) => void;
+  archiveNotes: (ids: string[]) => void;
+  unarchiveNotes: (ids: string[]) => void;
+  updateArchivedNoteContent: (id: string, newContent: Note['content']) => void;
+  changeArchivedNotesColor: (ids: string[], colorKey: NoteColorsKeysType) => void;
+  deleteArchivedNotes: (ids: string[]) => void;
   deleteTrashedNotes: (ids: string[]) => void;
   deleteAllTrashedNotes: () => void;
   restoreTrashedNotes: (ids: string[]) => void;
@@ -23,6 +33,8 @@ const useNotesStore = create<NotesStore>()(
     (set, get) => ({
       // СОСТОЯНИЯ
       notes: [],
+      selectedSort: 'CUSTOM',
+      archivedNotes: [],
       trashedNotes: [],
       // ДЕЙСТВИЯ
       addNote: ({ title, mainText }) => {
@@ -94,9 +106,53 @@ const useNotesStore = create<NotesStore>()(
         });
       },
 
+      selectSort: (sortMethod) => {
+        set({
+          selectedSort: sortMethod
+        })
+      },
+
+      archiveNotes: (ids) => {
+        set(state => ({
+          archivedNotes: [...state.notes.filter(note => ids.includes(note.id)), ...state.archivedNotes],
+          notes: state.notes.filter(note => !ids.includes(note.id))
+        }))
+      }, 
+
+      unarchiveNotes: (ids) => {
+        set(state => ({
+          notes: [...state.archivedNotes.filter(note => ids.includes(note.id)), ...state.notes],
+          archivedNotes: [...state.archivedNotes.filter(note => !ids.includes(note.id))]
+        }))
+      },
+
+      updateArchivedNoteContent: (id, newContent) => set(state => ({
+        archivedNotes: state.archivedNotes.map(note =>
+          note.id === id 
+          ? { ...note, dateModified: Date.now(), content: newContent }
+          : note
+        )
+      })),
+      
+      changeArchivedNotesColor: (ids, colorKey) => set(state => ({
+        archivedNotes: state.archivedNotes.map(note => 
+          ids.includes(note.id)
+          ? { ...note, dateModified: Date.now(), colorKey: colorKey } 
+          : note
+        )
+      })),
+
+      deleteArchivedNotes: (ids) => set(state => ({
+        trashedNotes: [
+          ...state.archivedNotes.filter((note) => ids.includes(note.id)),
+          ...state.trashedNotes
+        ],
+        archivedNotes: state.archivedNotes.filter(note => !ids.includes(note.id))
+      })),
+      
       deleteTrashedNotes: (ids) => {
         set(state => ({
-        trashedNotes: state.trashedNotes.filter(note => !ids.includes(note.id))
+          trashedNotes: state.trashedNotes.filter(note => !ids.includes(note.id))
         }))
         useSelectedNotesStore.getState().deselectByIds(ids)
       },
