@@ -1,18 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './SearchNotesBox.module.scss';
 import SortIcon from '/src/assets/icons/sort-icon.svg?react';
-import type { ModalContentVariants } from '../../../../../types/ui';
+import useModalStore from '../../../../../store/useModalStore';
 
-interface SearchNotesBoxProps {
-  onOpenModal: (modalVariant: ModalContentVariants) => void
-}
-
-const SearchNotesBox = ({ onOpenModal }: SearchNotesBoxProps) => {
+const SearchNotesBox = () => {
+  const openModal = useModalStore(state => state.openModal);
   const router = useNavigate();
 
   const handleOpenSortModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    onOpenModal('SORT_SELECTING')
+    openModal('SORT_SELECTING')
   } 
 
   return (

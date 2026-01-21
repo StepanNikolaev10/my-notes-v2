@@ -6,29 +6,27 @@ import ConfirmModalBtn from '../../Shared/UI/ConfirmModalBtn/ConfirmModalBtn';
 import ModalFooter from '../../Shared/UI/ModalFooter/ModalFooter';
 import ModalHeader from '../../Shared/UI/ModalHeader/ModalHeader';
 import styles from './AddNoteModal.module.scss';
+import useModalStore from '../../../store/useModalStore';
 
-interface AddNoteModalProps {
-  onClose: () => void
-}
-
-const AddNoteModal:React.FC<AddNoteModalProps> = ({ onClose }) => {
-  const addNote = useNotesStore(state => state.addNote);
-
+const AddNoteModal = () => {
   const [title, setTitle] = useState('');
   const [mainText, setMainText] = useState('');
 
+  const addNote = useNotesStore(state => state.addNote);
+  const closeModal = useModalStore(state => state.closeModal);
+
   const addNoteHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    addNote(title, mainText)
-    onClose();
+    addNote({ title, mainText })
+    closeModal();
     setTitle('')
     setMainText('')
   }
 
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={closeModal}>
       <form className={styles.modalContent}>
-        <ModalHeader title={'Add note'} onClose={onClose}/>
+        <ModalHeader title={'Add note'} onClose={closeModal}/>
         <div className={styles.modalMain}>
           <input
               value={title}
@@ -45,7 +43,7 @@ const AddNoteModal:React.FC<AddNoteModalProps> = ({ onClose }) => {
           />
         </div>
         <ModalFooter>
-          <CloseModalBtn onClick={onClose} type='button'>Cancel</CloseModalBtn>
+          <CloseModalBtn onClick={closeModal} type='button'>Cancel</CloseModalBtn>
           <ConfirmModalBtn onClick={addNoteHandler} type='submit'>Add</ConfirmModalBtn>
         </ModalFooter>
       </form>

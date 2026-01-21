@@ -1,34 +1,27 @@
 import Modal from '../../Shared/UI/Modal/Modal';
 import ModalHeader from '../../Shared/UI/ModalHeader/ModalHeader';
 import styles from './SelectSortModal.module.scss';
-import { NOTES_SORT_METHODS } from '../../../constants/notesSortMethods';
+import { notesSortMethodsList } from '../../../constants/notesSortMethods';
 import CheckmarkIcon from '/src/assets/icons/checkmark.svg?react';
+import useModalStore from '../../../store/useModalStore';
+import useNotesStore from '../../../store/useNotesStore';
 
-interface SelectSortModalProps {
-  onClose: () => void,
-  selectedSort: string,
-  onSelectSort: React.Dispatch<React.SetStateAction<string>>
-}
+const SelectSortModal = () => {
+  const selectedSort = useNotesStore(state => state.selectedSort);
+  const selectSort = useNotesStore(state => state.selectSort);
+  const closeModal = useModalStore(state => state.closeModal);
 
-const SelectSortModal = ({ onClose, selectedSort, onSelectSort }:SelectSortModalProps) => {
-
-  const handleSelectSort = (method: string) => {
-    selectedSort !== method && onSelectSort(method);
-  }
-
-  const sortMethodsList = Object.values(NOTES_SORT_METHODS);
-  
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={closeModal}>
       <div className={styles.modalContent}>
-        <ModalHeader title={'Sort by'} onClose={onClose}/>
+        <ModalHeader title={'Sort by'} onClose={closeModal}/>
         <div className={styles.modalMain}>
           <div className={styles.sortMethods}>
-            {sortMethodsList.map(method => (
+            {notesSortMethodsList.map(method => (
               <div 
                 key={method.value}
                 className={`${styles.sortMethod} ${selectedSort === method.value ? styles.active : ''}`}
-                onClick={() => handleSelectSort(method.value)}
+                onClick={() => selectSort(method.value)}
               >
                 <div className={styles.checkmarkBox}>
                   {selectedSort === method.value && (
@@ -50,4 +43,5 @@ const SelectSortModal = ({ onClose, selectedSort, onSelectSort }:SelectSortModal
     </Modal>
   )
 }
+
 export default SelectSortModal;

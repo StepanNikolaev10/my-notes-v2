@@ -1,21 +1,19 @@
-import { useMemo, useState } from 'react';
 import NotesPageMain from '../components/NotesPage/NotesPageMain/NotesPageMain';
 import NotesPageHeader from '../components/NotesPage/NotesPageHeader/NotesPageHeader';
 import useNotesStore from '../store/useNotesStore';
-import AddNoteModal from '../components/NotesPage/AddNoteModal/AddNoteModal';
-import EditNoteColorModal from '../components/Shared/EditNoteColorModal/EditNoteColorModal';
-import SelectSortModal from '../components/NotesPage/SelectSortModal/SelectSortModal';
-import { NOTES_SORT_METHODS } from '../constants/notesSortMethods';
-import type { ModalContentVariants } from '../types/ui';
 import Sidebar from '../components/Shared/Sidebar/Sidebar';
 import PageWrapper from '../components/Shared/UI/PageWrapper/PageWrapper';
+import { MODAL_VARIANTS } from '../constants/modalVariants';
+import useModalStore from '../store/useModalStore';
+import { useMemo } from 'react';
+import { NOTES_SORT_METHODS } from '../constants/notesSortMethods';
 
 const NotesPage = () => {
   const notes = useNotesStore(state => state.notes);
-
-  const [openedModal, setOpenedModal] = useState<ModalContentVariants | null>(null);
-  const [selectedSort, setSelectedSort] = useState(NOTES_SORT_METHODS.CUSTOM.value);
-
+  const selectedSort = useNotesStore(state => state.selectedSort);
+  const openedModal = useModalStore(state => state.openedModal);
+  const ModalEl = openedModal ? MODAL_VARIANTS[openedModal] : null;
+  
   const sortedNotes = useMemo(() => {
     if (selectedSort === NOTES_SORT_METHODS.CUSTOM.value) {
       return notes;
@@ -31,42 +29,15 @@ const NotesPage = () => {
 
     return notes;
   }, [selectedSort, notes]);
-  
-  const openModal = (variant: any) => {
-    setOpenedModal(variant)
-  }
-
-  const sortNotes = (sort: any) => { // ANY ЗАМЕНИТЬ НА ТИП
-    setSelectedSort(sort)
-  }
 
   return (
     <PageWrapper>
-      <NotesPageHeader
-        onOpenModal={openModal} 
-      />
+      <NotesPageHeader/>
       <Sidebar/>
       <NotesPageMain
-        notes={sortedNotes}
-        onOpenModal={openModal} 
+        notes={sortedNotes} 
       />
-      {openedModal === 'NOTE_ADDING' && (
-        <AddNoteModal
-          onClose={() => setOpenedModal(null)}
-        />
-      )}
-      {openedModal === 'NOTE_COLOR_EDITING' && (
-        <EditNoteColorModal
-          onClose={() => setOpenedModal(null)}
-        />
-      )}
-      {openedModal === 'SORT_SELECTING' && (
-        <SelectSortModal
-          onClose={() => setOpenedModal(null)}
-          selectedSort={selectedSort}
-          onSelectSort={sortNotes}
-        />
-      )}
+    {ModalEl && <ModalEl/>}
     </PageWrapper>
   );
   
