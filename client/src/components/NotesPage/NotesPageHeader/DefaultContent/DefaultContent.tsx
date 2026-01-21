@@ -5,11 +5,7 @@ import SearchNotesBox from './SearchNotesBox/SearchNotesBox';
 import BurgerBtn from '../../../Shared/UI/BurgerBtn/BurgerBtn';
 import useSidebarStore from '../../../../store/useSidebarStore';
 
-interface DefaultContentProps {
-  onOpenModal: (modalType: string) => void;
-}
-
-const DefaultContent = ({ onOpenModal }: DefaultContentProps) => {
+const DefaultContent = () => {
   const toggleSidebar = useSidebarStore(state => state.toggleSidebar)
 
   return (
@@ -19,7 +15,7 @@ const DefaultContent = ({ onOpenModal }: DefaultContentProps) => {
         <AppName/>
       </div>
       <div className={styles.centerContainer}>
-      <SearchNotesBox onOpenModal={onOpenModal}/>
+      <SearchNotesBox/>
       </div>
 
       <div className={styles.endContainer}>
