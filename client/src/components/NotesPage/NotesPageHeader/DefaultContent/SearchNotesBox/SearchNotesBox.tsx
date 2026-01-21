@@ -1,11 +1,19 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './SearchNotesBox.module.scss';
 import SortIcon from '/src/assets/icons/sort-icon.svg?react';
 import useModalStore from '../../../../../store/useModalStore';
+import { NOTES_SECTIONS_PATHS } from '../../../../../constants/NotesSectionPaths';
 
 const SearchNotesBox = () => {
-  const openModal = useModalStore(state => state.openModal);
   const router = useNavigate();
+  const { pathname } = useLocation();
+
+  const openModal = useModalStore(state => state.openModal);  
+
+  const openSearchPage = () => {
+    if (pathname.includes(NOTES_SECTIONS_PATHS.NOTES)) router(`${NOTES_SECTIONS_PATHS.NOTES}/search`);
+    if (pathname.includes(NOTES_SECTIONS_PATHS.ARCHIVE)) router(`${NOTES_SECTIONS_PATHS.ARCHIVE}/search`);
+  }
 
   const handleOpenSortModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -13,7 +21,7 @@ const SearchNotesBox = () => {
   } 
 
   return (
-    <div className={styles.searchNotesBox} onClick={() => router('/search')}>
+    <div className={styles.searchNotesBox} onClick={openSearchPage}>
       <div className={styles.searchBoxText}>Search notes</div>
       <div className={styles.sortBtns}>
         <button className={styles.openSortModalBtn} onClick={(e) => handleOpenSortModal(e)}>
