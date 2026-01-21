@@ -1,10 +1,11 @@
 import styles from './NoteItem.module.scss';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import parse from 'html-react-parser';
 import useSelectedNotesStore from '../../../../store/useSelectedNotesStore';
 import { NOTE_COLORS } from '../../../../constants/noteColors';
 import type { Note } from '../../../../types/entities';
+import { NOTES_SECTIONS_PATHS } from '../../../../constants/NotesSectionPaths';
 
 interface NoteItemProps {
   id: Note['id'];
@@ -17,6 +18,17 @@ const NoteItem = ({ id, content, colorKey }: NoteItemProps) => {
   const toggleSelectNote = useSelectedNotesStore(state => state.toggleSelectNote);
 
   const router = useNavigate();
+  const { pathname } = useLocation(); 
+  
+  const openNote = () => {
+    if(pathname.includes(NOTES_SECTIONS_PATHS.ARCHIVE)) {
+      router(`${NOTES_SECTIONS_PATHS}/${id}`);
+    } else if(pathname.includes(NOTES_SECTIONS_PATHS.TRASH)) {
+      router(`${NOTES_SECTIONS_PATHS.TRASH}/${id}`);
+    } else {
+      router(`${NOTES_SECTIONS_PATHS.NOTES}/${id}`);
+    }
+  }
 
   const rootStyles = [styles.noteItem]
   
@@ -41,7 +53,7 @@ const NoteItem = ({ id, content, colorKey }: NoteItemProps) => {
       style={{
         backgroundColor: NOTE_COLORS[colorKey],
       }}
-      onClick={() => router(`/notes/${id}`)}
+      onClick={openNote}
     >
 
       <div className={styles.noteContent}>
