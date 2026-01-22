@@ -49,22 +49,19 @@
   }
 }
 
-.editBtn {
-  padding: 8px;
-  cursor: pointer;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.selectBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: rgba(192, 192, 192, 0.5);
+  @include flex-center;
   align-self: center;
-  border-radius: 10px;
-  flex-shrink: 0;
-  
-  img {
-    user-select: none;
-  }
 
   &:hover {
-    background-color: rgba(192, 192, 192, 0.6);
+    background-color: rgba(192, 192, 192, 0.7);
+  }
+  svg {
+    width: 27px;
+    height: 27px;
   }
 }
