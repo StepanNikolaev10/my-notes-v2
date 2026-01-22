@@ -6,6 +6,7 @@ import useSelectedNotesStore from '../../../../store/useSelectedNotesStore';
 import { NOTE_COLORS } from '../../../../constants/noteColors';
 import type { Note } from '../../../../types/entities';
 import { NOTES_SECTIONS_PATHS } from '../../../../constants/NotesSectionPaths';
+import SelectIcon from '/src/assets/icons/select.svg?react';
 
 interface NoteItemProps {
   id: Note['id'];
@@ -70,8 +71,8 @@ const NoteItem = ({ id, content, colorKey }: NoteItemProps) => {
         </div>
       </div>
 
-      <div className={styles.editBtn} onClick={addEditableNoteHandler}>
-        <img src="src/assets/icons/edit-btn.svg" alt="edit-btn"/>
+      <div className={styles.selectBtn} onClick={addEditableNoteHandler}>
+        <SelectIcon/>
       </div>
 
     </div>
