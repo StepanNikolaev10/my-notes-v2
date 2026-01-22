@@ -1,15 +1,14 @@
 import styles from './NotesSearchPageHeader.module.scss';
 import useSelectedNotesStore from '../../../store/useSelectedNotesStore';
-import SearchedNotesEditingContent from './SearchedNotesEditingContent/SearchedNotesEditingContent';
+import NotesSelectedHeaderContent from '../../Shared/NotesSelectedHeaderContent/NotesSelectedHeaderContent';
 import DefaultContent from './DefaultContent/DefaultContent';
 
 interface NotesSearchPageHeaderProps {
   searchQuery: string,
   onSetSearchQuery: React.Dispatch<React.SetStateAction<string>>,
-  onOpenModal: () => void
 }
 
-const NotesSearchPageHeader = ({ searchQuery, onSetSearchQuery, onOpenModal }:NotesSearchPageHeaderProps) => {
+const NotesSearchPageHeader = ({ searchQuery, onSetSearchQuery }:NotesSearchPageHeaderProps) => {
   const selectedNotesIds = useSelectedNotesStore(state => state.selectedNotesIds);
 
   return (
@@ -17,9 +16,7 @@ const NotesSearchPageHeader = ({ searchQuery, onSetSearchQuery, onOpenModal }:No
       {selectedNotesIds.length > 0 
       ? 
         (
-          <SearchedNotesEditingContent
-            onOpenModal={onOpenModal}
-          />
+          <NotesSelectedHeaderContent/>
         ) 
       : 
         (
