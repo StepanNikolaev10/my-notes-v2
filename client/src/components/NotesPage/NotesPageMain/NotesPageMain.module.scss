@@ -1,10 +1,10 @@
-.notesPageMain {
+.main {
   @include main-base;
   position: relative;
   overflow: auto;
 }
 
-.emptyNotesText {
+.noNotesMessage {
   height: 100%;
   display: flex;
   justify-content: center;

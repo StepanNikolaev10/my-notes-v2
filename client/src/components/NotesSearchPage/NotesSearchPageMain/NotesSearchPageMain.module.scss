@@ -1,21 +1,12 @@
-.notesSearchPageMain {
+.main {
   @include main-base;
-  @include flex-center;
+  position: relative;
+  overflow: auto;
 }
 
-.searchedNotes {
-  max-width: 800px;
-  width: 100%;
+.noNotesMessage {
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-  padding: 16px 10px;
-}
-
-.emptyNotesText {
-  display: flex;
-  flex: 1;
   justify-content: center;
   align-items: center;
   color: var(--color-text-interface);

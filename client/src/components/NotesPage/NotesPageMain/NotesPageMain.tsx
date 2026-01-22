@@ -12,9 +12,16 @@ const NotesPageMain = ({ notes }:NotesPageMainProps) => {
   const openModal = useModalStore(state => state.openModal);
 
   return (
-    <main className={styles.notesPageMain}>
-      <NotesList notes={notes}/>
-      <NoteAddBtn onClick={() => openModal('NOTE_ADDING')}/>
+    <main className={styles.main}>
+
+      {notes.length > 0 
+        ? (
+          <>
+            <NotesList notes={notes}/>
+            <NoteAddBtn onClick={() => openModal('NOTE_ADDING')}/>
+          </>
+        ) : <div className={styles.noNotesMessage}>No notes found</div>
+      }
     </main>
   );
 };
