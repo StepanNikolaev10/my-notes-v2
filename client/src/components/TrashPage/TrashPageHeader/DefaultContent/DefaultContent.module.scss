@@ -14,7 +14,7 @@
 }
 
 .stopSelectingBtn {
-  @include square-header-svg-btn;
+  @include square-svg-btn;
   margin-right: 10px;
 }
 
@@ -23,5 +23,5 @@
 }
 
 .moreBtn {
-  @include square-header-svg-btn;
+  @include square-svg-btn;
 }

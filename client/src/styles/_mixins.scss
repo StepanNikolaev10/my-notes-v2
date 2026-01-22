@@ -40,7 +40,7 @@
   text-decoration: none;
 }
 
-@mixin square-header-svg-btn {
+@mixin square-svg-btn {
   @include btn-reset;
   @include flex-center;
   min-width: 36px;
