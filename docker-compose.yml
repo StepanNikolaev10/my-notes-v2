@@ -1,19 +1,21 @@
 services:
-  app:
+  server:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: server/Dockerfile
     container_name: nest-hot-reload-app
     ports:
       - 3000:3000
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - ./server:/usr/src/app
+      - ./shared:/usr/src/shared
+      - server_node_modules:/usr/src/app/node_modules
     depends_on:
       postgres:
         condition: service_healthy
     environment:
-        DATABASE_URL: postgres://postgres:password@postgres:5432/postgres-db
+      DATABASE_URL: postgres://postgres:password@postgres:5432/postgres-db
+      WATCHPACK_POLLING: "true"
     command: npm run start:dev
   postgres:
     image: postgres:18-alpine
@@ -26,9 +28,12 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: postgres-db
     volumes:
-      - ./pgdata:/var/lib/postgresql
+      - ./server/pgdata:/var/lib/postgresql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
+
+volumes:
+  server_node_modules:
