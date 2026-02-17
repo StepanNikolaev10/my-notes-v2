@@ -32,20 +32,17 @@ export class AuthService {
 
   private async generateJwts(user: User) {
     const accessPayload = {
-      sub: user.id,
+      userId: user.id,
     };
     const refreshPayload = {
-      sub: user.id,
+      userId: user.id,
       jti: uuidv4()
     };
 
-    const accessToken = this.jwtService.sign(accessPayload, {
-      secret: process.env.PRIVATE_KEY || 'ACCESS_SECRET',
-      expiresIn: '5m',
-    });
+    const accessToken = this.jwtService.sign(accessPayload);
     const refreshToken = this.jwtService.sign(refreshPayload, {
       secret: process.env.REFRESH_PRIVATE_KEY || 'REFRESH_SECRET',
-      expiresIn: '30d',
+      expiresIn: '15d',
     });
 
     return { accessToken, refreshToken };

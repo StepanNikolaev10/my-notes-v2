@@ -9,7 +9,14 @@ import { UsersModule } from 'src/users/users.module';
   providers: [AuthService],
   imports: [
     UsersModule,
-    JwtModule
-  ]
+    JwtModule.register({
+      secret: process.env.PRIVATE_KEY || 'SECRET_KEY',
+      signOptions: {
+        expiresIn: '5m'
+      },
+      global: true
+    })  
+  ],
+  exports: [JwtModule]
 })
 export class AuthModule {}
