@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { NotesModule } from './notes/notes.module';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import { AuthModule } from './auth/auth.module';
       autoLoadEntities: true, // автоматически подключает все entities
       synchronize: true, // авто-создание таблиц по entity
     }),
-    AuthModule
+    AuthModule,
+    NotesModule
   ] 
 })
 export class AppModule {}

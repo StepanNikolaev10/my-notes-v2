@@ -1,7 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Note } from "src/notes/note.entity";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import type { IUser } from '../../../shared/interfaces/user.interface';
 
 @Entity()
-export class User {
+export class User implements IUser {
   @PrimaryGeneratedColumn()
   id: number;
   
@@ -13,5 +15,7 @@ export class User {
   
   @Column()
   password: string;
-}
 
+  @OneToMany(() => Note, (note) => note.author)
+  notes: Note[];
+}
