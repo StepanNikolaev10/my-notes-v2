@@ -14,7 +14,7 @@ export class NotesService {
   private noteRepository: Repository<Note>  // значения падает в userRepository,  ...
   // ...но для удобной работы используется тип Repository с добавлением методов автокомлитом и дженерик с типами сущности Note
 
-  async addNote(dto: AddNoteDto, userId: IUser['id']) { // за счёт noteRepository создаётся экземпляр класса сущности Note, значения из dto подставляются в нужные места.
+  async addNote(dto: AddNoteDto, userId: IUser['id']): Promise<Note> { // за счёт noteRepository создаётся экземпляр класса сущности Note, значения из dto подставляются в нужные места.
     const note = this.noteRepository.create({
       ...dto,
       authorId: userId,
@@ -23,8 +23,7 @@ export class NotesService {
     return note;
   }
 
-  removeNote(dto: RemoveNoteDto) {
-    
+  async removeNote(dto: RemoveNoteDto): Promise<void> {
   }
 
 }
