@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { AddNoteDto } from './dto/add-note.dto';
 import { RemoveNoteDto } from './dto/remove-note.dto';
 import { Note } from './note.entity';
@@ -24,6 +24,14 @@ export class NotesService {
   }
 
   async removeNote(dto: RemoveNoteDto): Promise<void> {
+    const result = await this.noteRepository.delete({
+      id: dto.id,
+      authorId: dto.authorId
+    });
+    
+    if (result.affected === 0) {
+      throw new NotFoundException(`Note with ID ${dto.id} not found or access denied`);
+    }
   }
 
 }
