@@ -3,20 +3,43 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { NotesModule } from './notes/notes.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import Joi from 'joi';
 
 @Module({
   imports: [
-    UsersModule,
-    TypeOrmModule.forRoot({
-      type: 'postgres', // тип базы данных
-      host: 'postgres', // хост
-      port: 5432, // стандартный порт PostgreSQL
-      username: 'postgres', // ваше имя пользователя в БД
-      password: 'password', // пароль от БД
-      database: 'postgres-db', // имя БД
-      autoLoadEntities: true, // автоматически подключает все entities
-      synchronize: true, // авто-создание таблиц по entity
+    ConfigModule.forRoot({ // config module это динамический модуль который надо настроить, 
+    // ... root говорит о том, что конфигурация, которую мы передаём ...
+    // ...будет существовать в единственном экземпляре (Singleton) на уровне всего приложения.
+      isGlobal: true,
+      validationSchema: Joi.object({
+        NODE_ENV: Joi.string().valid('development', 'production').required(), // если я буду запускать prod и у меня будет реально prod env и я не указав в команде 
+        // инициализации NODE_ENV значение production получу ошибку, это лучше чем у меня запустится .env.example без моего ведома.
+        POSTGRES_PORT: Joi.number().port().required(),
+        POSTGRES_HOST: Joi.string().required(),
+        POSTGRES_DB_NAME: Joi.string().required(),
+        POSTGRES_USER: Joi.string().required(),
+        POSTGRES_PASSWORD: Joi.string().required(),
+      }),
     }),
+    TypeOrmModule.forRootAsync({ // изспользует forRootAsync потому что надо дождаться загрузки ConfigModule 
+      inject: [ConfigService], // inject позволяет внедрить зависимость которую мы будет ожидать ...
+      // Плюсы ConfigService над простым взятием через process.env:
+      // 1. Безопасность: ConfigService гарантирует, что данные уже ЗАГРУЖЕНЫ и провалидированы(Joi).
+      // 2. Типизация: Можно явно указать тип .get<number>(...), избегая ручного приведения строк.
+      // 3. Тесты: Позволяет легко подменять настройки в тестах, не трогая системные переменные.
+      useFactory: (configService: ConfigService) => ({ // с помощью use factory и ConfigService мы коллбеком передаём значения из configModule в TypeOrmModule
+        type: 'postgres',
+        port: configService.get<number>('POSTGRES_PORT'),
+        host: configService.get<string>('POSTGRES_HOST'),
+        database: configService.get<string>('POSTGRES_DB_NAME'),
+        username: configService.get<string>('POSTGRES_USER'),
+        password: configService.get<string>('POSTGRES_PASSWORD'),
+        autoLoadEntities: true,
+        synchronize: true,
+      }),
+    }),
+    UsersModule,
     AuthModule,
     NotesModule
   ] 
