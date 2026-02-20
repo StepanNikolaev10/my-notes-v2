@@ -18,7 +18,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "docker:install": "docker exec -it nest-hot-reload-app npm install"
+    "docker:install": "docker exec -it nest-hot-reload-app npm install",
+    "docker:uninstall": "docker exec -it nest-hot-reload-app npm uninstall"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
