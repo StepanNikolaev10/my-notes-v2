@@ -42,7 +42,10 @@ export class AuthService {
       jti: uuidv4()
     };
 
-    const accessToken = this.jwtService.sign(accessPayload);
+    const accessToken = this.jwtService.sign(accessPayload, {
+      secret: this.configService.get<string>('JWT_ACCESS_SECRET'),
+      expiresIn: '5m',
+    });
     const refreshToken = this.jwtService.sign(refreshPayload, {
       secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
       expiresIn: '30d',
