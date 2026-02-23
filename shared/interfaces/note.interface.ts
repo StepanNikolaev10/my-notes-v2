@@ -6,5 +6,5 @@ export interface INote {
   mainText: string
   colorKey: NoteColorsKeysType;
   createdAt: Date | string; // на клиент эти данные приходят строкой из за JSON.stringify
-  lastEdited: Date | string; // на клиент эти данные приходят строкой из за JSON.stringify
+  updatedAt: Date | string; // на клиент эти данные приходят строкой из за JSON.stringify
 }

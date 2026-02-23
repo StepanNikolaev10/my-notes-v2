@@ -26,7 +26,7 @@ export class Note implements INote {
   createdAt: Date;
 
   @UpdateDateColumn({ type: 'timestamptz' })
-  lastEdited: Date;
+  updatedAt: Date;
 
   @Column()
   authorId: number; // foreign key, id иностранца с другой таблицы, указывается в сервисе, берётся из токена.
