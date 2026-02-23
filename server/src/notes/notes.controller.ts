@@ -14,15 +14,15 @@ export class NotesController {
 
   @Post('/add')
   @UseGuards(JwtAuthGuard)
-  async addNote(@Body() dto: AddNoteDto, @GetUser('userId') userId: IUser['id']): Promise<Note> { // передав дженерик промису мы говорим что данный метод на resolve ...
+  addNote(@Body() dto: AddNoteDto, @GetUser('userId') userId: IUser['id']): Promise<Note> { // передав дженерик промису мы говорим что данный метод на resolve ...
   // ... вернёт тип переданный в этом дженерике.
-    return await this.notesService.addNote(dto, userId);  // await ловит resolve, а код после является then, если ошибка то это throw и catch
+    return this.notesService.addNote(dto, userId);  // await ловит resolve, а код после является then, если ошибка то это throw и catch
   }
   
   @Post('/remove')
   @UseGuards(JwtAuthGuard)
-  async removeNote(@Body() dto: RemoveNoteDto): Promise<void> {
-    await this.notesService.removeNote(dto);
+  removeNote(@Body() dto: RemoveNoteDto): Promise<void> {
+    return this.notesService.removeNote(dto);
   }
 
 }

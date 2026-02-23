@@ -15,7 +15,7 @@ export class AuthService {
     private jwtService: JwtService
   ) {}
 
-  async registration(dto: UserCreateDto) {
+  async registration(dto: UserCreateDto): Promise<AuthResponseDto> {
     const candidate = await this.usersService.getUserByEmail(dto.email);
     if(candidate) {
       throw new HttpException('Пользователь с таким email существует', HttpStatus.BAD_REQUEST)
@@ -25,7 +25,7 @@ export class AuthService {
     return this.generateJwts(user)
   }
 
-  async login(dto: UserLoginDto) {
+  async login(dto: UserLoginDto): Promise<AuthResponseDto> {
     const user = await this.validateUser(dto)
     return this.generateJwts(user)
   }
@@ -48,7 +48,7 @@ export class AuthService {
     return { accessToken, refreshToken };
   }
 
-  private async validateUser(dto: UserLoginDto) {
+  private async validateUser(dto: UserLoginDto): Promise<User> {
     const user = await this.usersService.getUserByEmail(dto.email);
     if(!user) {
       throw new UnauthorizedException({message: 'Некорректный емейл'})
