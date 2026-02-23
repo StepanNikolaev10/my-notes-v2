@@ -13,8 +13,6 @@ import Joi from 'joi';
     // ...будет существовать в единственном экземпляре (Singleton) на уровне всего приложения.
       isGlobal: true,
       validationSchema: Joi.object({
-        NODE_ENV: Joi.string().valid('development', 'production').required(), // если я буду запускать prod и у меня будет реально prod env и я не указав в команде 
-        // инициализации NODE_ENV значение production получу ошибку, это лучше чем у меня запустится .env.example без моего ведома.
         POSTGRES_PORT: Joi.number().port().required(),
         POSTGRES_HOST: Joi.string().required(),
         POSTGRES_DB_NAME: Joi.string().required(),
