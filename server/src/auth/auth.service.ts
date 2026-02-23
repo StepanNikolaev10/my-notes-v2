@@ -6,13 +6,16 @@ import { JwtService } from '@nestjs/jwt';
 import { User } from 'src/users/user.entity';
 import bcrypt from "bcryptjs";
 import { v4 as uuidv4 } from 'uuid';
+import { ConfigService } from '@nestjs/config';
+import { AuthResponseDto } from './dto/auth-response.dto';
 
 @Injectable()
 export class AuthService {
 
   constructor(
     private usersService: UsersService,
-    private jwtService: JwtService
+    private jwtService: JwtService,
+    private configService: ConfigService
   ) {}
 
   async registration(dto: UserCreateDto): Promise<AuthResponseDto> {
@@ -41,8 +44,8 @@ export class AuthService {
 
     const accessToken = this.jwtService.sign(accessPayload);
     const refreshToken = this.jwtService.sign(refreshPayload, {
-      secret: process.env.REFRESH_PRIVATE_KEY || 'REFRESH_SECRET',
-      expiresIn: '15d',
+      secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
+      expiresIn: '30d',
     });
 
     return { accessToken, refreshToken };
