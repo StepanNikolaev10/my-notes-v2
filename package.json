@@ -1,4 +1,10 @@
 {
+  "name": "my-notes-v2",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
   "scripts": {
     "start": "docker compose -f docker-compose.prod.yml --env-file .env.production up",
     "start:dev": "docker compose -f docker-compose.dev.yml --env-file .env.development up",
