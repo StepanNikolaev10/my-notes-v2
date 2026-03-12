@@ -1,5 +1,5 @@
 {
-  "name": "@my-notes-v2/types",
+  "name": "@my-notes/types",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {

@@ -1,14 +1,27 @@
 {
-  "name": "my-notes-v2",
-  "private": true,
+  "name": "my-notes",
+  "version": "1.0.0",
   "workspaces": [
     "apps/*",
     "libs/*"
   ],
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "docker compose -f docker-compose.prod.yml --env-file .env.production up",
     "start:dev": "docker compose -f docker-compose.dev.yml --env-file .env.development up",
     "stop": "docker compose -f docker-compose.prod.yml --env-file .env.production down",
     "stop:dev": "docker compose -f docker-compose.dev.yml --env-file .env.development down"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StepanNikolaev10/my-notes-v2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StepanNikolaev10/my-notes-v2/issues"
+  },
+  "homepage": "https://github.com/StepanNikolaev10/my-notes-v2#readme",
+  "description": ""
 }

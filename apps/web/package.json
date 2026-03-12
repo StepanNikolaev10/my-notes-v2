@@ -1,5 +1,5 @@
 {
-  "name": "@my-notes-v2/web",
+  "name": "@my-notes/web",
   "private": true,
   "version": "1.0.0",
   "type": "module",
