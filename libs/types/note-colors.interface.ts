@@ -1,4 +1,4 @@
-export const NOTE_COLORS = {
+export interface NoteColors {
   UNCOLORED: 'transparent',
   FIRST:'rgba(169, 29, 36, 1)',
   SECOND: 'rgba(208, 112, 43, 1)',
@@ -11,8 +11,4 @@ export const NOTE_COLORS = {
   NINETH: 'rgba(172, 97, 122, 1)',
   TENTH: 'rgba(126, 97, 55, 1)',
   ELEVENTH: 'rgba(49, 48, 48, 1)'
-} as const; 
-
-export type NoteColorsKeysType = keyof typeof NOTE_COLORS;
-
-export const noteColorsKeys = Object.keys(NOTE_COLORS) as NoteColorsKeysType[];
+}

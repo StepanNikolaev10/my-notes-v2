@@ -1,4 +1,4 @@
-import type { NoteColorsKeysType } from "../constants/note-colors"
+import type { NoteColorsKeysType } from "../../shared/constants/note-colors"
 
 export interface INote {
   id: number;
