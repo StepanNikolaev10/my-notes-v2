@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import {type NoteColorsKeysType, noteColorsKeys} from '../../../shared/constants/note-colors';
+import {type NoteColorsKeysType, noteColorsKeys} from '../../../../shared/constants/note-colors';
 import { User } from "src/users/user.entity";
-import type { INote } from '../../../shared/interfaces/note.interface';
+import type { INote } from '../../../../shared/interfaces/note.interface';
 
 
 @Entity()

@@ -4,7 +4,7 @@ import { RemoveNoteDto } from './dto/remove-note.dto';
 import { NotesService } from './notes.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { GetUser } from 'src/common/get-user.decorator';
-import type { IUser } from '../../../shared/interfaces/user.interface';
+import type { IUser } from '../../../../shared/interfaces/user.interface';
 import { Note } from './note.entity';
 
 @Controller('notes')

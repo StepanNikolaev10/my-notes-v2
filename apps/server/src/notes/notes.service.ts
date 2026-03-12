@@ -4,7 +4,7 @@ import { RemoveNoteDto } from './dto/remove-note.dto';
 import { Note } from './note.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import type { IUser } from '../../../shared/interfaces/user.interface';
+import type { IUser } from '../../../../shared/interfaces/user.interface';
 
 @Injectable()
 export class NotesService {

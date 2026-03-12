@@ -1,6 +1,6 @@
 import { Note } from "src/notes/note.entity";
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import type { IUser } from '../../../shared/interfaces/user.interface';
+import type { IUser } from '../../../../shared/interfaces/user.interface';
 
 @Entity()
 export class User implements IUser {
