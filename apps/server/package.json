@@ -1,6 +1,6 @@
 {
-  "name": "server",
-  "version": "0.0.1",
+  "name": "@my-notes-v2/server",
+  "version": "1.0.0",
   "description": "",
   "author": "",
   "private": true,
