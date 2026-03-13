@@ -1,11 +1,10 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import {type NoteColorsKeysType, noteColorsKeys} from '../../../../shared/constants/note-colors';
 import { User } from "src/users/user.entity";
-import type { INote } from '../../../../shared/interfaces/note.interface';
+import type { Note } from "@my-notes/types";
 
 
 @Entity()
-export class Note implements INote {
+export class NoteEntity implements Note {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -16,11 +15,9 @@ export class Note implements INote {
   mainText: string;
 
   @Column({
-    type: 'enum',
-    enum: noteColorsKeys,
-    default: noteColorsKeys[0]
+    default: 'UNCOLORED'
   })
-  colorKey: NoteColorsKeysType;
+  colorKey: Note['colorKey'];
 
   @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;
