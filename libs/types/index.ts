@@ -1,3 +1,3 @@
-export * from './user.interface';
-export * from './note.interface';
-export * from './note-colors.interface';
+export type * from './user.interface';
+export type * from './note.interface';
+export type * from './note-colors.interface';
