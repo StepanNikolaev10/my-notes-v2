@@ -1,5 +1,5 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { User } from "src/users/user.entity";
+import { UserEntity } from "src/users/user.entity";
 import type { Note } from "@my-notes/types";
 
 
@@ -14,9 +14,7 @@ export class NoteEntity implements Note {
   @Column()
   mainText: string;
 
-  @Column({
-    default: 'UNCOLORED'
-  })
+  @Column({ default: 'UNCOLORED' })
   colorKey: Note['colorKey'];
 
   @CreateDateColumn({ type: 'timestamptz' })
@@ -29,12 +27,12 @@ export class NoteEntity implements Note {
   authorId: number; // foreign key, id иностранца с другой таблицы, указывается в сервисе, берётся из токена.
   // если не существует такого юзера, то заметка создана не будет.
 
-  @ManyToOne(() => User, (user) => user.notes, { // Связь между таблицами(1. target, 2. Поле, 3.Опции)
+  @ManyToOne(() => UserEntity, (user) => user.notes, { // Связь между таблицами(1. target, 2. Поле, 3.Опции)
     onDelete: 'CASCADE',
     nullable: false
   }) 
   @JoinColumn({ name: 'authorId' }) // указываем что authorId будет является foreign key, да бы не делать лишний запрос на получение данных юзера в БД.
-  author: User;
+  author: UserEntity;
 
 }
 
