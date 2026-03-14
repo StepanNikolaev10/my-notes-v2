@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { NotesModule } from './notes/notes.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { RedisModule } from './redis/redis.module';
 import Joi from 'joi';
 
 @Module({
@@ -39,7 +40,8 @@ import Joi from 'joi';
     }),
     UsersModule,
     AuthModule,
-    NotesModule
+    NotesModule,
+    RedisModule
   ] 
 })
 export class AppModule {}
