@@ -12,17 +12,15 @@ export class UsersService {
     private userRepository: Repository<UserEntity>
   ) {}
 
-  async createUser(dto: UserCreate) {
+  async createUser(dto: UserCreate): Promise<UserEntity> {
     const user = this.userRepository.create(dto);
     await this.userRepository.save(user)
     return user;
   }
 
-  async getUserByEmail(email: string) {
+  async getUserByEmail(email: string): Promise<UserEntity| null> {
     const user = await this.userRepository.findOne({where: { email }});
-    if (user) {
-      return user;
-    }
+    return user;
   }
 
 }
