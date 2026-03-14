@@ -14,6 +14,10 @@ import Joi from 'joi';
     // ...будет существовать в единственном экземпляре (Singleton) на уровне всего приложения.
       isGlobal: true,
       validationSchema: Joi.object({
+        JWT_ACCESS_SECRET: Joi.string().required(),
+        JWT_REFRESH_SECRET: Joi.string().required(),
+        JWT_ACCESS_EXPIRES_IN: Joi.number().required(),
+        JWT_REFRESH_EXPIRES_IN: Joi.number().required(),
         POSTGRES_PORT: Joi.number().port().required(),
         POSTGRES_HOST: Joi.string().required(),
         POSTGRES_DB_NAME: Joi.string().required(),
