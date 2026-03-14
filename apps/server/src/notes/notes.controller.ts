@@ -4,8 +4,8 @@ import { RemoveNoteDto } from './dto/req/remove-note.dto';
 import { NotesService } from './notes.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { GetUser } from 'src/common/get-user.decorator';
-import type { IUser } from '../../../../shared/interfaces/user.interface';
-import { Note } from './note.entity';
+import type { User } from '@my-notes/types';
+import { AddNoteResDto } from './dto/res/add-note-res.dto';
 
 @Controller('notes')
 export class NotesController {
@@ -14,7 +14,7 @@ export class NotesController {
 
   @Post('/add')
   @UseGuards(JwtAuthGuard)
-  addNote(@Body() dto: AddNoteDto, @GetUser('userId') userId: IUser['id']): Promise<Note> { // передав дженерик промису мы говорим что данный метод на resolve ...
+  addNote(@Body() dto: AddNoteDto, @GetUser('userId') userId: User['id']): Promise<AddNoteResDto> { // передав дженерик промису мы говорим что данный метод на resolve ...
   // ... вернёт тип переданный в этом дженерике.
     return this.notesService.addNote(dto, userId);  // await ловит resolve, а код после является then, если ошибка то это throw и catch
   }
