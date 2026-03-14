@@ -1,6 +1,6 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
-import { AddNoteDto } from './dto/add-note.dto';
-import { RemoveNoteDto } from './dto/remove-note.dto';
+import { AddNoteDto } from './dto/req/add-note.dto';
+import { RemoveNoteDto } from './dto/req/remove-note.dto';
 import { NotesService } from './notes.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { GetUser } from 'src/common/get-user.decorator';
