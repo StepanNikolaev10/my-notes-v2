@@ -1,14 +1,12 @@
 import { Module } from '@nestjs/common';
-import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './user.entity';
-import { Note } from 'src/notes/note.entity';
+import { UserEntity } from './user.entity';
 
 @Module({
-  controllers: [UsersController],
   providers: [UsersService],
-  imports: [TypeOrmModule.forFeature([User, Note])],
+  imports: [TypeOrmModule.forFeature([UserEntity])], // forFeature([Entity]) делает только одну вещь: он создает Repository для этой сущности ...
+  // ... и делает его доступным для внедрения (Dependency Injection) в этом модуле.
   exports: [UsersService]
 })
 export class UsersModule {}
