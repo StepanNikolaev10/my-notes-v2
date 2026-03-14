@@ -33,8 +33,8 @@ import Joi from 'joi';
         database: configService.get<string>('POSTGRES_DB_NAME'),
         username: configService.get<string>('POSTGRES_USER'),
         password: configService.get<string>('POSTGRES_PASSWORD'),
-        autoLoadEntities: true,
-        synchronize: true,
+        autoLoadEntities: true, // автоматически собирает все сущности зареганые через forFeature
+        synchronize: true, 
       }),
     }),
     UsersModule,
