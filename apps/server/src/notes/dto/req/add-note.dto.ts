@@ -1,6 +1,6 @@
-import type { INote } from '../../../../../shared/interfaces/note.interface';
+import type { Note } from "@my-notes/types";
 
 export class AddNoteDto {
-  readonly title: INote['title'];
-  readonly mainText: INote['mainText'];
+  readonly title: Note['title'];
+  readonly mainText: Note['mainText'];
 }

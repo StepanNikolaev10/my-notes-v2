@@ -1,7 +1,7 @@
-import type { INote } from '../../../../../shared/interfaces/note.interface';
-import { IUser } from '../../../../../shared/interfaces/user.interface';
+import type { Note } from "@my-notes/types";
+import { User } from "@my-notes/types";
 
 export class RemoveNoteDto {
-  readonly id: INote['id'];
-  readonly authorId: IUser['id']
+  readonly id: Note['id'];
+  readonly authorId: User['id']
 }
