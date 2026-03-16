@@ -1,22 +1,63 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Res, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { UserCreateDto } from 'src/users/dto/user-create.dto';
-import { UserLoginDto } from './dto/user-login.dto';
-import { AuthResponseDto } from './dto/auth-response.dto';
+import type { Response } from 'express';
+import { AuthResDto } from './dto/res/auth-res.dto';
+import { ConfigService } from '@nestjs/config';
+import { JwtRefreshAuthGuard } from './guards/jwt-refresh-auth.guard';
+import { GetRtPayload } from './decorators/get-rt-payload.decorator';
+import type { RefreshTokenPayload } from 'src/tokens/interfaces/tokens-payload.interface';
+import { UserRegistrationDto } from './dto/req/user-registration.dto';
+import { UserLoginDto } from './dto/req/user-login.dto';
 
 @Controller('auth')
 export class AuthController {
 
-  constructor( private authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly configService: ConfigService,
+  ) {}
   
   @Post('/registration')
-  registration(@Body() dto: UserCreateDto): Promise<AuthResponseDto> {
-    return this.authService.registration(dto);
+  async registration(
+    @Body() dto: UserRegistrationDto,
+    @Res({ passthrough: true }) res: Response
+  ): Promise<AuthResDto> {
+    const jwts = await this.authService.registration(dto);
+    res.cookie('refreshToken', jwts.refreshToken, { 
+      httpOnly: true,
+      maxAge: this.configService.get<number>('JWT_REFRESH_EXPIRES_IN')! * 1000, // знак ! стоит потому что приложение не запустится без env, стоит Joi schema
+    });
+    return { accessToken: jwts.accessToken };
   }
 
   @Post('/login')
-  login(@Body() dto: UserLoginDto): Promise<AuthResponseDto> {
-    return this.authService.login(dto);
+  async login(
+    @Body() dto: UserLoginDto,
+    @Res({ passthrough: true }) res: Response
+  ): Promise<AuthResDto> {
+    const jwts = await this.authService.login(dto);
+    res.cookie('refreshToken', jwts.refreshToken, { 
+      httpOnly: true,
+      maxAge: this.configService.get<number>('JWT_REFRESH_EXPIRES_IN')! * 1000, // знак ! стоит потому что приложение не запустится без env, стоит Joi schema
+    });
+    return { accessToken: jwts.accessToken };
+  }
+
+  @Post('/refresh')
+  @UseGuards(JwtRefreshAuthGuard)
+  async refresh(
+    @GetRtPayload() currentRefreshTokenPayload: RefreshTokenPayload,
+    @Res({ passthrough: true }) res: Response
+  ): Promise<AuthResDto> {
+    const refreshResult = await this.authService.refresh(currentRefreshTokenPayload);
+    if(refreshResult.refreshToken) {
+      res.cookie('refreshToken', refreshResult.refreshToken, { 
+        httpOnly: true,
+        maxAge: this.configService.get<number>('JWT_REFRESH_EXPIRES_IN')! * 1000, // знак ! стоит потому что приложение не запустится без env, стоит Joi schema
+      });
+    }
+    return { accessToken: refreshResult.accessToken }
   }
 
 }
+
