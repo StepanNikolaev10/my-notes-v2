@@ -1,14 +1,22 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,              // Отрезает всё, что не описано в DTO
     forbidNonWhitelisted: true,   // Вместо отрезания выбрасывает ошибку 400
     transform: true,              // Превращает типы (строки в числа и т.д.)
   }));
+
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(
+    app.get(Reflector), 
+    { strategy: 'excludeAll' }
+  ))
+
   await app.listen(process.env.PORT ?? 3000);
 }
+
 bootstrap();
