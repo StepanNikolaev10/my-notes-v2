@@ -1,4 +1,3 @@
-export class AuthResponseDto {
+export class AuthResDto {
   readonly accessToken: string;
-  readonly refreshToken?: string;
 }
