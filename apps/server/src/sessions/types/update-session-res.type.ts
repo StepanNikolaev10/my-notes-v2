@@ -1,0 +1,1 @@
+export type UpdateSessionRes = 'NOT_FOUND' | 'ALREADY_UPDATED' | 'OK';

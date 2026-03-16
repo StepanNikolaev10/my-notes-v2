@@ -6,6 +6,7 @@ import { NotesModule } from './notes/notes.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RedisModule } from './redis/redis.module';
 import { TokensModule } from './tokens/tokens.module';
+import { SessionsModule } from './sessions/sessions.module';
 import Joi from 'joi';
 
 @Module({
@@ -47,7 +48,8 @@ import Joi from 'joi';
     AuthModule,
     NotesModule,
     RedisModule,
-    TokensModule
+    TokensModule,
+    SessionsModule
   ] 
 })
 export class AppModule {}
