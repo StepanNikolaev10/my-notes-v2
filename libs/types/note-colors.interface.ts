@@ -12,3 +12,5 @@ export interface NoteColors {
   TENTH: 'rgba(126, 97, 55, 1)',
   ELEVENTH: 'rgba(49, 48, 48, 1)'
 }
+
+export type NoteColorsKeys = keyof NoteColors;
