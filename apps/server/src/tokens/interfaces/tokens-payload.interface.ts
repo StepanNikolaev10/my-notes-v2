@@ -1,4 +1,4 @@
-import { User } from "src/common/interfaces/user.interface";
+import { User } from "@my-notes/types";
 
 interface General {
   userId: User['id']
