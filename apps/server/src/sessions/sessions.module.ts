@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { SessionsService } from './sessions.service';
-import { RedisModule } from '@nestjs-modules/ioredis';
+import { RedisModule } from 'src/redis/redis.module';
 
 @Module({
   providers: [SessionsService],
