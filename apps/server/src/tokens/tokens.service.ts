@@ -51,8 +51,4 @@ export class TokensService {
     });
   }
 
-  decodeToken(token: string): AccessTokenPayload | RefreshTokenPayload {
-    return this.jwtService.decode(token);
-  }
-
 }
