@@ -1,7 +1,7 @@
-import type { Session } from './session-payload.interface'
+import type { SessionPayload } from './session-payload.interface'
 import { SessionId } from '../types/session-id.type';
 
 export interface CreateSessionPayload {
-  readonly userId: Session['userId'];
+  readonly userId: SessionPayload['userId'];
   readonly sessionId: SessionId;
 }
