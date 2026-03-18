@@ -1,16 +1,16 @@
-import { HttpException, HttpStatus, Injectable, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
-import { JsonWebTokenError, JwtService } from '@nestjs/jwt';
 import bcrypt from "bcryptjs";
 import { v4 as uuidv4 } from 'uuid';
 import { SessionsService } from 'src/sessions/sessions.service';
 import { TokensService } from 'src/tokens/tokens.service';
 import { UserRegistrationDto } from './dto/req/user-registration.dto';
 import { UserLoginDto } from './dto/req/user-login.dto';
-import { UpdateSession } from 'src/sessions/interfaces/update-session.interface';
+import { UpdateSession } from 'src/sessions/interfaces/update-session-payload.interface';
 import { User } from '@my-notes/types';
 import type { RefreshTokenPayload } from 'src/tokens/interfaces/tokens-payload.interface';
 import { AuthServiceRes } from './interfaces/AuthServiceRes.interface';
+import { CreateSessionPayload } from 'src/sessions/interfaces/create-session-payload.interface';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +19,6 @@ export class AuthService {
     private readonly usersService: UsersService,
     private readonly sessionsService: SessionsService,
     private readonly tokensService: TokensService,
-    private readonly jwtService: JwtService
   ) {}
 
   async registration(dto: UserRegistrationDto): Promise<AuthServiceRes> {
@@ -31,26 +30,38 @@ export class AuthService {
     const hashPassword = await bcrypt.hash(dto.password, 5)
     const user = await this.usersService.createUser({...dto, password: hashPassword})
 
+    const newSessionId = uuidv4();
+
     const jwts = {
       accessToken: await this.tokensService.generateAccessToken(user.id),
-      refreshToken: await this.tokensService.generateRefreshToken(user.id, uuidv4())
+      refreshToken: await this.tokensService.generateRefreshToken(user.id, newSessionId)
     }
-    const refreshPayload = this.jwtService.decode(jwts.refreshToken);
 
-    await this.sessionsService.createSession(refreshPayload)
+    const createSessionPayload: CreateSessionPayload = {
+      userId: user.id,
+      sessionId: newSessionId,
+    }
+    await this.sessionsService.createSession(createSessionPayload);
+
     return jwts;
   }
 
   async login(dto: UserLoginDto): Promise<AuthServiceRes> {
     const user = await this.validateUser(dto);
 
+    const newSessionId = uuidv4();
+
     const jwts = {
       accessToken: await this.tokensService.generateAccessToken(user.id),
-      refreshToken: await this.tokensService.generateRefreshToken(user.id, uuidv4())
+      refreshToken: await this.tokensService.generateRefreshToken(user.id, newSessionId)
     }
-    const refreshPayload = this.jwtService.decode(jwts.refreshToken);
 
-    await this.sessionsService.createSession(refreshPayload);
+    const createSessionPayload: CreateSessionPayload = {
+      userId: user.id,
+      sessionId: newSessionId,
+    }
+    await this.sessionsService.createSession(createSessionPayload);
+
     return jwts;
   }
 
