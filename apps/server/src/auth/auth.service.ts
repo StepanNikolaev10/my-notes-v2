@@ -66,47 +66,34 @@ export class AuthService {
   }
 
   async refresh(currentRefreshTokenPayload: RefreshTokenPayload): Promise<AuthServiceRes> {
-    try {
-      const session = await this.sessionsService.getSession(currentRefreshTokenPayload.sessionId);
-      if (!session) throw new UnauthorizedException('Session expired or invalid');
+    const session = await this.sessionsService.getSession(currentRefreshTokenPayload.sessionId);
+    if (!session) throw new UnauthorizedException('Session expired or invalid');
 
-      const newSessionId = uuidv4()
-      const updateSessionPayload: UpdateSession = {
-        userId: currentRefreshTokenPayload.userId,
-        currentSessionId: currentRefreshTokenPayload.sessionId,
-        newSessionId: newSessionId,
-      }
-
-      const refreshResult = await this.sessionsService.updateSession(updateSessionPayload);
-      if(refreshResult === 'NOT_FOUND') {
-        throw new UnauthorizedException('Session expired or invalid')
-      }
-
-      const accessToken = await this.tokensService.generateAccessToken(currentRefreshTokenPayload.userId);
-
-      if(refreshResult === 'OK') {
-
-        const refreshToken = await this.tokensService.generateRefreshToken(currentRefreshTokenPayload.userId, newSessionId); 
-        return {
-          accessToken: accessToken,
-          refreshToken: refreshToken
-        }
-      }
-
-      if(refreshResult === 'ALREADY_UPDATED') {
-        return {
-          accessToken: accessToken,
-        }
-      }
-
-      throw new InternalServerErrorException('Unexpected refresh result');
-
-    } catch (e) {
-      if(e instanceof JsonWebTokenError) {
-        throw new UnauthorizedException('Session expired or invalid');
-      }
-      throw e; 
+    const newSessionId = uuidv4()
+    
+    const updateSessionPayload: UpdateSession = {
+      userId: currentRefreshTokenPayload.userId,
+      currentSessionId: currentRefreshTokenPayload.sessionId,
+      newSessionId: newSessionId,
     }
+
+    const refreshResult = await this.sessionsService.updateSession(updateSessionPayload);
+
+    const accessToken = await this.tokensService.generateAccessToken(currentRefreshTokenPayload.userId);
+    if(refreshResult === 'OK') {
+      const refreshToken = await this.tokensService.generateRefreshToken(currentRefreshTokenPayload.userId, newSessionId); 
+      return {
+        accessToken: accessToken,
+        refreshToken: refreshToken
+      }
+    } else if(refreshResult === 'ALREADY_UPDATED') {
+      return {
+        accessToken: accessToken,
+      }
+    } else {
+      throw new UnauthorizedException('Session expired or invalid');
+    }
+  
   }
 
   private async validateUser(dto: UserLoginDto): Promise<User> {
