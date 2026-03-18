@@ -1,6 +1,7 @@
 import { User } from "@my-notes/types";
+import type { JwtPayload } from "jsonwebtoken";
 
-interface General {
+interface General extends JwtPayload {
   userId: User['id']
 }
 
