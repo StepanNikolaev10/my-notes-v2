@@ -1,8 +1,8 @@
-import type { Session } from './session.interface'
+import type { SessionPayload } from "./session-payload.interface";
 import type { SessionId } from '../types/session-id.type';
 
 export interface UpdateSession {
-  readonly userId: Session['userId'];
+  readonly userId: SessionPayload['userId'];
   readonly currentSessionId: SessionId;
   readonly newSessionId: SessionId;
 }

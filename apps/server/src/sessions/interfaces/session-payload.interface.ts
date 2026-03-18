@@ -1,6 +1,6 @@
 import { User } from "@my-notes/types";
 
-export interface Session {
+export interface SessionPayload {
   userId: User['id'];
   createdAt: number;
   isUpdated: boolean;
