@@ -17,7 +17,7 @@ export class TokensService {
       userId: userId,
     };
 
-    const accessToken = this.jwtService.sign(payload, {
+    const accessToken = this.jwtService.signAsync(payload, {
       secret: this.configService.get<string>('JWT_ACCESS_SECRET'),
       expiresIn: this.configService.get<number>('JWT_ACCESS_EXPIRES_IN'),
     });
@@ -31,7 +31,7 @@ export class TokensService {
       sessionId: newSessionId
     };
 
-    const refreshToken = this.jwtService.sign(payload, {
+    const refreshToken = this.jwtService.signAsync(payload, {
       secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
       expiresIn: this.configService.get<number>('JWT_REFRESH_EXPIRES_IN'),
     });
