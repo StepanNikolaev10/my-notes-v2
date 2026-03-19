@@ -2,15 +2,15 @@ import { HttpException, HttpStatus, Injectable, UnauthorizedException } from '@n
 import { UsersService } from 'src/users/users.service';
 import bcrypt from "bcryptjs";
 import { v4 as uuidv4 } from 'uuid';
-import { SessionsService } from 'src/sessions/sessions.service';
-import { TokensService } from 'src/auth/tokens.service';
+import { SessionsService } from './sessions.service';
+import { TokensService } from './tokens.service';
 import { UserRegistrationDto } from './dto/req/user-registration.dto';
 import { UserLoginDto } from './dto/req/user-login.dto';
-import type { UpdateSessionPayload } from 'src/sessions/interfaces/update-session-payload.interface';
+import type { UpdateSessionPayload } from './interfaces/update-session-payload.interface';
 import { User } from '@my-notes/types';
 import type { RefreshTokenPayload } from './interfaces/tokens-payload.interface';
 import type { AuthServiceRes } from './interfaces/service-res/AuthServiceRes.interface';
-import type { CreateSessionPayload } from 'src/sessions/interfaces/create-session-payload.interface';
+import type { CreateSessionPayload } from 'src/auth/interfaces/create-session-payload.interface';
 
 @Injectable()
 export class AuthService {

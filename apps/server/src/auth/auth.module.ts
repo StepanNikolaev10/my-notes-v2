@@ -2,17 +2,18 @@ import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { UsersModule } from 'src/users/users.module';
-import { SessionsModule } from 'src/sessions/sessions.module';
 import { JwtModule } from '@nestjs/jwt';
 import { TokensService } from './tokens.service';
+import { RedisModule } from '@nestjs-modules/ioredis';
+import { SessionsService } from './sessions.service';
 
 @Module({
   controllers: [AuthController],
-  providers: [AuthService, TokensService],
+  providers: [AuthService, TokensService, SessionsService],
   imports: [
     UsersModule,
     JwtModule.register({}),
-    SessionsModule
+    RedisModule
   ],
 })
 export class AuthModule {}

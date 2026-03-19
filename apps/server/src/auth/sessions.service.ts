@@ -4,7 +4,7 @@ import type { SessionPayload } from './interfaces/session-payload.interface';
 import { ConfigService } from '@nestjs/config';
 import type { CreateSessionPayload } from './interfaces/create-session-payload.interface';
 import type { UpdateSessionPayload } from './interfaces/update-session-payload.interface';
-import { UpdateSessionRes } from './types/update-session-res.type';
+import type { UpdateSessionRes } from './types/update-session-res.type';
 
 @Injectable()
 export class SessionsService {
