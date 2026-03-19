@@ -5,7 +5,7 @@ import { AuthResDto } from './dto/res/auth-res.dto';
 import { ConfigService } from '@nestjs/config';
 import { JwtRefreshAuthGuard } from './guards/jwt-refresh-auth.guard';
 import { GetRtPayload } from './decorators/get-rt-payload.decorator';
-import type { RefreshTokenPayload } from 'src/tokens/interfaces/tokens-payload.interface';
+import type { RefreshTokenPayload } from './interfaces/tokens-payload.interface';
 import { UserRegistrationDto } from './dto/req/user-registration.dto';
 import { UserLoginDto } from './dto/req/user-login.dto';
 

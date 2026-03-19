@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import type { User } from '@my-notes/types';
-import { AccessTokenPayload, RefreshTokenPayload } from './interfaces/tokens-payload.interface';
+import type { AccessTokenPayload, RefreshTokenPayload } from './interfaces/tokens-payload.interface';
 
 @Injectable()
 export class TokensService {
