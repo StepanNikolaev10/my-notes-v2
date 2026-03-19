@@ -22,8 +22,8 @@ export class JwtAccessAuthGuard implements CanActivate {
         throw new UnauthorizedException({message: 'User unauthorized'})
       }
 
-      const user = await this.tokensService.verifyAccessToken(token);
-      req.user = user;
+      const accessTokenPayload = await this.tokensService.verifyAccessToken(token);
+      req.accessTokenPayload = accessTokenPayload;
       return true;
 
     } catch (e) {
