@@ -1,6 +1,6 @@
 import { createParamDecorator, ExecutionContext } from "@nestjs/common";
 
-export const GetRtPayload = createParamDecorator(
+export const GetRefreshTokenPayload = createParamDecorator(
   (data: string | null, context: ExecutionContext) => {
     const request = context.switchToHttp().getRequest();
 
