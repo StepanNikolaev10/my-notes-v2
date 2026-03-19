@@ -1,15 +1,14 @@
 services:
   server:
-    build:
-      context: .
-      dockerfile: server/Dockerfile
     container_name: nest-hot-reload-app
+    image: node:20-alpine
+    working_dir: /usr/src/app
     ports:
       - ${PORT}:${PORT}
     volumes:
-      - ./server:/usr/src/app
-      - ./shared:/usr/src/shared
-      - server_node_modules:/usr/src/app/node_modules
+      - .:/usr/src/app
+      - server_node_modules:/usr/src/app/apps/server/node_modules
+      - root_node_modules:/usr/src/app/node_modules
     env_file:
       - path: .env.development
         required: true # не обязательный, ошибки не будет если он отсутсвует, ...
@@ -19,8 +18,8 @@ services:
         condition: service_healthy
     environment:
       DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB_NAME}
-      WATCHPACK_POLLING: "true"
-    command: npm run start:dev
+    command: sh -c "npm install && npm run start:dev -w @my-notes/server" # используется sh -c потому что Exec form ["npm", "install"] не поддерживает запуск нескольких команд одновременно
+    # sh это оболочка (shell) для управления Linux-системой, это как минимальный набор инструментов, который позволяет отдавать приказы системе внутри контейнера, используя логику (типа &&).
   postgres:
     image: postgres:18-alpine
     container_name: postgres-db
@@ -32,7 +31,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB_NAME}
     volumes:
-      - ./server/pgdata:/var/lib/postgresql
+      - postgres_data:/var/lib/postgresql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -40,4 +39,6 @@ services:
       retries: 5
 
 volumes:
+  root_node_modules:
   server_node_modules:
+  postgres_data:
