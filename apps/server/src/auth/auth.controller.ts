@@ -4,7 +4,7 @@ import type { Response } from 'express';
 import { AuthResDto } from './dto/res/auth-res.dto';
 import { ConfigService } from '@nestjs/config';
 import { JwtRefreshAuthGuard } from './guards/jwt-refresh-auth.guard';
-import { GetRtPayload } from './decorators/get-rt-payload.decorator';
+import { GetRefreshTokenPayload } from './decorators/get-rt-payload.decorator';
 import type { RefreshTokenPayload } from './interfaces/tokens-payload.interface';
 import { UserRegistrationDto } from './dto/req/user-registration.dto';
 import { UserLoginDto } from './dto/req/user-login.dto';
@@ -47,7 +47,7 @@ export class AuthController {
   @Post('/refresh')
   @UseGuards(JwtRefreshAuthGuard)
   async refresh(
-    @GetRtPayload() currentRefreshTokenPayload: RefreshTokenPayload,
+    @GetRefreshTokenPayload() currentRefreshTokenPayload: RefreshTokenPayload,
     @Res({ passthrough: true }) res: Response
   ): Promise<AuthResDto> {
     const refreshResult = await this.authService.refresh(currentRefreshTokenPayload);
