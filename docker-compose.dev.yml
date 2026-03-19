@@ -37,8 +37,38 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-
+  redis:
+    image: redis:8.6-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    command: >
+      redis-server 
+      --appendonly yes 
+      --auto-aof-rewrite-percentage 100 
+      --auto-aof-rewrite-min-size 64mb 
+      --save 900 1
+    
+    # ПОЯСНЕНИЯ ПАРАМЕТРОВ:
+    # 1. --appendonly yes 
+    #    Включает AOF (журнал транзакций). Каждое изменение записывается в лог. 
+    #    Гарантирует, что сессии не пропадут при перезагрузке Docker.
+    #
+    # 2. --auto-aof-rewrite-percentage 100 
+    #    Условие чистки: запустить сжатие журнала, когда его размер 
+    #    вырастет на 100% (в 2 раза) относительно последнего чистого состояния.
+    #
+    # 3. --auto-aof-rewrite-min-size 64mb 
+    #    Порог чистки: не запускать сжатие, пока файл лога меньше 64 МБ. 
+    #    Защищает от слишком частой перезаписи мелких файлов.
+    #
+    # 4. --save 900 1 
+    #    Включает RDB (снимки). Делает слепок всей базы раз в 15 минут (900 сек), 
+    #    если был изменен хотя бы 1 ключ. Удобно для создания бэкапов.
+    volumes:
+      - redis_data:/data
 volumes:
   root_node_modules:
   server_node_modules:
   postgres_data:
+  redis_data:
