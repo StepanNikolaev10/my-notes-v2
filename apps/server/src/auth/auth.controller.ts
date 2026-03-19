@@ -8,6 +8,7 @@ import { GetRtPayload } from './decorators/get-rt-payload.decorator';
 import type { RefreshTokenPayload } from './interfaces/tokens-payload.interface';
 import { UserRegistrationDto } from './dto/req/user-registration.dto';
 import { UserLoginDto } from './dto/req/user-login.dto';
+import { plainToInstance } from 'class-transformer';
 
 @Controller('auth')
 export class AuthController {
@@ -27,7 +28,7 @@ export class AuthController {
       httpOnly: true,
       maxAge: this.configService.get<number>('JWT_REFRESH_EXPIRES_IN')! * 1000, // знак ! стоит потому что приложение не запустится без env, стоит Joi schema
     });
-    return { accessToken: jwts.accessToken };
+    return plainToInstance(AuthResDto, { accessToken: jwts.accessToken });
   }
 
   @Post('/login')
@@ -40,7 +41,7 @@ export class AuthController {
       httpOnly: true,
       maxAge: this.configService.get<number>('JWT_REFRESH_EXPIRES_IN')! * 1000, // знак ! стоит потому что приложение не запустится без env, стоит Joi schema
     });
-    return { accessToken: jwts.accessToken };
+    return plainToInstance(AuthResDto, { accessToken: jwts.accessToken });
   }
 
   @Post('/refresh')
@@ -56,7 +57,7 @@ export class AuthController {
         maxAge: this.configService.get<number>('JWT_REFRESH_EXPIRES_IN')! * 1000, // знак ! стоит потому что приложение не запустится без env, стоит Joi schema
       });
     }
-    return { accessToken: refreshResult.accessToken }
+    return plainToInstance(AuthResDto, { accessToken: refreshResult.accessToken });
   }
 
 }
