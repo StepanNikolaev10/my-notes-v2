@@ -15,5 +15,6 @@ import { SessionsService } from './sessions.service';
     JwtModule.register({}),
     RedisModule
   ],
+  exports: [TokensService]
 })
 export class AuthModule {}
