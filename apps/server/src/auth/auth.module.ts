@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { UsersModule } from 'src/users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { TokensService } from './tokens.service';
-import { RedisModule } from '@nestjs-modules/ioredis';
+import { RedisModule } from 'src/redis/redis.module';
 import { SessionsService } from './sessions.service';
 
 @Module({
