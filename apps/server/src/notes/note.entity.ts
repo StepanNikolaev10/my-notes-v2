@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGenerat
 import { UserEntity } from "src/users/user.entity";
 import type { Note, NoteColorsKeys } from "@my-notes/types";
 
-@Entity()
+@Entity('notes')
 export class NoteEntity implements Note {
   @PrimaryGeneratedColumn()
   id: number;
