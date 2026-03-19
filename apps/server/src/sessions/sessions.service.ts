@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import Redis from 'ioredis';
-import { Session } from './interfaces/session.interface';
+import type { SessionPayload } from './interfaces/session-payload.interface';
 import { ConfigService } from '@nestjs/config';
-import { CreateSession } from './interfaces/create-session.interface';
-import { UpdateSession } from './interfaces/update-session.interface';
+import type { CreateSessionPayload } from './interfaces/create-session-payload.interface';
+import type { UpdateSessionPayload } from './interfaces/update-session-payload.interface';
 import { UpdateSessionRes } from './types/update-session-res.type';
 
 @Injectable()
@@ -15,20 +15,20 @@ export class SessionsService {
     private readonly configService: ConfigService
   ) {}
 
-  async createSession(dto: CreateSession) {
-    const key = `${this.SESSION_PREFIX}${dto.sessionId}`;
+  async createSession(data: CreateSessionPayload) {
+    const key = `${this.SESSION_PREFIX}${data.sessionId}`;
 
-    const sessionData = {
-      userId: dto.userId,
+    const sessionPayload = {
+      userId: data.userId,
       createdAt: Date.now()
     };
 
-    await this.redis.set(key, JSON.stringify(sessionData), 'EX', this.configService.get<number>('JWT_REFRESH_EXPIRES_IN')!);
+    await this.redis.set(key, JSON.stringify(sessionPayload), 'EX', this.configService.get<number>('JWT_REFRESH_EXPIRES_IN')!);
   }
 
-  async updateSession(dto: UpdateSession): Promise<UpdateSessionRes> {
-    const currentKey = `${this.SESSION_PREFIX}${dto.currentSessionId}`;
-    const newKey = `${this.SESSION_PREFIX}${dto.newSessionId}`;
+  async updateSession(data: UpdateSessionPayload): Promise<UpdateSessionRes> {
+    const currentKey = `${this.SESSION_PREFIX}${data.currentSessionId}`;
+    const newKey = `${this.SESSION_PREFIX}${data.newSessionId}`;
     const newExpiresIn = this.configService.get<number>('JWT_REFRESH_EXPIRES_IN')!;
     const gracePeriodSeconds = 15;
 
@@ -63,7 +63,7 @@ export class SessionsService {
       2,
       currentKey,
       newKey,
-      dto.userId,
+      data.userId,
       Date.now(),
       newExpiresIn,
       gracePeriodSeconds
@@ -72,7 +72,7 @@ export class SessionsService {
     return result as UpdateSessionRes;
   }
 
-  async getSession(sessionId: string): Promise<Session | null> {
+  async getSession(sessionId: string): Promise<SessionPayload | null> {
     const sessionJson = await this.redis.get(`${this.SESSION_PREFIX}${sessionId}`);
     if (!sessionJson) return null;
     const session = JSON.parse(sessionJson);
