@@ -9,7 +9,7 @@ import { UserLoginDto } from './dto/req/user-login.dto';
 import type { UpdateSessionPayload } from './interfaces/update-session-payload.interface';
 import { User } from '@my-notes/types';
 import type { RefreshTokenPayload } from './interfaces/tokens-payload.interface';
-import type { AuthServiceRes } from './interfaces/service-res/AuthServiceRes.interface';
+import type { AuthServiceRes } from './interfaces/service-resps/AuthServiceRes.interface';
 import type { CreateSessionPayload } from 'src/auth/interfaces/create-session-payload.interface';
 
 @Injectable()
