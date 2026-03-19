@@ -2,7 +2,7 @@ import { NoteEntity } from "src/notes/note.entity";
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import type { User } from "@my-notes/types";
 
-@Entity()
+@Entity('users')
 export class UserEntity implements User {
   @PrimaryGeneratedColumn()
   id: number;
