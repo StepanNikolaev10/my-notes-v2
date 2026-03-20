@@ -5,10 +5,11 @@ import { AuthResDto } from './dto/res/auth-res.dto';
 import { ConfigService } from '@nestjs/config';
 import { JwtRefreshAuthGuard } from './guards/jwt-refresh-auth.guard';
 import { GetRefreshTokenPayload } from './decorators/get-rt-payload.decorator';
-import type { RefreshTokenPayload } from './interfaces/tokens-payload.interface';
 import { UserRegistrationDto } from './dto/req/user-registration.dto';
 import { UserLoginDto } from './dto/req/user-login.dto';
 import { plainToInstance } from 'class-transformer';
+import type { Tokens } from './types/tokens.interface';
+import type { AuthServiceArgs } from './types/service-args/auth-service-args.interface';
 
 @Controller('auth')
 export class AuthController {
@@ -23,7 +24,13 @@ export class AuthController {
     @Body() dto: UserRegistrationDto,
     @Res({ passthrough: true }) res: Response
   ): Promise<AuthResDto> {
-    const jwts = await this.authService.registration(dto);
+    const registrationArgs: AuthServiceArgs['registration'] = {
+      email: dto.email,
+      username: dto.username,
+      password: dto.password
+    }
+    const jwts = await this.authService.registration(registrationArgs);
+
     res.cookie('refreshToken', jwts.refreshToken, { 
       httpOnly: true,
       maxAge: this.configService.get<number>('JWT_REFRESH_EXPIRES_IN')! * 1000, // знак ! стоит потому что приложение не запустится без env, стоит Joi schema
@@ -36,7 +43,12 @@ export class AuthController {
     @Body() dto: UserLoginDto,
     @Res({ passthrough: true }) res: Response
   ): Promise<AuthResDto> {
-    const jwts = await this.authService.login(dto);
+    const loginArgs: AuthServiceArgs['login'] = {
+      email: dto.email,
+      password: dto.password
+    }
+    const jwts = await this.authService.login(loginArgs);
+
     res.cookie('refreshToken', jwts.refreshToken, { 
       httpOnly: true,
       maxAge: this.configService.get<number>('JWT_REFRESH_EXPIRES_IN')! * 1000, // знак ! стоит потому что приложение не запустится без env, стоит Joi schema
@@ -47,17 +59,20 @@ export class AuthController {
   @Post('/refresh')
   @UseGuards(JwtRefreshAuthGuard)
   async refresh(
-    @GetRefreshTokenPayload() currentRefreshTokenPayload: RefreshTokenPayload,
+    @GetRefreshTokenPayload() currentRefreshTokenPayload: Tokens['refreshTokenPayload'],
     @Res({ passthrough: true }) res: Response
   ): Promise<AuthResDto> {
-    const refreshResult = await this.authService.refresh(currentRefreshTokenPayload);
-    if(refreshResult.refreshToken) {
-      res.cookie('refreshToken', refreshResult.refreshToken, { 
+    const refreshArgs: AuthServiceArgs['refresh'] = {
+      currentRefreshTokenPayload: currentRefreshTokenPayload
+    }
+    const jwts = await this.authService.refresh(refreshArgs);
+    if(jwts.refreshToken) {
+      res.cookie('refreshToken', jwts.refreshToken, { 
         httpOnly: true,
         maxAge: this.configService.get<number>('JWT_REFRESH_EXPIRES_IN')! * 1000, // знак ! стоит потому что приложение не запустится без env, стоит Joi schema
       });
     }
-    return plainToInstance(AuthResDto, { accessToken: refreshResult.accessToken });
+    return plainToInstance(AuthResDto, { accessToken: jwts.accessToken });
   }
 
 }
