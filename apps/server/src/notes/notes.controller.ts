@@ -27,10 +27,12 @@ export class NotesController {
       ...dto,
       authorId: accessTokenPayload.userId
     }
-    const createdNote = await this.notesService.addNote(addNoteArgs)
+    const createdNote = await this.notesService.addNote(addNoteArgs); // await ловит resolve, а код после является then, если ошибка то это throw и catch
 
-    return plainToInstance(AddNoteResDto, createdNote)  // await ловит resolve, а код после является then, если ошибка то это throw и catch
+    return plainToInstance(AddNoteResDto, createdNote); // это синхронная функция, она ждёт значение, а не промис, поэтому выше нужен await
   }
+
+  
   
   // @Post('/remove')
   // @UseGuards(JwtAccessAuthGuard)
