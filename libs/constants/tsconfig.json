@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS", // Или "NodeNext", если весь проект на ESM 
+    "target": "ES2022",
+    "declaration": true,  // Обязательно: генерировать .d.ts файлы   
+    "outDir": "./dist",   // Куда складывать скомпилированный код    
+    "strict": true
+  },
+  "include": ["src/**/*"]
+}
