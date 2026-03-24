@@ -2,44 +2,44 @@ import type { Note, NoteColorsKeys, User } from "@my-notes/types";
 
 type NoteIds = readonly Note['id'][];
 
-export interface AddNote {
+export interface AddNoteArgs {
   readonly title: Note['title'];
   readonly mainText: Note['mainText'];
   readonly authorId: User['id'];
 }
 
-export interface ArchiveNotes {
+export interface ArchiveNotesArgs {
   readonly noteIds: NoteIds;
   readonly authorId: User['id'];
 }
 
-export interface UnarchiveNotes {
+export interface UnarchiveNotesArgs {
   readonly noteIds: NoteIds;
   readonly authorId: User['id'];
 }
 
-export interface TrashNotes {
+export interface TrashNotesArgs {
   readonly noteIds: NoteIds;
   readonly authorId: User['id'];
 }
 
-export interface RestoreTrashedNotes {
+export interface RestoreTrashedNotesArgs {
   readonly noteIds: NoteIds;
   readonly authorId: User['id'];
 }
 
-export interface DeleteNotes {
+export interface DeleteNotesArgs {
   readonly noteIds: NoteIds;
   readonly authorId: User['id'];
 }
 
-export interface ChangeNotesColor {
+export interface ChangeNotesColorArgs {
   readonly noteIds: NoteIds;
   readonly colorKey: NoteColorsKeys;
   readonly authorId: User['id'];
 }
 
-export interface ChangeNoteContent {
+export interface ChangeNoteContentArgs {
   readonly noteId: Note['id'];
   readonly updatedTitle: Note['title'];
   readonly updatedMainText: Note['mainText'];
