@@ -11,5 +11,5 @@ export class UpdateNotesColorDto implements IUpdateNotesColorDto {
   
   @IsString()
   @IsIn(Object.keys(NoteColorsConstant))
-  changedColorKey: NoteColorsKeys
+  updatedColorKey: NoteColorsKeys
 }

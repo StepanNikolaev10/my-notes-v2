@@ -29,11 +29,11 @@ export interface IDeleteNotesDto {
 
 export interface IUpdateNotesColorDto {
   readonly noteIds: NoteIds;
-  readonly changedColorKey: NoteColorsKeys;
+  readonly updatedColorKey: NoteColorsKeys;
 }
 
-export interface IChangeNoteContentDto {
+export interface IUpdateNoteContentDto {
   readonly noteId: Note['id'];
-  readonly changedTitle: Note['title'];
-  readonly changedMainText: Note['mainText'];
+  readonly updatedTitle: Note['title'];
+  readonly updatedMainText: Note['mainText'];
 }
