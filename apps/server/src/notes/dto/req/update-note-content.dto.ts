@@ -1,7 +1,7 @@
 import { IsInt, IsString, MaxLength, Min } from "class-validator";
 import type { IUpdateNoteContentDto } from "../types/notes-req-dtos.interfaces";
 
-export class ChangeNoteContentDto implements IUpdateNoteContentDto {
+export class UpdateNoteContentDto implements IUpdateNoteContentDto {
   @IsInt()
   @Min(1)
   readonly noteId: number;
