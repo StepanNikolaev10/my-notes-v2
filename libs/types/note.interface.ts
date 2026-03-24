@@ -5,6 +5,8 @@ export interface Note {
   title: string,
   mainText: string
   colorKey: NoteColorsKeys;
+  isArchived: boolean;
+  isTrashed: boolean;
   createdAt: Date | string; // на клиент эти данные приходят строкой из за JSON.stringify
   updatedAt: Date | string; // на клиент эти данные приходят строкой из за JSON.stringify
 }

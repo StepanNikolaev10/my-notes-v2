@@ -16,6 +16,12 @@ export class NoteEntity implements Note {
   @Column({ default: 'UNCOLORED' })
   colorKey: NoteColorsKeys;
 
+  @Column({ type: 'boolean', default: false })
+  isArchived: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  isTrashed: boolean;
+
   @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;
 
