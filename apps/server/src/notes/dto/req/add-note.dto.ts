@@ -1,14 +1,12 @@
-import { IsOptional, IsString, MaxLength } from 'class-validator';
-import type { Note } from '@my-notes/types';
+import { IsString, MaxLength } from 'class-validator';
+import type { IAddNoteDto } from '../types/notes-req-dtos.interfaces';
 
-export class AddNoteDto {
-  @IsOptional()
-  @IsString({ message: 'Title must be a string' })
+export class AddNoteDto implements IAddNoteDto {
+  @IsString()
   @MaxLength(200, { message: 'Title cannot be longer than 200 characters' })
-  readonly title: Note['title'];
+  readonly title: string;
 
-  @IsOptional()
-  @IsString({ message: 'Main text must be a string' })
+  @IsString()
   @MaxLength(10000, { message: 'Main text cannot be longer than 10000 characters' })
-  readonly mainText: Note['mainText'];
+  readonly mainText: string;
 }

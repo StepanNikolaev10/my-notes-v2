@@ -1,19 +1,7 @@
-import { Note, NoteColors } from "@my-notes/types";
 import { Expose, Transform } from "class-transformer";
+import { IAddNoteResDto } from "../types/notes-res-dtos.interfaces";
 
-export class AddNoteResDto implements Note {
-  @Expose()
-  readonly id: number;
-
-  @Expose()
-  readonly title: string;
-
-  @Expose()
-  readonly mainText: string;
-
-  @Expose()
-  readonly colorKey: keyof NoteColors;
-
+export class AddNoteResDto implements IAddNoteResDto {
   @Expose()
   @Transform(({ value }) => value instanceof Date ? value.toISOString() : value)
   readonly createdAt: string; 
