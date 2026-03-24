@@ -33,16 +33,17 @@ export interface DeleteNotesArgs {
   readonly authorId: User['id'];
 }
 
-export interface ChangeNotesColorArgs {
+export interface UpdateNotesColorArgs {
   readonly noteIds: NoteIds;
-  readonly colorKey: NoteColorsKeys;
+  readonly updatedColorKey: NoteColorsKeys;
   readonly authorId: User['id'];
 }
 
-export interface ChangeNoteContentArgs {
+export interface UpdateNoteContentArgs {
   readonly noteId: Note['id'];
   readonly updatedTitle: Note['title'];
   readonly updatedMainText: Note['mainText'];
+  readonly authorId: User['id'];
 }
 
   // changeNotePosition: {
