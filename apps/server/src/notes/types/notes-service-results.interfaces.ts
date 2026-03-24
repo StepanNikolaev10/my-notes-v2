@@ -1,21 +1,21 @@
 import type { Note } from "@my-notes/types";
 
-export interface IAddNoteResult {
+export interface AddNoteResult {
   readonly createdAt: Note['createdAt'];
   readonly updatedAt: Note['updatedAt'];
 }
 
-export interface IUpdateNotesColorResult {
+export interface UpdateNotesColorResult {
   readonly updatedNotesData: {
     readonly noteId: Note['id'];
     readonly updatedAt: Note['updatedAt'];
   }[]
 }
 
-export interface IUpdateNoteContentResult {
+export interface UpdateNoteContentResult {
   readonly updatedAt: Note['updatedAt'];
 }
 
-export interface IGetNotesResult{
+export interface GetNotesResult{
   readonly notes: Note[];
 }
