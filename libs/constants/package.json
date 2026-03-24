@@ -5,5 +5,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc"
+  },
+  "devDependencies": {
+    "@my-notes/types": "^1.0.0"
   }
 }

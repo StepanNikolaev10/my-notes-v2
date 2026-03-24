@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NOTE_COLORS = void 0;
-exports.NOTE_COLORS = {
+exports.NoteColorsConstant = void 0;
+exports.NoteColorsConstant = {
     UNCOLORED: 'transparent',
     FIRST: 'rgba(169, 29, 36, 1)',
     SECOND: 'rgba(208, 112, 43, 1)',

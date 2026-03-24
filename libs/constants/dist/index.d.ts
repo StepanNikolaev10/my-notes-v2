@@ -1,4 +1,4 @@
-export declare const NOTE_COLORS: {
+export declare const NoteColorsConstant: {
     readonly UNCOLORED: "transparent";
     readonly FIRST: "rgba(169, 29, 36, 1)";
     readonly SECOND: "rgba(208, 112, 43, 1)";

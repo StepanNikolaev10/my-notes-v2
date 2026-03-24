@@ -1,4 +1,6 @@
-export const NOTE_COLORS = {
+import type { NoteColors } from '@my-notes/types';
+
+export const NoteColorsConstant: NoteColors = {
   UNCOLORED: 'transparent',
   FIRST:'rgba(169, 29, 36, 1)',
   SECOND: 'rgba(208, 112, 43, 1)',
