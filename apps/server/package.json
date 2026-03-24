@@ -22,6 +22,7 @@
     "docker:uninstall": "docker exec -it nest-hot-reload-app npm uninstall"
   },
   "dependencies": {
+    "@my-notes/constants": "^1.0.0",
     "@nestjs-modules/ioredis": "^2.0.2",
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.3",
@@ -46,7 +47,6 @@
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.18.0",
     "@my-notes/types": "*",
-    "@my-notes/constants": "*",
     "@nestjs/cli": "^11.0.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.1",
