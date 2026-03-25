@@ -4,22 +4,20 @@ import bcrypt from "bcryptjs";
 import { v4 as uuidv4 } from 'uuid';
 import { SessionsService } from './sessions.service';
 import { TokensService } from './tokens.service';
-import type { AuthServiceArgs } from './types/service-args/auth-service-args.interface';
-import type { AuthServiceResults } from './types/service-results/auth-service-results.interface';
 import type { User } from '@my-notes/types';
-import type { SessionsServiceArgs } from './types/service-args/sessions-service-args.interface';
-import { TokensServiceArgs } from './types/service-args/tokens-service-args.interface';
+import { LoginArgs, RefreshArgs, RegistrationArgs } from './types/service-args/auth-service-args.interfaces';
+import { LoginResult, RefreshResult, RegistrationResult } from './types/service-results/auth-service-results.interfaces';
 
 @Injectable()
 export class AuthService {
-
+  
   constructor(
     private readonly usersService: UsersService,
     private readonly sessionsService: SessionsService,
     private readonly tokensService: TokensService,
   ) {}
 
-  async registration(args: AuthServiceArgs['registration']): Promise<AuthServiceResults> {
+  async registration(args: RegistrationArgs): Promise<RegistrationResult> {
     const candidate = await this.usersService.getUserByEmail(args.email);
     if(candidate) {
       throw new HttpException('User with this email already exists', HttpStatus.BAD_REQUEST)
@@ -28,61 +26,40 @@ export class AuthService {
     const hashPassword = await bcrypt.hash(args.password, 5)
     const user = await this.usersService.createUser({...args, password: hashPassword})
 
-
-    const generateAccessTokenArgs: TokensServiceArgs['generateAccessToken'] = {
-      userId: user.id
-    }
     const newSessionId = uuidv4();
-    const generateRefreshTokenArgs: TokensServiceArgs['generateRefreshToken'] = {
-      userId: user.id,
-      newSessionId: newSessionId
-    }
     const jwts = {
-      accessToken: await this.tokensService.generateAccessToken(generateAccessTokenArgs),
-      refreshToken: await this.tokensService.generateRefreshToken(generateRefreshTokenArgs)
+      accessToken: await this.tokensService.generateAccessToken({ userId: user.id }),
+      refreshToken: await this.tokensService.generateRefreshToken({ userId: user.id, newSessionId: newSessionId })
     }
 
-    const createSessionArgs: SessionsServiceArgs['createSession'] = {
-      userId: user.id,
-      sessionId: newSessionId,
-    }
-    await this.sessionsService.createSession(createSessionArgs);
-
+    await this.sessionsService.createSession({ userId: user.id, sessionId: newSessionId });
     return jwts;
   }
 
-  async login(args: AuthServiceArgs['login']): Promise<AuthServiceResults> {
+  async login(args: LoginArgs): Promise<LoginResult> {
     const user = await this.validateUser(args);
 
     const newSessionId = uuidv4();
-
     const jwts = {
       accessToken: await this.tokensService.generateAccessToken({ userId: user.id }),
       refreshToken: await this.tokensService.generateRefreshToken({ userId: user.id, newSessionId: newSessionId})
     }
 
-    const createSessionArgs: SessionsServiceArgs['createSession'] = {
-      userId: user.id,
-      sessionId: newSessionId,
-    }
-    await this.sessionsService.createSession(createSessionArgs);
-
+    await this.sessionsService.createSession({ userId: user.id,sessionId: newSessionId });
     return jwts;
   }
 
-  async refresh(args: AuthServiceArgs['refresh']): Promise<AuthServiceResults> {
+  async refresh(args: RefreshArgs): Promise<RefreshResult> {
     const session = await this.sessionsService.getSession(args.currentRefreshTokenPayload.sessionId);
     if (!session) throw new UnauthorizedException('Session expired or invalid');
 
     const newSessionId = uuidv4();
-    
-    const updateSessionArgs: SessionsServiceArgs['updateSession'] = {
+
+    const refreshResult = await this.sessionsService.updateSession({
       userId: args.currentRefreshTokenPayload.userId,
       currentSessionId: args.currentRefreshTokenPayload.sessionId,
       newSessionId: newSessionId,
-    }
-
-    const refreshResult = await this.sessionsService.updateSession(updateSessionArgs);
+    });
 
     if (refreshResult !== 'OK' && refreshResult !== 'ALREADY_UPDATED') {
       throw new UnauthorizedException('Session expired or invalid')
@@ -104,7 +81,7 @@ export class AuthService {
   
   }
 
-  private async validateUser(args: AuthServiceArgs['login']): Promise<User> {
+  private async validateUser(args: LoginArgs): Promise<User> {
     const user = await this.usersService.getUserByEmail(args.email);
     if(!user) {
       throw new UnauthorizedException({message: 'Некорректный емейл'})

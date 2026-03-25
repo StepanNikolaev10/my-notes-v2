@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import Redis from 'ioredis';
 import { ConfigService } from '@nestjs/config';
-import { SessionsServiceArgs } from './types/service-args/sessions-service-args.interface';
-import { SessionsServiceResults } from './types/service-results/sessions-service-results.interface';
-import { Session } from './types/session.interface';
+import type { Session } from './types/session.interface';
+import type { CreateSessionArgs, UpdateSessionArgs } from './types/service-args/sessions-service-args.interfaces';
+import type { UpdateSessionResult } from './types/service-results/sessions-service-results.types';
 
 @Injectable()
 export class SessionsService {
@@ -14,7 +14,7 @@ export class SessionsService {
     private readonly configService: ConfigService
   ) {}
 
-  async createSession(args: SessionsServiceArgs['createSession']): SessionsServiceResults['createSession'] {
+  async createSession(args: CreateSessionArgs): Promise<void> {
     const key = `${this.SESSION_PREFIX}${args.sessionId}`;
 
     const sessionPayload = {
@@ -25,7 +25,7 @@ export class SessionsService {
     await this.redis.set(key, JSON.stringify(sessionPayload), 'EX', this.configService.get<number>('JWT_REFRESH_EXPIRES_IN')!);
   }
 
-  async updateSession(args: SessionsServiceArgs['updateSession']): Promise<SessionsServiceResults['updateSession']> {
+  async updateSession(args: UpdateSessionArgs): Promise<UpdateSessionResult> {
     const currentKey = `${this.SESSION_PREFIX}${args.currentSessionId}`;
     const newKey = `${this.SESSION_PREFIX}${args.newSessionId}`;
     const newExpiresIn = this.configService.get<number>('JWT_REFRESH_EXPIRES_IN')!;
@@ -68,7 +68,7 @@ export class SessionsService {
       gracePeriodSeconds
     );
 
-    return result as SessionsServiceResults['updateSession'];
+    return result as UpdateSessionResult;
   }
 
   async getSession(sessionId: Session['id']): Promise<Session | null> {

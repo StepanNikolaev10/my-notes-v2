@@ -9,7 +9,6 @@ import { UserRegistrationDto } from './dto/req/user-registration.dto';
 import { UserLoginDto } from './dto/req/user-login.dto';
 import { plainToInstance } from 'class-transformer';
 import type { Tokens } from './types/tokens.interface';
-import type { AuthServiceArgs } from './types/service-args/auth-service-args.interface';
 
 @Controller('auth')
 export class AuthController {
@@ -24,13 +23,7 @@ export class AuthController {
     @Body() dto: UserRegistrationDto,
     @Res({ passthrough: true }) res: Response
   ): Promise<AuthResDto> {
-    const registrationArgs: AuthServiceArgs['registration'] = {
-      email: dto.email,
-      username: dto.username,
-      password: dto.password
-    }
-    const jwts = await this.authService.registration(registrationArgs);
-
+    const jwts = await this.authService.registration(dto);
     res.cookie('refreshToken', jwts.refreshToken, { 
       httpOnly: true,
       maxAge: this.configService.get<number>('JWT_REFRESH_EXPIRES_IN')! * 1000, // знак ! стоит потому что приложение не запустится без env, стоит Joi schema
@@ -43,12 +36,7 @@ export class AuthController {
     @Body() dto: UserLoginDto,
     @Res({ passthrough: true }) res: Response
   ): Promise<AuthResDto> {
-    const loginArgs: AuthServiceArgs['login'] = {
-      email: dto.email,
-      password: dto.password
-    }
-    const jwts = await this.authService.login(loginArgs);
-
+    const jwts = await this.authService.login(dto);
     res.cookie('refreshToken', jwts.refreshToken, { 
       httpOnly: true,
       maxAge: this.configService.get<number>('JWT_REFRESH_EXPIRES_IN')! * 1000, // знак ! стоит потому что приложение не запустится без env, стоит Joi schema
@@ -62,10 +50,7 @@ export class AuthController {
     @GetRefreshTokenPayload() currentRefreshTokenPayload: Tokens['refreshTokenPayload'],
     @Res({ passthrough: true }) res: Response
   ): Promise<AuthResDto> {
-    const refreshArgs: AuthServiceArgs['refresh'] = {
-      currentRefreshTokenPayload: currentRefreshTokenPayload
-    }
-    const jwts = await this.authService.refresh(refreshArgs);
+    const jwts = await this.authService.refresh({ currentRefreshTokenPayload });
     if(jwts.refreshToken) {
       res.cookie('refreshToken', jwts.refreshToken, { 
         httpOnly: true,

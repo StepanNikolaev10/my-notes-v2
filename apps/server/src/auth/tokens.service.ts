@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-import type { User } from '@my-notes/types';
-import type { TokensServiceArgs } from './types/service-args/tokens-service-args.interface';
 import type { Tokens } from './types/tokens.interface';
-import { TokensServiceResults } from './types/service-results/tokens-service-results.interface';
+import type { GenerateAccessTokenArgs, GenerateRefreshTokenArgs, VerifyAccessTokenArgs, VerifyRefreshTokenArgs } from './types/service-args/tokens-service-args.types';
+import type { GenerateAccessTokenResult, GenerateRefreshTokenResult, VerifyAccessTokenResult, VerifyRefreshTokenResult } from './types/service-results/tokens-service-results.types';
 
 @Injectable()
 export class TokensService {
@@ -14,12 +13,12 @@ export class TokensService {
     private readonly configService: ConfigService
   ) {}
 
-  async generateAccessToken(args: TokensServiceArgs['generateAccessToken']): Promise<TokensServiceResults['generateAccessToken']> {
+  async generateAccessToken(args: GenerateAccessTokenArgs): Promise<GenerateAccessTokenResult> {
     const payload: Tokens['accessTokenPayload'] = {
       userId: args.userId,
     };
 
-    const accessToken = this.jwtService.signAsync(payload, {
+    const accessToken = await this.jwtService.signAsync(payload, {
       secret: this.configService.get<string>('JWT_ACCESS_SECRET'),
       expiresIn: this.configService.get<number>('JWT_ACCESS_EXPIRES_IN'),
     });
@@ -27,13 +26,13 @@ export class TokensService {
     return accessToken;
   }
 
-  async generateRefreshToken(args: TokensServiceArgs['generateRefreshToken']): Promise<TokensServiceResults['generateRefreshToken']> {
+  async generateRefreshToken(args: GenerateRefreshTokenArgs): Promise<GenerateRefreshTokenResult> {
     const payload: Tokens['refreshTokenPayload'] = {
       userId: args.userId,
       sessionId: args.newSessionId
     };
 
-    const refreshToken = this.jwtService.signAsync(payload, {
+    const refreshToken = await this.jwtService.signAsync(payload, {
       secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
       expiresIn: this.configService.get<number>('JWT_REFRESH_EXPIRES_IN'),
     });
@@ -41,13 +40,13 @@ export class TokensService {
     return refreshToken;
   }
 
-  async verifyAccessToken(token: TokensServiceArgs['verifyAccessToken']): Promise<TokensServiceResults['verifyAccessToken']> {
+  async verifyAccessToken(token: VerifyAccessTokenArgs): Promise<VerifyAccessTokenResult> {
     return await this.jwtService.verifyAsync(token, {
       secret: this.configService.get<string>('JWT_ACCESS_SECRET')
     });
   }
 
-  async verifyRefreshToken(token: TokensServiceArgs['verifyRefreshToken']): Promise<TokensServiceResults['verifyRefreshToken']> {
+  async verifyRefreshToken(token: VerifyRefreshTokenArgs): Promise<VerifyRefreshTokenResult> {
     return await this.jwtService.verifyAsync(token, {
       secret: this.configService.get<string>('JWT_REFRESH_SECRET')
     });
