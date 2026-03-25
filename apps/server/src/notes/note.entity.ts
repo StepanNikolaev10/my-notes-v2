@@ -16,6 +16,9 @@ export class NoteEntity implements Note {
   @Column({ default: 'UNCOLORED' })
   colorKey: NoteColorsKeys;
 
+  @Column()
+  positionNumber: number;
+
   @Column({ type: 'boolean', default: false })
   isArchived: boolean;
 
