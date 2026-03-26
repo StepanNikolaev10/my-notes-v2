@@ -18,10 +18,11 @@ const NotesPageMain = ({ notes }:NotesPageMainProps) => {
         ? (
           <>
             <NotesList notes={notes}/>
-            <NoteAddBtn onClick={() => openModal('NOTE_ADDING')}/>
           </>
         ) : <div className={styles.noNotesMessage}>No notes found</div>
       }
+      <NoteAddBtn onClick={() => openModal('NOTE_ADDING')}/>
+        
     </main>
   );
 };
