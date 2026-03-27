@@ -5,9 +5,8 @@ export class NoteDto implements Note {
   readonly title: string;
   readonly mainText: string;
   readonly colorKey: NoteColorsKeys;
+  readonly status: 'default' | 'archived' | 'trashed';
   readonly positionNumber: number;
-  readonly isArchived: boolean;
-  readonly isTrashed: boolean;
   readonly createdAt: string;
   readonly updatedAt: string;
 }
