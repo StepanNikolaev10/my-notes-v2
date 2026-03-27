@@ -5,9 +5,8 @@ export interface Note {
   readonly title: string,
   readonly mainText: string
   readonly colorKey: NoteColorsKeys;
+  readonly status: 'default' | 'archived' | 'trashed';
   readonly positionNumber: number;
-  readonly isArchived: boolean;
-  readonly isTrashed: boolean;
   readonly createdAt: Date | string; // на клиент эти данные приходят строкой из за JSON.stringify
   readonly updatedAt: Date | string; // на клиент эти данные приходят строкой из за JSON.stringify
 }
