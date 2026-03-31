@@ -39,8 +39,8 @@ export class NotesController {
   archiveNotes(
     @Body() dto: ArchiveNotesDto,
     @GetAccessTokenPayload() accessTokenPayload: Tokens['accessTokenPayload']
-  ): void {
-    this.notesService.archiveNotes({ ...dto, authorId: accessTokenPayload.userId });
+  ): Promise<void> {
+    return this.notesService.archiveNotes({ ...dto, authorId: accessTokenPayload.userId });
   }
 
   @Post('/unarchive')
@@ -48,8 +48,8 @@ export class NotesController {
   unarchiveNotes(
     @Body() dto: UnarchiveNotesDto,
     @GetAccessTokenPayload() accessTokenPayload: Tokens['accessTokenPayload']
-  ): void {
-    this.notesService.unarchiveNotes({ ...dto, authorId: accessTokenPayload.userId });
+  ): Promise<void> {
+    return this.notesService.unarchiveNotes({ ...dto, authorId: accessTokenPayload.userId });
   }
 
   @Post('/trash')
@@ -57,8 +57,8 @@ export class NotesController {
   trashNotes(
     @Body() dto: TrashNotesDto,
     @GetAccessTokenPayload() accessTokenPayload: Tokens['accessTokenPayload']
-  ): void {
-    this.notesService.trashNotes({ ...dto, authorId: accessTokenPayload.userId });
+  ): Promise<void> {
+    return this.notesService.trashNotes({ ...dto, authorId: accessTokenPayload.userId });
   }
 
   @Post('/restore-trashed')
@@ -66,8 +66,8 @@ export class NotesController {
   restoreTrashedNotes(
     @Body() dto: RestoreTrashedNotesDto,
     @GetAccessTokenPayload() accessTokenPayload: Tokens['accessTokenPayload']
-  ): void {
-    this.notesService.restoreTrashedNotes({ ...dto, authorId: accessTokenPayload.userId });
+  ): Promise<void> {
+    return this.notesService.restoreTrashedNotes({ ...dto, authorId: accessTokenPayload.userId });
   }
 
   @Delete('/delete')
@@ -75,8 +75,8 @@ export class NotesController {
   deleteNotes(
     @Body() dto: DeleteNotesDto,
     @GetAccessTokenPayload() accessTokenPayload: Tokens['accessTokenPayload']
-  ): void {
-    this.notesService.deleteNotes({ ...dto, authorId: accessTokenPayload.userId });
+  ): Promise<void> {
+    return this.notesService.deleteNotes({ ...dto, authorId: accessTokenPayload.userId });
   }
 
   @Post('/update-color')
