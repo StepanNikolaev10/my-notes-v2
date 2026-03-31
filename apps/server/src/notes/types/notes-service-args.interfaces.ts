@@ -46,6 +46,8 @@ export interface UpdateNoteContentArgs {
   readonly authorId: User['id'];
 }
 
-  // changeNotePosition: {
-    
-  // };
+export interface UpdateNotePositionArgs {
+  readonly noteId: Note['id'];
+  readonly updatedPositionNumber: Note['positionNumber']
+  readonly authorId: User['id'];
+}

@@ -273,4 +273,63 @@ export class NotesService {
     }
   }
 
+  async updateNotePosition(args: UpdateNotePositionArgs): Promise<void> {
+
+    await this.noteRepository.manager.transaction(async (manager) => {
+      const currentNote = await manager.findOne(NoteEntity, {
+        where: { id: args.noteId, authorId: args.authorId }
+      });
+
+      if (!currentNote) throw new NotFoundException();
+
+      if (args.updatedPositionNumber === currentNote.positionNumber) return;
+      if (args.updatedPositionNumber < 1) throw new BadRequestException('Cannot move note any lower.');
+
+      const lastNote = await manager.findOne(NoteEntity, {
+        where: { status: currentNote.status, authorId: args.authorId },
+        order: { positionNumber: 'DESC' }
+      });
+
+      const maxPosition = lastNote ? lastNote.positionNumber : 1;
+
+      if (args.updatedPositionNumber > maxPosition) {
+        throw new BadRequestException(`Cannot move note any higher.`);
+      }
+
+      if(args.updatedPositionNumber > currentNote.positionNumber) {
+        await manager.decrement(NoteEntity, { 
+            status: currentNote.status, 
+            authorId: args.authorId,
+            positionNumber: Between(currentNote.positionNumber + 1, args.updatedPositionNumber) 
+          }, 
+          'positionNumber', 
+          1
+        );
+      } else {
+        await manager.increment(NoteEntity, { 
+            status: currentNote.status, 
+            authorId: args.authorId,
+            positionNumber: Between(args.updatedPositionNumber, currentNote.positionNumber - 1) 
+          }, 
+          'positionNumber', 
+          1
+        );
+      }
+
+      await manager.update(NoteEntity, 
+        { id: args.noteId }, 
+        { positionNumber: args.updatedPositionNumber }
+      );
+    });
+
+  }
+  
 }
+
+// ТРАНЗАКЦИИ TYPE ORM
+
+// Что бы использовать функционал транзакций в type orm нужно получить      
+// entity manager, entity manager отвечает за все сущности в бд, доступ к нему его экземпляру есть у любого
+// экземпляра Repository, а уже с помощью entity manager можно обратиться к transaction и создать транзакции, этот  
+// метод принимает асинхронный коллбек с аргументом manager, с помощью которого внутри данного коллбека мы
+// совершаем все операции

@@ -37,3 +37,8 @@ export interface IUpdateNoteContentDto {
   readonly updatedTitle: Note['title'];
   readonly updatedMainText: Note['mainText'];
 }
+
+export interface IUpdateNotePositionDto {
+  readonly noteId: Note['id'];
+  readonly updatedPositionNumber: Note['positionNumber'];
+}

@@ -15,6 +15,7 @@ import { UpdateNotesColorDto } from './dto/req/update-notes-color.dto';
 import { UpdateNoteContentDto } from './dto/req/update-note-content.dto';
 import { UpdateNotesColorResDto } from './dto/res/update-notes-color.dto';
 import { UpdateNoteContentResDto } from './dto/res/update-note-content-res.dto';
+import { UpdateNotePosisionDto } from './dto/req/update-note-position.dto';
 
 @Controller('notes')
 export class NotesController {
@@ -98,5 +99,14 @@ export class NotesController {
     const serviceResult = await this.notesService.updateNoteContent({ ...dto, authorId: accessTokenPayload.userId });
     return plainToInstance(UpdateNoteContentResDto, serviceResult);
   }
-  
+
+  @Post('/update-position')
+  @UseGuards(JwtAccessAuthGuard)
+  UpdateNotePosition(
+    @Body() dto: UpdateNotePosisionDto,
+    @GetAccessTokenPayload() accessTokenPayload: Tokens['accessTokenPayload']
+  ): Promise<void> {
+    return this.notesService.updateNotePosition({ ...dto, authorId: accessTokenPayload.userId });
+  }
+
 }
