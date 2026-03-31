@@ -1,8 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { NoteEntity } from './note.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
-import { AddNoteArgs, ArchiveNotesArgs, DeleteNotesArgs, RestoreTrashedNotesArgs, TrashNotesArgs, UnarchiveNotesArgs, UpdateNoteContentArgs, UpdateNotesColorArgs } from './types/notes-service-args.interfaces';
+import { Between, In, MoreThan, Repository } from 'typeorm';
+import { AddNoteArgs, ArchiveNotesArgs, DeleteNotesArgs, RestoreTrashedNotesArgs, TrashNotesArgs, UnarchiveNotesArgs, UpdateNoteContentArgs, UpdateNotePositionArgs, UpdateNotesColorArgs } from './types/notes-service-args.interfaces';
 import { AddNoteResult, UpdateNoteContentResult, UpdateNotesColorResult } from './types/notes-service-results.interfaces';
 
 
@@ -14,49 +14,225 @@ export class NotesService {
   private noteRepository: Repository<NoteEntity>  // значения падает в userRepository,  ...
   // ...но для удобной работы используется тип Repository с добавлением методов автокомлитом и дженерик с типами сущности Note
 
-  async addNote(args: AddNoteArgs): Promise<AddNoteResult> { // за счёт noteRepository создаётся экземпляр класса сущности Note, значения из dto подставляются в нужные места.
-    const note = this.noteRepository.create(args);
-    await this.noteRepository.save(note);
-    return { createdAt: note.createdAt, updatedAt: note.updatedAt }
+  async addNote(args: AddNoteArgs): Promise<AddNoteResult> {
+    return await this.noteRepository.manager.transaction(async (manager) => {
+      const lastDefaultNote = await manager.findOne(NoteEntity, {
+        where: { status: 'default', authorId: args.authorId },
+        order: { positionNumber: 'DESC'}
+      });
+
+      let newDefaultPositionNumber = lastDefaultNote?.positionNumber ? lastDefaultNote.positionNumber + 1 : 1;
+      const newNote = manager.create(NoteEntity, {
+        ...args,
+        status: 'default',
+        positionNumber: newDefaultPositionNumber
+      })
+
+      await manager.save(newNote);
+      return { createdAt: newNote.createdAt, updatedAt: newNote.createdAt }
+    });
   }
 
   async archiveNotes(args: ArchiveNotesArgs): Promise<void> {
-    await this.noteRepository.update(
-      { id: In(args.noteIds), authorId: args.authorId, isArchived: false, isTrashed: false },
-      { isArchived: true }
-    );
+
+    return await this.noteRepository.manager.transaction(async (manager) => {
+      const notesToArchive = await manager.find(NoteEntity, {
+        where: { id: In(args.noteIds), status: 'default', authorId: args.authorId },
+        order: { positionNumber: 'DESC' }
+      });
+
+      if(notesToArchive.length < args.noteIds.length) {
+        throw new ForbiddenException('Failed to archive notes due to them current status or access restrictions.');
+      }
+
+      const lastArchivedNote = await manager.findOne(NoteEntity, {
+        where: { status: 'archived', authorId: args.authorId },
+        order: { positionNumber: 'DESC'}
+      });
+
+      const oldPositions = notesToArchive.map(note => note.positionNumber);
+      let newArchivedPositionNumber = lastArchivedNote?.positionNumber ? lastArchivedNote.positionNumber + 1 : 1;
+
+      notesToArchive.forEach(note => {
+        note.status = 'archived';
+        note.positionNumber = newArchivedPositionNumber++;
+      });
+      await manager.save(notesToArchive);
+
+      for (const pos of oldPositions) {
+        await manager.decrement(NoteEntity, 
+          { 
+            status: 'default', 
+            authorId: args.authorId,
+            positionNumber: MoreThan(pos) 
+          }, 
+          'positionNumber', 
+          1
+        );
+      }
+    });
+
   }
 
   async unarchiveNotes(args: UnarchiveNotesArgs): Promise<void> {
-    await this.noteRepository.update(
-      { id: In(args.noteIds), authorId: args.authorId, isArchived: true, isTrashed: false },
-      { isArchived: false }
-    );
+
+    return await this.noteRepository.manager.transaction(async (manager) => {
+      const notesToDefault = await manager.find(NoteEntity, {
+        where: { id: In(args.noteIds), status: 'archived', authorId: args.authorId },
+        order: { positionNumber: 'DESC' }
+      });
+
+      if(notesToDefault.length < args.noteIds.length) {
+        throw new ForbiddenException('Failed to unarchive notes due to them current status or access restrictions.');
+      }
+
+      const lastDefaultNote = await manager.findOne(NoteEntity, {
+        where: { status: 'default', authorId: args.authorId },
+        order: { positionNumber: 'DESC'}
+      });
+
+      const oldPositions = notesToDefault.map(note => note.positionNumber);
+      let newDefaultPositionNumber = lastDefaultNote?.positionNumber ? lastDefaultNote.positionNumber + 1 : 1;
+
+      notesToDefault.forEach(note => {
+        note.status = 'default';
+        note.positionNumber = newDefaultPositionNumber++;
+      });
+      await manager.save(notesToDefault);
+
+      for (const pos of oldPositions) {
+        await manager.decrement(NoteEntity, 
+          { 
+            status: 'default', 
+            authorId: args.authorId,
+            positionNumber: MoreThan(pos) 
+          }, 
+          'positionNumber', 
+          1
+        );
+      }
+    });
+
   }
 
   async trashNotes(args: TrashNotesArgs): Promise<void> {
-    await this.noteRepository.update(
-      { id: In(args.noteIds), authorId: args.authorId, isTrashed: false },
-      { isArchived: false, isTrashed: true }
-    );
+
+    return await this.noteRepository.manager.transaction(async (manager) => {
+      const notesToTrash = await manager.find(NoteEntity, {
+        where: { id: In(args.noteIds), status: In(['default', 'archived']), authorId: args.authorId },
+        order: { positionNumber: 'DESC' }
+      });
+
+      if(notesToTrash.length < args.noteIds.length) {
+        throw new ForbiddenException('Failed to trash notes due to them current status or access restrictions.');
+      }
+
+      const lastTrashedNote = await manager.findOne(NoteEntity, {
+        where: { status: 'trashed', authorId: args.authorId },
+        order: { positionNumber: 'DESC'}
+      });
+
+      const oldNotesToTrashState = notesToTrash.map(note => ({
+        status: note.status,
+        positionNumber: note.positionNumber
+      }));
+      let newTrashedPositionNumber = lastTrashedNote?.positionNumber ? lastTrashedNote.positionNumber + 1 : 1;
+
+      notesToTrash.forEach(note => {
+        note.status = 'trashed';
+        note.positionNumber = newTrashedPositionNumber++;
+      });
+      await manager.save(notesToTrash);
+
+      for (const oldNoteState of oldNotesToTrashState) {
+        await manager.decrement(NoteEntity, 
+          { 
+            status: oldNoteState.status, 
+            authorId: args.authorId,
+            positionNumber: MoreThan(oldNoteState.positionNumber) 
+          }, 
+          'positionNumber', 
+          1
+        );
+      }
+    });
+
   }
 
   async restoreTrashedNotes(args: RestoreTrashedNotesArgs): Promise<void> {
-    await this.noteRepository.update(
-      { id: In(args.noteIds), authorId: args.authorId, isTrashed: true },
-      { isTrashed: false }
-    );
+
+    return await this.noteRepository.manager.transaction(async (manager) => {
+      const notesToRestore = await manager.find(NoteEntity, {
+        where: { id: In(args.noteIds), status: 'trashed', authorId: args.authorId },
+        order: { positionNumber: 'DESC' }
+      });
+
+      if(notesToRestore.length < args.noteIds.length) {
+        throw new ForbiddenException('Failed to restore notes due to them current status or access restrictions.');
+      }
+
+      const lastDefaultNote = await manager.findOne(NoteEntity, {
+        where: { status: 'default', authorId: args.authorId },
+        order: { positionNumber: 'DESC'}
+      });
+
+      const oldPositions = notesToRestore.map(note => note.positionNumber);
+      let newDefaultPositionNumber = lastDefaultNote?.positionNumber ? lastDefaultNote.positionNumber + 1 : 1;
+
+      notesToRestore.forEach(note => {
+        note.status = 'default';
+        note.positionNumber = newDefaultPositionNumber++;
+      });
+      await manager.save(notesToRestore);
+
+      for (const pos of oldPositions) {
+        await manager.decrement(NoteEntity, 
+          { 
+            status: 'trashed', 
+            authorId: args.authorId,
+            positionNumber: MoreThan(pos) 
+          }, 
+          'positionNumber', 
+          1
+        );
+      }
+    });
+
   }
 
   async deleteNotes(args: DeleteNotesArgs): Promise<void> {
-    await this.noteRepository.delete(
-      { id: In(args.noteIds), authorId: args.authorId, isTrashed: true }
-    );
+
+    return await this.noteRepository.manager.transaction(async (manager) => {
+      const notesToDelete = await manager.find(NoteEntity, {
+        where: { id: In(args.noteIds), status: 'trashed', authorId: args.authorId },
+        order: { positionNumber: 'DESC' }
+      });
+
+      if(notesToDelete.length < args.noteIds.length) {
+        throw new ForbiddenException('Failed to delete notes due to them current status or access restrictions.');
+      }
+
+      await manager.delete(NoteEntity, { id: In(args.noteIds) });
+
+      const oldPositions = notesToDelete.map(note => note.positionNumber);
+      for (const pos of oldPositions) {
+        await manager.decrement(NoteEntity, 
+          { 
+            status: 'trashed', 
+            authorId: args.authorId,
+            positionNumber: MoreThan(pos) 
+          }, 
+          'positionNumber', 
+          1
+        );
+      }
+    });
+
   }
 
   async updateNotesColor(args: UpdateNotesColorArgs): Promise<UpdateNotesColorResult> {
     await this.noteRepository.update(
-      { id: In(args.noteIds), authorId: args.authorId, isTrashed: false },
+      { id: In(args.noteIds), authorId: args.authorId, status: In(['default', 'archived']) },
       { colorKey: args.updatedColorKey }
     )
 
@@ -64,7 +240,7 @@ export class NotesService {
       where: {
         id: In(args.noteIds),
         authorId: args.authorId,
-        isTrashed: false
+        status: In(['default', 'archived'])
       },
       select: ['id', 'updatedAt']
     });
@@ -79,7 +255,7 @@ export class NotesService {
 
   async updateNoteContent(args: UpdateNoteContentArgs): Promise<UpdateNoteContentResult> {
     await this.noteRepository.update(
-      { id: args.noteId, authorId: args.authorId, isTrashed: false },
+      { id: args.noteId, authorId: args.authorId, status: In(['default', 'archived']) },
       { title: args.updatedTitle, mainText: args.updatedMainText }
     )
 
@@ -89,7 +265,7 @@ export class NotesService {
     })
 
     if (!updatedNote) {
-      throw new NotFoundException('The note was not found or is not editable for you');
+      throw new NotFoundException('Note not found or access denied');
     }
 
     return {
