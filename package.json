@@ -3,8 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "workspaces": [
-    "apps/*",
-    "libs/*"
+    "apps/*"
   ],
   "overrides": {
     "@nestjs/common": "^11.0.1",

@@ -1,7 +1,7 @@
-import type { NoteColorsKeys } from "@my-notes/types";
+import type { NoteColorsKeys } from "src/notes/types/note-colors.interface";
 import { ArrayNotEmpty, IsArray, IsIn, IsInt, IsString } from "class-validator";
 import type { IUpdateNotesColorDto } from "../types/notes-req-dtos.interfaces";
-import { NoteColorsConstant } from "@my-notes/constants";
+import { NoteColorsConstant } from "src/notes/constants/note-colors.constant";
 
 export class UpdateNotesColorDto implements IUpdateNotesColorDto {
   @IsArray()

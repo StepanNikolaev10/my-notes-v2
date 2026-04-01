@@ -1,4 +1,6 @@
-import type { Note, NoteColorsKeys, User } from "@my-notes/types";
+import type { Note } from "./note.interface";
+import type { NoteColorsKeys } from "./note-colors.interface";
+import type { User } from "src/users/types/user.interface";
 
 type NoteIds = readonly Note['id'][];
 

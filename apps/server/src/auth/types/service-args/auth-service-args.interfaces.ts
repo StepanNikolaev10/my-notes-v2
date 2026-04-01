@@ -1,4 +1,4 @@
-import type { User } from "@my-notes/types";
+import type { User } from "src/users/types/user.interface";
 import type { Tokens } from "../tokens.interface";
 
 

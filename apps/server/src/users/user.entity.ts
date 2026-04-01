@@ -1,6 +1,6 @@
 import { NoteEntity } from "src/notes/note.entity";
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import type { User } from "@my-notes/types";
+import type { User } from "./types/user.interface";
 
 @Entity('users')
 export class UserEntity implements User {

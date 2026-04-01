@@ -1,4 +1,4 @@
-import type { Note } from "@my-notes/types";
+import type { Note } from "./note.interface";
 
 export interface AddNoteResult {
   readonly createdAt: Note['createdAt'];

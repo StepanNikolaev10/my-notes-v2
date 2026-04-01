@@ -1,4 +1,4 @@
-import type { NoteColors } from '@my-notes/types';
+import type { NoteColors } from "../types/note-colors.interface";
 
 export const NoteColorsConstant: NoteColors = {
   UNCOLORED: 'transparent',

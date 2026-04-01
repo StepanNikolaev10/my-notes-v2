@@ -1,6 +1,7 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { UserEntity } from "src/users/user.entity";
-import type { Note, NoteColorsKeys } from "@my-notes/types";
+import type { Note } from "./types/note.interface";
+import type { NoteColorsKeys } from "./types/note-colors.interface";
 
 @Entity('notes')
 export class NoteEntity implements Note {
