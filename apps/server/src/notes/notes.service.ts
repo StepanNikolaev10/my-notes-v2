@@ -2,8 +2,8 @@ import { BadRequestException, ForbiddenException, Injectable, NotFoundException 
 import { NoteEntity } from './note.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Between, In, MoreThan, Repository } from 'typeorm';
-import { AddNoteArgs, ArchiveNotesArgs, DeleteNotesArgs, RestoreTrashedNotesArgs, TrashNotesArgs, UnarchiveNotesArgs, UpdateNoteContentArgs, UpdateNotePositionArgs, UpdateNotesColorArgs } from './types/notes-service-args.interfaces';
-import { AddNoteResult, UpdateNoteContentResult, UpdateNotesColorResult } from './types/notes-service-results.interfaces';
+import { AddNoteArgs, ArchiveNotesArgs, DeleteNotesArgs, RestoreTrashedNotesArgs, TrashNotesArgs, UnarchiveNotesArgs, UpdateNoteContentArgs, UpdateNotePositionArgs, UpdateNotesColorArgs } from './types/services/notes-service-args.interfaces';
+import { AddNoteResult, UpdateNoteContentResult, UpdateNotesColorResult } from './types/services/notes-service-results.interfaces';
 
 
 @Injectable()

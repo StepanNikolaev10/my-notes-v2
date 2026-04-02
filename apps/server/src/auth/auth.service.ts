@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { SessionsService } from './sessions.service';
 import { TokensService } from './tokens.service';
 import type { User } from 'src/users/types/user.interface';
-import { LoginArgs, RefreshArgs, RegistrationArgs } from './types/service-args/auth-service-args.interfaces';
-import { LoginResult, RefreshResult, RegistrationResult } from './types/service-results/auth-service-results.interfaces';
+import { LoginArgs, RefreshArgs, RegistrationArgs } from './types/services/auth-service-args.interfaces';
+import { LoginResult, RefreshResult, RegistrationResult } from './types/services/auth-service-results.interfaces';
 
 @Injectable()
 export class AuthService {

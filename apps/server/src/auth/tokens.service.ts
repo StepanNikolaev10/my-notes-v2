@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import type { Tokens } from './types/tokens.interface';
-import type { GenerateAccessTokenArgs, GenerateRefreshTokenArgs, VerifyAccessTokenArgs, VerifyRefreshTokenArgs } from './types/service-args/tokens-service-args.types';
-import type { GenerateAccessTokenResult, GenerateRefreshTokenResult, VerifyAccessTokenResult, VerifyRefreshTokenResult } from './types/service-results/tokens-service-results.types';
+import type { GenerateAccessTokenArgs, GenerateRefreshTokenArgs, VerifyAccessTokenArgs, VerifyRefreshTokenArgs } from './types/services/tokens-service-args.types';
+import type { GenerateAccessTokenResult, GenerateRefreshTokenResult, VerifyAccessTokenResult, VerifyRefreshTokenResult } from './types/services/tokens-service-results.types';
 
 @Injectable()
 export class TokensService {

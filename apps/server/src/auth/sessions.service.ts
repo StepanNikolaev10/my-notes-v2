@@ -2,8 +2,8 @@ import { Inject, Injectable } from '@nestjs/common';
 import Redis from 'ioredis';
 import { ConfigService } from '@nestjs/config';
 import type { Session } from './types/session.interface';
-import type { CreateSessionArgs, UpdateSessionArgs } from './types/service-args/sessions-service-args.interfaces';
-import type { UpdateSessionResult } from './types/service-results/sessions-service-results.types';
+import type { CreateSessionArgs, UpdateSessionArgs } from './types/services/sessions-service-args.interfaces';
+import type { UpdateSessionResult } from './types/services/sessions-service-results.types';
 
 @Injectable()
 export class SessionsService {
