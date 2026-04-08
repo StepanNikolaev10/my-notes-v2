@@ -1,7 +1,6 @@
 import { IsEmail, IsNotEmpty, IsString, MinLength, MaxLength } from "class-validator";
-import { IUserRegistrationDto } from "../types/auth-req-dtos.interfaces";
 
-export class UserRegistrationDto implements IUserRegistrationDto {
+export class UserRegistrationDto {
   @IsNotEmpty({ message: 'Email cannot be empty' })
   @IsString({ message: 'Email must be a string' })
   @IsEmail({}, { message: 'Invalid email format' })
