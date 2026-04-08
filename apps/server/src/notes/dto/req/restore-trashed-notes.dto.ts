@@ -1,7 +1,6 @@
 import { ArrayNotEmpty, IsArray, IsInt } from "class-validator";
-import type { IRestoreTrashedNotesDto } from "../types/notes-req-dtos.interfaces";
 
-export class RestoreTrashedNotesDto implements IRestoreTrashedNotesDto {
+export class RestoreTrashedNotesDto {
   @IsArray()
   @ArrayNotEmpty() // Убедится, что массив не пустой (в нем есть хотя бы 1 элемент)
   @IsInt({ each: true }) // IsInt строже, чем IsNumber. Он не пропустит дробные числа

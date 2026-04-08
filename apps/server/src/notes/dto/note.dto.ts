@@ -1,7 +1,6 @@
-import type { Note } from "../types/note.interface";
 import type { NoteColorsKeys } from "../types/note-colors.interface";
 
-export class NoteDto implements Note {
+export class NoteDto {
   readonly id: number;
   readonly title: string;
   readonly mainText: string;

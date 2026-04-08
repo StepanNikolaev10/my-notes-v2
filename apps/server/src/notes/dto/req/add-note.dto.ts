@@ -1,7 +1,6 @@
 import { IsString, MaxLength } from 'class-validator';
-import type { IAddNoteDto } from '../types/notes-req-dtos.interfaces';
 
-export class AddNoteDto implements IAddNoteDto {
+export class AddNoteDto {
   @IsString()
   @MaxLength(200, { message: 'Title cannot be longer than 200 characters' })
   readonly title: string;

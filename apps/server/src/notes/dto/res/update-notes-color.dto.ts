@@ -1,4 +1,3 @@
-import type { IUpdateNotesColorResDto } from "../types/notes-res-dtos.interfaces";
 import { Expose, Type } from "class-transformer";
 
 export class UpdatedNoteDataDto {
@@ -9,7 +8,7 @@ export class UpdatedNoteDataDto {
   readonly updatedAt: string;
 }
 
-export class UpdateNotesColorResDto implements IUpdateNotesColorResDto {
+export class UpdateNotesColorResDto {
   @Expose()
   @Type(() => UpdatedNoteDataDto) 
   readonly updatedNotesData: UpdatedNoteDataDto[];

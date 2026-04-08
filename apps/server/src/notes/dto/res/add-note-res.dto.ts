@@ -1,7 +1,6 @@
 import { Expose, Transform } from "class-transformer";
-import { IAddNoteResDto } from "../types/notes-res-dtos.interfaces";
 
-export class AddNoteResDto implements IAddNoteResDto {
+export class AddNoteResDto {
   @Expose()
   @Transform(({ value }) => value instanceof Date ? value.toISOString() : value)
   readonly createdAt: string; 
