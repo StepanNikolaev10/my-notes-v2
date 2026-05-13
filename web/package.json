@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "codegen": "pnpm dlx swagger-typescript-api generate -p http://localhost:3000/api-json -o ./src/generated --modular --axios"
   },
   "dependencies": {
     "dompurify": "^3.3.0",
