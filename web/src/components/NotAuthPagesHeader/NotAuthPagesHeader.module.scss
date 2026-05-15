@@ -1,5 +1,4 @@
 .header {
-  @include header-base;
   justify-content: space-between;
 }
 
@@ -20,7 +19,7 @@
     background: var(--color-block-surface);
     line-height: 1;
   }
-  
+
   .opened {
     background-color: var(--color-hover-block-surface);
   }
