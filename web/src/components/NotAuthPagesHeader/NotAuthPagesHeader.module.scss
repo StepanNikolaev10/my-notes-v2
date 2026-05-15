@@ -1,0 +1,27 @@
+.header {
+  @include header-base;
+  justify-content: space-between;
+}
+
+.authLinks {
+  display: flex;
+
+  .link {
+    @include btn-reset;
+    @include flex-center;
+    width: 90px;
+    height: 36px;
+    text-decoration: none;
+    font-size: 20px;
+    margin-left: 20px;
+    border-radius: 18px;
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+    background: var(--color-block-surface);
+    line-height: 1;
+  }
+  
+  .opened {
+    background-color: var(--color-hover-block-surface);
+  }
+}
