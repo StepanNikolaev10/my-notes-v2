@@ -1,0 +1,41 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin btn-reset {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+}
+
+@mixin input-reset {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  width: auto;
+  border-radius: 0;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background: none;
+  }
+}
+
+@mixin link-reset {
+  color: inherit;
+  text-decoration: none;
+}
