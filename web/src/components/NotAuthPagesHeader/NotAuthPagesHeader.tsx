@@ -1,10 +1,11 @@
 import AppName from '../../ui/AppName/AppName';
+import Header from '../../ui/Header/Header';
 import styles from './NotAuthPagesHeader.module.scss';
 import { Link } from 'react-router-dom';
 
 const NotAuthPagesHeader = () => {
   return (
-    <header className={styles.header}>
+    <Header>
       <AppName />
       <nav className={styles.authLinks}>
         <Link
@@ -20,7 +21,7 @@ const NotAuthPagesHeader = () => {
           Sign up
         </Link>
       </nav>
-    </header>
+    </Header>
   );
 };
 export default NotAuthPagesHeader;
