@@ -9,6 +9,7 @@
   display: flex;
 
   .link {
+    position: relative;
     @include btn-reset;
     @include flex-center;
     width: 90px;
@@ -18,13 +19,42 @@
     margin-left: 20px;
     border-radius: 18px;
     transition: background-color 0.2s;
-    transition: color 0.2s;
-    background: $btn-bg;
+    background-color: $btn-bg;
     line-height: 1;
     color: $btn-text-color;
   }
 
   .opened {
+    animation: btn-press-animation 0.2s;
+    background-color: $active-btn-bg;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      width: 70%;
+      height: 4px;
+      background-color: $active-btn-bg;
+      animation: btn-underline-animation 0.2s;
+      border-radius: 2px;
+    }
+  }
+}
+
+@keyframes btn-underline-animation {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 70%;
+  }
+}
+
+@keyframes btn-bg-animation {
+  0% {
+    background-color: $btn-bg;
+  }
+  100% {
     background-color: $active-btn-bg;
   }
 }
