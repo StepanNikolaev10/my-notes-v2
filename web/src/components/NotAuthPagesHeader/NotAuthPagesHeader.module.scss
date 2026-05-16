@@ -1,5 +1,8 @@
-.header {
+.content {
+  flex: 1;
+  display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .authLinks {
@@ -16,11 +19,11 @@
     border-radius: 18px;
     transition: background-color 0.2s;
     transition: color 0.2s;
-    background: var(--color-block-surface);
+    background: $btn-bg;
     line-height: 1;
   }
 
   .opened {
-    background-color: var(--color-hover-block-surface);
+    background-color: $active-btn-bg;
   }
 }
