@@ -4,6 +4,26 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg-color-1: #ffffff;
+  --bg-color-2: #d3d3d3;
+  --bg-color-3: #a5a5a5;
+  --text-color: #000000;
+
+  --header-height: 60px;
+  --btn-bg: #5596f6;
+  --btn-text-color: #ffffff;
+  --active-btn-bg: #0f70ee;
+  --mark-up: rgba(192, 192, 192, 0.5);
+}
+
+:root[data-theme='dark'] {
+  --bg-color-1: #1a1a1a;
+  --bg-color-2: #303030;
+  --bg-color-3: #4a4a4a;
+  --text-color: #ffffff;
+}
+
 #root {
   min-height: 100vh;
   display: flex;
@@ -12,6 +32,6 @@
 .App {
   flex: 1;
   display: flex;
-  background-color: $bg-color-1;
-  color: $text-color;
+  background-color: var(--bg-color-1);
+  color: var(--text-color);
 }

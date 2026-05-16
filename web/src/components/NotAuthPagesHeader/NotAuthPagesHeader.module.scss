@@ -19,14 +19,14 @@
     margin-left: 20px;
     border-radius: 18px;
     transition: background-color 0.2s;
-    background-color: $btn-bg;
+    background-color: var(--btn-bg);
     line-height: 1;
-    color: $btn-text-color;
+    color: var(--btn-text-color);
   }
 
   .opened {
     animation: btn-press-animation 0.2s;
-    background-color: $active-btn-bg;
+    background-color: var(--active-btn-bg);
 
     &::after {
       content: '';
@@ -34,7 +34,7 @@
       bottom: -6px;
       width: 70%;
       height: 4px;
-      background-color: $active-btn-bg;
+      background-color: var(--active-btn-bg);
       animation: btn-underline-animation 0.2s;
       border-radius: 2px;
     }
@@ -52,9 +52,9 @@
 
 @keyframes btn-bg-animation {
   0% {
-    background-color: $btn-bg;
+    background-color: var(--btn-bg);
   }
   100% {
-    background-color: $active-btn-bg;
+    background-color: var(--active-btn-bg);
   }
 }
