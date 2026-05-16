@@ -1,0 +1,12 @@
+.formInput {
+  padding: 10px 10px;
+  border: 2px solid var(--mark-up);
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: var(--btn-bg);
+  }
+}

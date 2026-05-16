@@ -1,0 +1,18 @@
+.submitFormBtn {
+  padding: 15px;
+  background-color: var(--btn-bg);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    box-shadow 0.3s ease-out;
+
+  &:hover {
+    background-color: var(--active-btn-bg);
+    box-shadow: 0 4px 15px rgba(var(--active-btn-bg), 0.4);
+  }
+}

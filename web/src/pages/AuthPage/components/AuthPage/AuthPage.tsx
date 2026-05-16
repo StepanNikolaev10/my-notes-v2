@@ -1,4 +1,5 @@
 import NotAuthPagesHeader from '../../../../components/NotAuthPagesHeader/NotAuthPagesHeader';
+import SignInForm from '../SignInForm/SignInForm';
 import styles from './AuthPage.module.scss';
 
 const AuthPage = ({
@@ -9,7 +10,9 @@ const AuthPage = ({
   return (
     <>
       <NotAuthPagesHeader selectedAuthMethod={selectedAuthMethod} />
-      <main className={styles.main}></main>
+      <main className={styles.main}>
+        {selectedAuthMethod === 'sign-in' ? <SignInForm /> : ''}
+      </main>
     </>
   );
 };
